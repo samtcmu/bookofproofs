@@ -1,0 +1,137 @@
+% name: Sam Tetruashvili
+% title: proofs-style.sty
+% date created: Fri Nov 28 23:28:30 EST 2008
+% description: Contains all styles that I typically use for number theory.
+%              Continued from the 21-127 style file.
+
+% last modified: Thu Nov 19 17:12:10 EST 2009
+
+\ProvidesPackage{proofs-style}
+
+% Include the appropriate packages.
+% \usepackage{fullpage}
+\usepackage{fancyhdr}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage[all]{xy}
+\usepackage{float}
+\usepackage{subfig}
+\usepackage{mathdots}
+\usepackage{color}
+\usepackage{cite}
+% note: hyperref should always be the last package include.
+\usepackage[pdftex, colorlinks=true, linkcolor=blue, bookmarksnumbered=true, urlcolor=blue]{hyperref}
+
+% Remane the title of the Bibliography Chapter to References.
+\renewcommand{\bibname}{References}
+
+% Theorem definitions.
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{problem}{Problem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{claim}{Claim}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{fact}[theorem]{Fact}
+\renewcommand{\qedsymbol}{}
+\newcommand{\QED}{\e{\quad \blacksquare}}
+
+% Environment definitions.
+\newenvironment{derivation}[1]
+    {\[\begin{array}{r@{\ #1 \ }ll}}
+    {\end{array}\] \\[0pt]}
+
+% Let you use math commands when outside math mode.
+% e.g. \ex{X = i} and $ex{X = i$ will typeset the same thing.
+\newcommand{\e}[1]{\ensuremath{#1}}
+
+% Proof commands.
+\newcommand{\inductive}[2]{\e{\mathcal{#1}(#2)}}
+\newcommand{\then}[0]{\e{\Longrightarrow}}
+\newcommand{\forward}[0]{\e{\Longrightarrow: }}
+\newcommand{\backward}[0]{\e{\Longleftarrow: }}
+\newcommand{\remark}[1]{\multicolumn{3}{l}{\mbox{#1}} \\}
+\newcommand{\remarkmath}[1]{\multicolumn{3}{l}{#1} \\}
+\newcommand{\just}[1]{(\mbox{#1}) \\}
+\newcommand{\justqed}[1]{(\mbox{#1}) \quad \blacksquare\\}
+
+% Set definitions.
+\newcommand{\set}[1]{\e{\mathbb{#1}}}
+\newcommand{\unionzero}[1]{\e{\union{#1}{\Set{0}}}}
+\newcommand{\subzero}[1]{\e{\setsub{#1}{\Set{0}}}}
+\newcommand{\Set}[1]{\e{\left\{#1\right\}}}
+\newcommand{\subs}[2]{\e{#1 \subseteq #2 \ }}
+\newcommand{\ssubs}[2]{\e{#1 \subset #2 \ }}
+\newcommand{\cross}[2]{\e{#1 \times #2}}
+\newcommand{\setsub}[2]{\e{#1 - #2}}
+\newcommand{\fn}[3]{\e{#1: #2 \rightarrow #3}}
+\newcommand{\yesno}[0]{\e{\{Y, N\}}}
+\newcommand{\elem}[2]{\e{#1 \in #2 \ }}
+\newcommand{\union}[2]{\e{#1 \cup #2}}
+\newcommand{\intersect}[2]{\e{#1 \cap #2}}
+\newcommand{\power}[1]{\e{\mathcal{P}\left(#1\right)}}
+\newcommand{\Union}{\e{\cup}}
+\newcommand{\C}[1]{\e{#1^{C}}}
+
+% Number theory commands.
+\newcommand{\base}[2]{\e{{#1}_{(#2)}}}
+\renewcommand{\gcd}[2]{\e{\mathrm{gcd}\left(#1, #2\right)}}
+\newcommand{\divides}[2]{\e{#1 \mid #2}}
+\newcommand{\ndivides}[2]{\e{#1 \nmid #2}}
+\newcommand{\Z}[1]{\e{\set{Z}_{#1}}}
+\newcommand{\Zmult}[1]{\e{\set{Z}_{#1}^{*}}}
+\newcommand{\nZ}[1]{\e{#1\set{Z}}}
+\newcommand{\eulerphi}[1]{\e{\varphi\left(#1\right)}}
+\newcommand{\ceil}[1]{\e{\left\lceil #1 \right\rceil}}
+\newcommand{\floor}[1]{\e{\left\lfloor #1 \right\rfloor}}
+
+% Function commands.
+\newcommand{\comp}[2]{\e{#1 \circ #2}}
+\newcommand{\domain}[1]{\e{\mathrm{domain}(#1)}}
+\newcommand{\target}[1]{\e{\mathrm{target}(#1)}}
+\newcommand{\image}[1]{\e{\mathrm{image}(#1)}}
+
+% Equivalence relation commands.
+\newcommand{\eqclass}[2]{\e{\left[#1\right]_{#2}}}
+
+% Probability commands.
+\newcommand{\ex}[1]{\e{\mathbb{E}\left[#1\right]}}
+\renewcommand{\Pr}[0]{\e{\mathbb{P}\mathrm{r}}}
+\newcommand{\pr}[1]{\e{\Pr \left[#1\right]}}
+\newcommand{\condpr}[2]{\e{\mathbb{P}\mathrm{r}\left[#1 \mid #2\right]}}
+\newcommand{\condex}[2]{\e{\mathbb{E}\left[#1 \mid #2\right]}}
+\newcommand{\var}[1]{\e{\mathbb{V}\mathrm{ar}\left[#1\right]}}
+\newcommand{\ind}[2]{\e{#1 \perp #2}}
+\newcommand{\dist}[2]{\e{#1 \sim #2}}
+\newcommand{\bern}[1]{\e{\mathrm{Bernoulli}(#1)}}
+\newcommand{\bin}[2]{\e{\mathrm{Binomial}(#1, #2)}}
+\newcommand{\geo}[1]{\e{\mathrm{Geometric}(#1)}}
+\newcommand{\poisson}[1]{\e{\mathrm{Poisson}(#1)}}
+\newcommand{\uniform}[2]{\e{\mathrm{Uniform}(#1, #2)}}
+\newcommand{\expdist}[1]{\e{\mathrm{Exp}(#1)}}
+\newcommand{\norm}[2]{\e{\mathrm{Normal}(#1, #2)}}
+\newcommand{\pareto}[3]{\e{\mathrm{Pareto}(#1, #2, #3)}}
+\renewcommand{\l}[0]{\e{\lambda}}
+
+% Algebra commands.
+\newcommand{\subgroup}[2]{\e{#1 \le #2}}
+
+% Analysis commands.
+\newcommand{\cut}[2]{\e{#1 \mid #2}}
+\newcommand{\abs}[1]{\e{\left|#1\right|}}
+\newcommand{\limit}[3]{\e{\dlim_{#1 \to #2} #3}}
+\newcommand{\inteval}[3]{\left[#1\right]_{#2}^{#3}}
+
+% Combinatoric commands.
+\newcommand{\npartk}[2]{\e{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}}
+\newcommand{\npermk}[2]{\e{\genfrac{[}{]}{0pt}{}{#1}{#2}}}
+
+% Display style commands.
+\newcommand{\dsum}{\e{\displaystyle\sum}}
+\newcommand{\dprod}{\e{\displaystyle\prod}}
+\newcommand{\dlim}{\e{\displaystyle\lim}}
+\newcommand{\dunion}{\e{\displaystyle\bigcup}}
+\newcommand{\dint}{\e{\displaystyle\int}}
+

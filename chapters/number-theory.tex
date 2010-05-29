@@ -1,0 +1,1640 @@
+% name: Sam Tetruashvili
+% title: number-theory.tex
+% date created: Tue Dec  2 21:04:54 EST 2008
+% description: The Number Theory chapter of The Book of Proofs.
+
+% last modified: Mon Apr 19 14:43:13 EDT 2010
+
+\chapter{Number Theory}
+    \section{The Division Algorithm}
+        \begin{theorem}
+            $``\forall n \in \set{Z} \ \forall b \in \set{N} \ \exists ! q, r \in \set{Z}$
+            such that $n = bq + r$ and $0 \le r < b$.''
+        \end{theorem}
+        \begin{proof}
+            Let $n \in \set{Z}$ and $b \in \set{N}$ be given.
+            \begin{itemize}
+                \item
+                    We first prove the existence of such a representation.
+                    Let $S$ be defined as follows
+                    \[
+                        S = \Set{n - bm \mid m \in \set{Z} \mbox{ and } n - bm \ge 0}
+                    \]
+                    Since $S$ is a set of non-negative integers it has a smallest element,
+                    call it $r$. By definition of $S$ we know there is a $q \in \set{Z}$
+                    such that $r = n - bq \ge 0$. We now show that $0 \le r < b$ via contradiction.
+                    Since by definition of $S$ we know that $r \ge 0$ we can assume that
+                    $r \ge b$. This of course implies that $r - b = n - bq - b = n - b(q + 1) \ge 0$,
+                    i.e. $r - b \in S$ and $r - b < r = \min(S)$; i.e. we have found an element
+                    of $S$ that is smaller than the smallest element in $S$, this is 
+                    of course a contradiction. Thus $0 \le r < b$ and $n = bq + r$ as required.
+                \item
+                    We now show that our representation is unique via contradiction, so 
+                    assume there are two different representations, i.e. assume $\exists
+                    q, q', r, r' \in \set{Z}$ such that
+                    \begin{enumerate}
+                        \item
+                            $n = bq + r$ and $0 \le r < b$
+                        \item
+                            $n = bq' + r'$ and $0 \le r' < b$
+                        \item
+                            $q \neq q'$ or $r \neq r'$
+                    \end{enumerate}
+                    We now note that $bq + r = bq' + r'$ since they are both equal to $n$. We
+                    can now rearrange this equation to conclude that
+                    \[
+                        r - r' = b(q' - q)
+                    \]
+                    In other words we know that $r - r'$ must be a multiple of $b$. By construction
+                    of $r$ and $r'$ we know that $-b < r - r' < b$. The only multiple of $b$ that falls in
+                    this range is 0, thus $r - r' = 0$ and $r = r'$. This of course implies
+                    that $b(q' - q) = 0$, i.e. $bq = bq'$. Now since $b \neq 0$ we can conclude that $q = q'$.
+                    Thus we have shown that $q = q'$ and $r = r'$, which contradicts condition 3.
+                    Thus the representation is unique.
+            \end{itemize}
+            Thus we can conclude that $n = bq + r, 0 \le r < b$, and 
+            that such $q$ and $r$ are unique. \QED
+        \end{proof}
+    \section{The Euclidean Algorithm}
+        \begin{definition}
+            Let $a, b \in \set{Z}$, we say $a$ divides $b$, and write $\divides{a}{b}$ 
+            if and only if $a, b, \frac{b}{a} \in \set{Z}$. We also define 
+            $D_a = \Set{d \in \set{Z} \mbox{ such that } \divides{d}{a}}$,
+            to be the set of all divisors of $a$.
+        \end{definition}
+        \begin{definition}
+            Let $a, b \in \set{Z}$, we define the greatest common divisor of $a$ and $b$, 
+            denoted $\gcd{a}{b}$, to by the largest integer that divides both $a$ and $b$, 
+            i.e. $\gcd{a}{b} = \max(\intersect{D_a}{D_b})$. From this definition one can clearly
+            see $\gcd{a}{b} = \gcd{b}{a}$ since set intersection is commutative.
+        \end{definition}
+        % TODO State this invariant using b mod a instead of b - a, so it fits better
+        %      with the Euclidean Algorithm.
+        \begin{theorem}
+            $``\forall a, b \in \set{Z} \ \gcd{a}{b} = \gcd{a}{b - a}$.''
+            \label{EA Basis}
+        \end{theorem}
+        \begin{proof}
+            Let $a, b \in \set{Z}$ be given. Let $D_a$, $D_b$,  and $D_{b - a}$ be the set of all divisors
+            of $a, b$, and $b - a$. We now define $W = \intersect{D_a}{D_b}$ to be the set of integers that
+            divide both $a$ and $b$ and $V = \intersect{D_a}{D_{b - a}}$ to be the set of integers that
+            divide both $a$ and $b - a$. Note that by definition of greatest common divisor we know that
+            $\gcd{a}{b} = \max(W)$ and $\gcd{a}{b - a} = \max(V)$. Thus to show that $\gcd{a}{b} =
+            \gcd{a}{b - a}$ it suffices to show that $W = V$.
+            \begin{itemize}
+                \item
+                    We will first show that $\subs{W}{V}$, so let $d \in W$ be given. By definition
+                    of $W$ we know that $d$ divides both $a$ and $b$. Thus we can conclude that
+                    $\frac{a}{d}, \frac{b}{d} \in \set{Z}$. Since the integers are closed under subtraction
+                    we can conclude that $\frac{b}{d} - \frac{a}{d} = \frac{b - a}{d} \in \set{Z}$.
+                    Thus we can conclude that $d$ must also divides $b - a$. Since we know $d$ divides
+                    $a$ and $b - a$ we know that $d \in V$ by definition of $V$.
+                \item
+                    We will now show that $\subs{V}{W}$. Let $d \in V$ be given. By definition of $V$
+                    we know that $d$ must divide both $a$ and $b - a$. Thus we can conclude that
+                    $\frac{a}{d}, \frac{b - a}{d} \in \set{Z}$. Since the integers are closed under
+                    addition we can conclude that $\frac{b - a}{d} + \frac{a}{d} = \frac{b}{d} \in \set{Z}$.
+                    Thus we can conclude that $d$ divides $b$. Since we know $d$ divides both $a$
+                    and $b$ we can conclude that $d \in W$ by definition of $W$.
+            \end{itemize}
+            Thus we can conclude that $W = V$ and $\gcd{a}{b} = \gcd{a}{b - a}$. \QED
+        \end{proof}
+        % TODO State the Euclidean Algorithm and give C or ML code that implements
+        %      both the Euclidean and the Extended Euclidean Algorithm.
+        \begin{algorithm}
+            Theorem \ref{EA Basis} gives us a tool for designing an algorithm for computing the greatest
+            common divisor of two integers. This algorithm is generally credited to Euclid and is thus called
+            the Euclidean Algorithm.
+            \begin{figure}[H]
+                \centering
+                $\gcd{a}{b} = \left\{\begin{array}{ll}
+                    b & \mbox{if } a = 0 \\
+                    \gcd{b\mod a}{a} & \mbox{otherwise}
+                \end{array}\right.$
+                \caption{The Euclidean Algorithm.}
+            \end{figure}
+        \end{algorithm}
+        \begin{theorem}[Lam\'{e}'s Theorem]
+            % TODO
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{Linear Diophantine Equations}
+        \begin{theorem}
+            $``\forall a, b \in \set{Z} \ \exists x, y \in \set{Z}$ such that $ax + by = \gcd{a}{b}.$''
+            \label{lineardiophantinegcd}
+        \end{theorem}
+        \begin{proof}
+            Without loss of generality we may assume both
+            $a$ and $b$ are non-negative since multiplying by $-1$ does not change the factors
+            of an integer. We can now proceed by strong induction
+            on $n = a + b$ to prove the following statement for each $n \in \set{N}$.
+            \[
+                \inductive{P}{n} = ``\forall a , b \in \set{N} \ 
+                a + b = n \then \exists x, y \in \set{Z} \ \ ax + by = \gcd{a}{b}."
+            \]
+            \begin{itemize}
+                \item
+                    Base Case: If $n = 0$, then both $a$ and $b$ must also be 0. Thus $\gcd{a}{b} = 0$,
+                    so we can choose $x = y = 1$ and conclude that $ax + by = \gcd{a}{b}$ as required.
+                \item
+                    Induction Step: Let $k \in \set{N}$ be given; assume  $\forall j \le k$
+                    that $\inductive{P}{j}$ is true. Let $a, b \in \set{N}$ be given such
+                    that $a + b = k + 1$. Without loss of generality we may assume that $b > a$.
+                    Now we note that $\gcd{a}{b} = \gcd{a}{b - a}$. We now have two cases 
+                    depending on whether or not $a = 0$.
+                    \begin{itemize}
+                        \item
+                            If $a = 0$ that we know that $\gcd{a}{b} = b$ so we can choose $x = 0$ and $y = 1$
+                            and conclude that $ax + by = 0(0) + b(1) = b = \gcd{a}{b}$ as required.
+                        \item
+                            If $a > 0$ then we know that $b = k + 1 - a \le k$. We now note that $a + (b - a) = b \le k$
+                            and $\gcd{a}{b} = \gcd{a}{b - a}$ by the Euclidean Algorithm. Thus we can now invoke
+                            $\inductive{P}{b}$ to find $x', y' \in \set{Z}$ such that 
+                            $ax' + (b - a)y' = \gcd{a}{b - a}$.
+                            This implies that $ax' + (b - a)y' = \gcd{a}{b}$. We can now rearrange the equation
+                            as follows
+                            \[
+                                ax' + (b - a)y' = ax' + by' - ay' = a(x' - y') + by' = \gcd{a}{b}
+                            \]
+                            So we can now choose $x = x' - y'$ and $y = y'$ and thus conclude that 
+                            $ax + by = \gcd{a}{b}$ as required.
+                    \end{itemize}
+                    Thus in either case we have found $x, y \in \set{Z}$ such that $ax + by = \gcd{a}{b}$.
+            \end{itemize}
+            Finally by the principle of mathematical induction we can conclude that $\inductive{P}{n}$ is
+            true for all $n \in \set{N}$. \QED
+        \end{proof}
+        % TODO State that we can find the x and y via the Euclidean Algorithm.
+        %      In other words state the extended Euclidean Algorithm.
+        \begin{corollary}
+            $``\forall a, b \in \set{Z} \ \gcd{a}{b} = 1 \then \exists x, y \in \set{Z}$ such
+            that $ax + by = 1$''.
+            \label{diophantine inverse}
+        \end{corollary}
+        \begin{definition}
+            Let $a, b \in \set{Z}$. We now define the following set
+            \begin{itemize}
+                \item
+                    $S_{a, b} = \Set{(x, y) \in \set{Z}^2 \mid ax + by = \gcd{a}{b}}$, i.e. $S_{a, b}$ is
+                    the set of all ordered pairs that solve $ax + by = \gcd{a}{b}$.
+            \end{itemize}
+        \end{definition}
+        \begin{lemma}
+            $``\forall a, b \in \set{Z}$ if $\gcd{a}{b} = 1$ and $\exists x_0, y_0 \in \set{Z}$
+            such that $ax_0 + by_0 = 1$, then 
+            $S_{a, b} = \Set{(x_0 + bk, y_0 - ak) \in \set{Z}^2 \mid k \in \set{Z}}$.''
+            \label{Linear Diophantine Equations All Solutions Lemma}
+        \end{lemma}
+        \begin{proof}
+            Let $a, b \in \set{Z}$ be given such that $\gcd{a}{b} = 1$. 
+            We can now invoke theorem \ref{lineardiophantinegcd}
+            to conclude that $\exists x_0, y_0 \in \set{Z}$ such that $ax_0 + by_0 = \gcd{a}{b} = 1$.
+            We now define $T$ as follows
+            \[
+                T = \Set{(x_0 + bk, y_0 - ak) \in \set{Z}^{2} \mid k \in \set{Z}}
+            \]
+            We now show that $S_{a, b} = T$ by showing that $\subs{S_{a, b}}{T}$ and $\subs{T}{S_{a, b}}$.
+            \begin{itemize}
+                \item
+                    We first show that $\subs{T}{S_{a, b}}$; so let $(x, y) \in T$ be given.
+                    By definition of $T$ we know that $\exists k \in \set{Z}$ such that
+                    $x = x_0 + bk$ and $y = y_0 - ak$. We now compute $ax + by$ as follows.
+                    \begin{derivation}{=}
+                        ax + by & a(x_0 + bk) + b(y_0 - ak) \\
+                                & ax_0 + abk + by_0 - abk \\
+                                & ax_0 + by_0 \\
+                                & \gcd{a}{b} 
+                    \end{derivation}
+                    Thus we have shown that $(x, y) \in S_{a, b}$ as required.
+                \item
+                    We now show that $\subs{S_{a, b}}{T}$. Let $(x, y) \in S_{a, b}$ be given.
+                    By definition of $S_{a, b}$ we can conclude the following
+                    \begin{equation}
+                        ax + by = \gcd{a}{b} = ax_0 + by_0
+                        \label{LDE All Solutions equation 1}
+                    \end{equation}
+                    We can now rearrange the equation above as follows
+                    \begin{equation}
+                        a(x - x_0)=  b(y_0 - y)
+                        \label{LDE All Solutions equation 2}
+                    \end{equation}
+                    Since $\divides{a}{a(x - x_0)}$ we can conclude that $\divides{a}{b(y_0 - y)}$.
+                    Now since $a$ and $b$ are relatively prime  we can invoke lemma \ref{FTA lemma 2}
+                    to conclude that $\divides{a}{(y_0 - y)}$, i.e. $\dfrac{y_0 - y}{a} \in \set{Z}$. 
+                    We can now choose $k = \dfrac{y_0 - y}{a}$ and then rearrange equation 
+                    (\ref{LDE All Solutions equation 1}) as follows
+                    \[
+                        x = x_0 + b\left(\frac{y_0 - y}{a}\right) = x_0 + bk
+                    \]
+                    To find a similar form for $y$ we can re-arrange (\ref{LDE All Solutions equation 1})
+                    as follows
+                    \begin{equation}
+                        y = y_0 + a\left(\frac{x_0 - x}{b}\right)
+                        \label{LDE All Solutions equation 3}
+                    \end{equation}
+                    We can now divide both sides of equation (\ref{LDE All Solutions equation 2}) by
+                    $ab$ to conclude that
+                    \[
+                        \frac{x - x_0}{b} = \frac{y_0 - y}{a} = k
+                    \]
+                    We can now multiply the above equation by $-1$ to conclude that
+                    \begin{equation}
+                        \frac{x_0 - x}{b} = -k 
+                        \label{LDE All Solutions equation 4}
+                    \end{equation}
+                    Thus we can substitute equation (\ref{LDE All Solutions equation 4}) into
+                    equation (\ref{LDE All Solutions equation 3}) to conclude that
+                    \[
+                        y = y_0 - ak
+                    \]
+                    Thus we have shown that $(x, y) = (x_0 + bk, y_0 - ak)$ when $k = \dfrac{y_0 - y}{a}$,
+                    i.e. $(x, y) \in T$ as required.
+            \end{itemize} 
+           Thus we can conclude that $S_{a, b} = T$ as required. \QED
+        \end{proof}
+        \begin{theorem}[All Solutions]
+            $``\forall a, b \in \set{Z}$ if $\exists x_0, y_0 \in \set{Z}$ such that
+            $ax_0 + by_0 = \gcd{a}{b}$, then  $S_{a, b} =
+            \Set{\left(x_0 + \dfrac{bk}{\gcd{a}{b}}, y_0 - \dfrac{ak}{\gcd{a}{b}}\right) \in \set{Z}^2 \mid
+            k \in \set{Z}}$.''
+        \end{theorem}
+        \begin{proof}
+            Let $a, b \in \set{Z}$ be given. We can now invoke theorem \ref{lineardiophantinegcd}
+            to conclude that $\exists x_0, y_0 \in \set{Z}$ such that $ax_0 + by_0 = \gcd{a}{b}$.
+            We now define $T$ as follows
+            \[
+                T = \Set{\left(x_0 + \dfrac{bk}{\gcd{a}{b}}, y_0 - \dfrac{ak}{\gcd{a}{b}}\right) \in \set{Z}^2 
+                         \mid k \in \set{Z}}
+            \]
+            We now let $a' = \dfrac{a}{\gcd{a}{b}}$ and $b' = \dfrac{b}{\gcd{a}{b}}$. Since
+            $\gcd{a'}{b'} = 1$ we can invoke lemma \ref{Linear Diophantine Equations All Solutions Lemma} 
+            to conclude that $S_{a', b'} = T$. We now finish off the proof by showing that $S_{a, b} = S_{a', b'}$
+            as follows.
+            \begin{derivation}{\iff}
+                (x, y) \in S_{a, b} & ax + by = \gcd{a}{b} & \just{By definition of $S_{a, b}$.}
+                                    & \frac{a}{\gcd{a}{b}}x + \frac{b}{\gcd{a}{b}}'y = 1 
+                                    & \just{Since $\gcd{a}{b}$ divides $a, b$ and $\gcd{a}{b}$.}
+                                    & a'x + b'y = 1 & \just{By definition of $a'$ and $b'$.}
+                                    & a'x + b'y = \gcd{a'}{b'} \\
+                                    & (x, y) \in S_{a', b'} & \just{By definition of $S_{a', b'}$.}
+            \end{derivation}
+            Thus we can conclude that $S_{a, b} = S_{a', b'} = T$, which by transitivity of equality
+            tells us that $S_{a, b} = T$ as required. \QED
+        \end{proof}
+        \begin{definition}
+            Let $a, b \in \set{Z}$ and $n \in \set{N}$, we define the following
+            sets based on these quantities
+            \begin{itemize}
+                \item
+                    $(a, b) = \Set{ax + by \mid x, y \in \set{Z}}$, i.e. $(a, b)$ is the set of
+                    all integer combinations of $a$ and $b$.
+                \item
+                    $\nZ{n} = \Set{nk \mid k \in \set{Z}}$, i.e. $\nZ{n}$ is the set of all
+                    multiples of $n$.
+            \end{itemize}
+        \end{definition}
+        \begin{theorem}
+            $``\forall a, b \in \set{Z}$ let $n = \gcd{a}{b}$ then $(a, b) = \nZ{n}$.''
+        \end{theorem}
+        \begin{proof}
+            Let $a, b \in \set{Z}$ be given. Let $n = \gcd{a}{b}$. We proceed to show
+            that $(a, b) = \nZ{n}$ by showing that $\subs{(a, b)}{\nZ{n}}$ and 
+            $\subs{\nZ{n}}{(a, b)}$.
+            \begin{itemize}
+                \item
+                    We first want to show $\subs{\nZ{n}}{(a, b)}$, so let $d \in \nZ{n}$ be
+                    given. By definition of $\nZ{n}$ we know $\exists k \in \set{Z}$ such
+                    that $d = nk$. By theorem \ref{lineardiophantinegcd} we know $\exists
+                    x, y \in \set{Z}$ such that $ax + by = n$. We can simply multiply that
+                    equation by $k$ and find that $a(xk) + b(yk) = nk = d$. Thus we can choose
+                    $x' = xk$ and $y' = yk$ to find a linear combination of $a$ and $b$ equal to
+                    $d$, i.e. $ax' + by' = d$. This of course implies that $d \in (a, b)$.
+                \item
+                    We now want to show $\subs{(a, b)}{\nZ{n}}$, so let $d \in (a, b)$
+                    be given. By definition of $(a, b)$ we know $\exists x, y \in \set{Z}$
+                    such that $ax + by = d$. Since $n = \gcd{a}{b}$ we know that $n$ must
+                    divide both $a$ and $b$, i.e. $\exists j, k \in \set{Z}$ such that
+                    $a = nj$ and $b = nk$. We now rewrite the equation as follows
+                    \[
+                        ax + by = (nj)x + (nk)y = n(jx + ky) = d
+                    \]
+                    Thus we have factored $d$ into $nl$ where $l = jx + ky$. Thus we can conclude
+                    that $d \in \nZ{n}$.
+            \end{itemize}
+            Thus we can conclude that $(a, b) = \nZ{n}$. \QED
+        \end{proof}
+        \begin{corollary}
+            $``\forall a, b, n \in \set{Z} \ \exists x, y \in \set{Z}$ such that
+            $ax + by = n$ if and only if $\divides{\gcd{a}{b}}{n}$.''
+        \end{corollary}
+    \section{The Fundamental Theorem of Arithmetic}
+        \begin{lemma}
+            $``\forall a, n, m \in \set{Z}$ if $\divides{a}{n}$ and $\divides{a}{m}$ then
+            $\divides{a}{(n + m)}$.''
+            \label{FTA lemma 1}
+        \end{lemma}
+        \begin{proof}
+            Let $a, n, m \in \set{Z}$ be given such that $\divides{a}{n}$ and $\divides{a}{m}$.
+            By definition of divisibility we know that $\frac{n}{a}, \frac{m}{a} \in \set{Z}$.
+            Now since $\set{Z}$ is closed under addition we can conclude that 
+            $\frac{n}{a} + \frac{m}{a} = \frac{n + m}{a} \in \set{Z}$. Thus by definition of
+            divisibility we can conclude that $\divides{a}{(n + m)}$ as required.
+            \QED
+        \end{proof}
+        \begin{lemma}
+            $``\forall a, b, q \in \set{Z}$ if $\gcd{a}{b} = 1$ and $\divides{a}{qb}$ then
+            $\divides{a}{q}$.''
+            \label{FTA lemma 2}
+        \end{lemma}
+        \begin{proof}
+            Let $a, b, q \in \set{Z}$ be given such that $\gcd{a}{b} = 1$ and $\divides{a}{qb}$.
+            By corollary \ref{diophantine inverse} $\exists x, y \in \set{Z}$ such that
+            $ax + by = 1$. If we multiply this equation by $q$ we can conclude that
+            $qax + qby = q$. We now note that $\divides{a}{qax}$ since $\frac{qax}{a} = qx \in \set{Z}$
+            and $\divides{a}{qby}$ since $\divides{a}{qb}$ by construction. Thus by
+            lemma \ref{FTA lemma 1} we can conclude that $\divides{a}{qax + qby}$, which of course
+            implies that $\divides{a}{q}$ as required. \QED
+        \end{proof}
+        \begin{lemma}
+            $``\forall n \in \set{N} \ \forall p \in \set{P} \ \forall a_1, \dots, a_n \in \set{Z}$
+            if $\divides{p}{\prod_{i = 1}^{n} a_i}$ then $\exists i \in [n]$ such that $\divides{p}{a_i}$.''
+            \label{FTA Lemma 3}
+        \end{lemma}
+        \begin{proof}
+            We proceed by induction on $n$ to prove $\inductive{P}{n}$ for all $n \in \set{N}$.
+            \[
+                \inductive{P}{n} = ``\forall p \in \set{P} \ \forall a_1, \dots, a_n \in \set{Z}
+                                    \mbox{ if } \divides{p}{\prod_{i = 1}^{n} a_i} \mbox{ then } 
+                                    \exists i \in [n] \mbox{ such that } \divides{p}{a_i}."
+            \]
+            \begin{itemize}
+                \item
+                    Base Case: If $n = 1$ then $\inductive{P}{1}$ is trivially true.
+                \item
+                    Induction Step: Let $k \in \set{N}$ be given; assume $\inductive{P}{k}$ is
+                    true. Let $p \in \set{P}$ and $a_1, \dots, a_k, a_{k + 1} \in \set{Z}$ be
+                    given such that $\divides{p}{\left(\prod_{i = 1}^{k + 1} a_i\right)}$.
+                    We now have two cases either $\divides{p}{a_{k + 1}}$ or $\ndivides{p}{a_{k + 1}}$.
+                    \begin{itemize}
+                        \item
+                            If $\divides{p}{a_{k + 1}}$ then we are done since we have found an
+                            $i \in [k + 1]$ such that $\divides{p}{a_i}$.
+                        \item
+                            If $\ndivides{p}{a_{k + 1}}$ we know that $\gcd{p}{a_{k + 1}} = 1$
+                            since $p$ is prime. Since we know that $\divides{p}{a_{k + 1} \prod_{i = 1}^{k} a_i}$
+                            we can invoke lemma \ref{FTA lemma 2} to conclude that $\divides{p}{\prod_{i = 1}^k a_i}$.
+                            We can now invoke the $\inductive{P}{k}$ to conclude that $\exists i \in [k]$
+                            such that $\divides{p}{a_i}$.
+                    \end{itemize}
+                    In either case we have found an $i \in [k + 1]$ such that $\divides{p}{a_i}$.
+                    Thus $\inductive{P}{k + 1}$ is true as required.
+            \end{itemize}
+            Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \set{N}$
+            as required. \QED
+        \end{proof}
+        \begin{definition}
+            Let $n \in \setsub{\set{Z}}{\Set{0}}$. We say $p_1 \cdots p_k$ is a
+            prime factorization of $|n|$ if and only if the following hold.
+            \begin{itemize}
+                \item
+                    $k \in \unionzero{\set{N}}$.
+                \item
+                    $\forall i \in [k] \ p_i \in \set{P}$; note that
+                    the $p_i$'s are not necessarily distinct.
+                \item
+                    $|n| = \dprod_{i = 1}^{k} p_k$.
+            \end{itemize}
+            If $n < 0$ we simply prepend a $-$ to the factorization, i.e.
+            $n = -p_1 \cdots p_k$. When $n > 0$ and $p_1 \cdots p_k$ is a prime factorization
+            of $n$ we write $n = p_1 \cdots p_k$.
+        \end{definition}
+        \begin{theorem}[The Fundamental Theorem of Arithmetic]
+            ``Every non-zero integer has a prime factorization; furthermore this
+            factorization is unique up to permutation of the primes in the
+            factorization.''
+            \label{FTA}
+        \end{theorem}
+        \begin{proof}
+            To prove the Fundamental Theorem of Arithmetic we will proceed by first showing
+            that every integer at least one prime factorization, then we will show that this
+            factorization is unique. Both steps will be accomplished through induction.
+            Throughout the remainder of this proof will will only deal with the positive integers, as
+            the prime factorization of $n < 0$ is just the prime factorization of $|n|$ with
+            a $-$ prepended to it.
+            \begin{enumerate}
+                \item
+                    Existence: To show that each $n \in \set{N}$ has a prime factorization
+                    we will proceed by induction to prove $\inductive{P}{n}$ for all $n \in \set{N}$.
+                    \[
+                        \inductive{P}{n} = ``\exists k \in \unionzero{\set{N}} \ \exists p_1, \dots, p_k \in \set{P}
+                        \mbox{ such that } n = p_1 \cdots p_k."
+                    \]
+                    \begin{itemize}
+                        \item
+                            Base Case: If $n = 1$ we just choose $k = 0$ and invoke the
+                            convention that the product of zero elements is $1$.
+                        \item
+                            Induction Step: Let $n \in \set{N}$ be given; assume $\forall j \le n \ 
+                            \inductive{P}{j}$ is true. We will now try to find a prime factorization
+                            for $n + 1$. We note that $n + 1$ is either prime or composite.
+                            \begin{itemize}
+                                \item
+                                    If $n + 1$ is prime we can just choose $k = 1$ and let $n + 1 = (n + 1)$
+                                    be a prime factorization for $n + 1$.
+                                \item
+                                    If $n + 1$ is composite then
+                                    $\exists r, s \in \setsub{[n]}{\Set{1}}$ such that 
+                                    \[
+                                        n + 1 = rs
+                                    \]
+                                    We can now invoke $\inductive{P}{r}$ and $\inductive{P}{s}$ to find
+                                    $k_1, k_2 \in \unionzero{\set{N}}$ and
+                                    $r_1, \dots, r_{k_1}, s_1, \dots, s_{k_2} \in \set{P}$ such that
+                                    \[
+                                        r = r_1 \cdots r_{k_1} \mbox{ and } s = s_1 \cdots s_{k_2}
+                                    \]
+                                    are the prime factorizations of $r$ and $s$ respectively. We can now choose
+                                    $k = k_1 + k_2$ and construct the prime factorization for $n + 1$
+                                    by combining the factorizations for $r$ and $s$ as follows
+                                    \[
+                                        n + 1 = r_1 \cdots r_{k_1} s_1 \cdots s_{k_2} = p_1 \cdots p_{k}
+                                    \]
+                            \end{itemize}
+                            Thus we have found a prime factorization for $n + 1$ in either case;
+                            thus $\inductive{P}{n + 1}$ is true.
+                    \end{itemize}
+                    Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \set{N}$
+                    as required.
+                \item
+                    Uniqueness: To show that this factorization is unique up to re-ordering
+                    of the $p_i$'s we proceed by induction on $n$ to show that $\inductive{P}{n}$
+                    is true for all $n \in \set{N}$.
+                    \[
+                        \inductive{P}{n} = ``n \mbox{ has a unique prime factorization up to permutation}."
+                    \]
+                    \begin{itemize}
+                        \item
+                            Base Case: We know that $\inductive{P}{1}$ is true because we defined
+                            the prime factorization of $1$ to be the product of zero integers and
+                            we assume that there is only one product of zero integers.
+                        \item
+                            Induction Step: Let $n \in \set{N}$ be given; assume $\forall j \le n \
+                            \inductive{P}{j}$ is true. We will now proceed by contradiction
+                            to show that $n + 1$ has a unique prime factorization. Assume $p_1 \cdots p_k$ and
+                            $q_1 \cdots q_l$ are two different prime factorizations for $n + 1$, i.e.
+                            $k, l \in \unionzero{\set{N}}$, $p_1, \dots, p_k, q_1, \dots, q_l \in \set{P}$,
+                            $\exists i \in [k]$ such that $\forall j \in [l] \ p_i \neq q_j$, and
+                            \begin{equation}
+                                n + 1 = \prod_{i = 1}^{k} p_i = p_1 \prod_{i = 2}^{k} p_i = \prod_{i = 1}^{l} q_i
+                                \label{FTA equation 1}
+                            \end{equation}
+                            Since $n \ge 1$ we know $n + 1 \ge 2$; thus we can conclude that neither
+                            $k$ or $l$ are zero since $n + 1 \neq 1$ and the product of zero primes
+                            is defined to be 1. Now, since $\divides{p_1}{n + 1}$ we can conclude
+                            that $\divides{p_1}{\prod_{i = 1}^{l} q_i}$. We can now invoke lemma
+                            \ref{FTA Lemma 3} to conclude $\exists i \in [l]$ such that $\divides{p_1}{q_i}$.
+                            Since $q_i$ is prime its only divisors are $1$ and $q_i$. Since $p_1$
+                            is also prime we know that $p_1 \neq 1$; thus $p_1 = q_i$.
+                            We can now divide equation (\ref{FTA equation 1}) by $p_1$ and then
+                            invoke $\inductive{P}{\frac{n + 1}{p_1}}$ to conclude that $\frac{n + 1}{p_1}$
+                            has a unique prime factorization. Thus
+                            we can conclude that $k = l$ and each of the $p_j$'s in
+                            $p_1 \cdots p_k$ appears exactly once as a $q_j$ in $q_1 \cdots q_l$,
+                            i.e. they are the same prime factorization up to re-ordering of the factors.
+                            This is of course a contradiction, so $\inductive{P}{n + 1}$ is true.
+                    \end{itemize}
+                    Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \set{N}$
+                    as required.
+            \end{enumerate}
+            Thus we can conclude that each non-zero integer has a unique prime
+            factorization as required. \QED
+        \end{proof}
+   \section{Modular Arithmetic}
+        \begin{definition}
+            Let $a, b \in \set{Z}$ and $n \in \set{N}$. We define the congruence relation
+            on $\set{Z}$ as follows. We say $a$ is congruent to $b$ modulo
+            $n$, written $a \equiv b \mod n$, if and only if $\divides{n}{(a - b)}$.
+        \end{definition}
+        \begin{lemma}
+            $``\forall n \in \set{N}$ congruence modulo $n$ is an equivalence relation.''
+            \label{Congruence Equivalence Relation}
+        \end{lemma}
+        \begin{proof}
+            Let $n \in \set{N}$ be given. We will define the congruence modulo $n$ relation 
+            on $\set{N}$, denoted by $\sim$ as follows
+            \begin{equation}
+                \forall a, b \in \set{Z} \ a \sim b \iff a \equiv b \mod n
+            \end{equation}
+            To show that $\sim$ is an equivalence relation it suffices to show that
+            the three properties of equivalence are satisfied.
+            \begin{itemize}
+                \item
+                    Reflexivity: Let $a \in \set{Z}$ be given. We know that $a \equiv a \mod n$
+                    since $\divides{n}{a - a}$ since $\divides{n}{0}$. Thus we can conclude that
+                    $a \sim a$ by definition of $\sim$.
+                \item
+                    Symmetry: Let $a, b \in \set{Z}$ be given such that $a \sim b$. By definition
+                    of $\sim$ we know that $a \equiv b \mod n$. This implies that $\divides{n}{(a - b)}$
+                    and $\frac{a - b}{n} \in \set{Z}$. Since the integer are closed under multiplication
+                    we can conclude that $-1 \left(\frac{a - b}{n}\right) = \frac{b - a}{n} \in \set{Z}$.
+                    This implies that $\divides{n}{(b - a)}$, which implies that $b \equiv a \mod n$ and
+                    that $b \sim a$ as required.
+                \item
+                    Transitivity: Let $a, b, c \in \set{Z}$ be given such that $a \sim b$ and 
+                    $b \sim c$. By definition of $\sim$ we know that $a \equiv b \mod n$ and 
+                    $b \equiv c \mod n$; which of course implies that $\divides{n}{(a - b)}$
+                    and $\divides{n}{(b - c)}$, i.e. $\frac{a - b}{n}, \frac{b - c}{n} \in \set{Z}$.
+                    Since the integers are closed under addition we know that 
+                    $\frac{a - b}{n} + \frac{b - c}{n} = \frac{a - c}{n} \in \set{Z}$.
+                    This of course implies that $\divides{n}{a - c}, a \equiv c \mod n$, and
+                    $a \sim c$ as required.
+            \end{itemize}
+            Thus congruence modulo $n$ is an equivalence relation. \QED
+        \end{proof}
+        \begin{lemma}
+            $``\forall n \in \set{N} \ \forall a, b, \bar{a}, \bar{b} \in \set{Z}$
+            if $a \equiv \bar{a} \mod n$ and $b \equiv \bar{b} \mod n$ then
+            $a + b \equiv \bar{a} + \bar{b} \mod n$ and $ab \equiv \bar{a}\bar{b} \mod n$.''
+        \end{lemma}
+        \begin{proof}
+            Let $n \in \set{N}$ and $a, b, \bar{a}, \bar{b} \in \set{Z}$ be given such
+            that $a \equiv \bar{a} \mod n$ and $b \equiv \bar{b} \mod n$. By definition 
+            of congruence we know that $\divides{n}{(a - \bar{a})}$ and $\divides{n}{(b - \bar{b})}$.
+            This of course implies that $\frac{a - \bar{a}}{n}, \frac{b - \bar{b}}{n} \in \set{Z}$.
+            Since $\set{Z}$ is closed under addition we can conclude that
+            $\frac{a - \bar{a}}{n} + \frac{b - \bar{b}}{n} = \frac{(a + b) - (\bar{a} + \bar{b})}{n} \in \set{Z}$.
+            This implies that $\divides{n}{((a + b) - (\bar{a} - \bar{b})}$ by definition of divisibility.
+            Now by definition of congruence modulo $n$ we can conclude that 
+            \[
+                a + b \equiv \bar{a} + \bar{b} \mod n
+            \]
+            as required.
+
+            We now proceed to show that $ab \equiv \bar{a}\bar{b} \mod n$ using that fact
+            that since congruence modulo $n$ is transitive. Since we know that $\frac{a - \bar{a}}{n} \in \set{Z}$
+            and that $\set{Z}$ is closed under multiplication, we can conclude that
+            $\left(\frac{a - \bar{a}}{n}\right)b = \frac{ab - \bar{a}b}{n} \in \set{Z}$.
+            Thus by definition of congruence modulo $n$ we can conclude that
+            \begin{equation}
+                ab \equiv \bar{a}b \mod n.
+                \label{Modular Arithmetic equation 1}
+            \end{equation}
+            Now since $\frac{b - \bar{b}}{n} \in \set{Z}$, we also know that
+            $\bar{a}\left(\frac{b - \bar{b}}{n}\right) = \frac{\bar{a}b - \bar{a}\bar{b}}{n} \in \set{Z}$.
+            Thus by definition of congruence modulo $n$ we know that
+            \begin{equation}
+                \bar{a}b \equiv \bar{a}\bar{b} \mod n
+                \label{Modular Arithmetic equation 2}
+            \end{equation}
+            By lemma \ref{Congruence Equivalence Relation} we know that congruence modulo $n$
+            is transitive. Thus we can invoke transitivity of congruence on equations 
+            (\ref{Modular Arithmetic equation 1}) and (\ref{Modular Arithmetic equation 2})
+            so conclude that
+            \[
+                ab \equiv \bar{a}\bar{b} \mod n
+            \]
+            as required. \QED
+        \end{proof}
+    \section{Infinitely Many Primes}
+        \begin{definition}
+            We say $n \in \set{Z}$ is prime if and only if the only factors of $n$
+            are 1 and $n$. We define $\set{P} = \Set{n \in \set{Z} \mid n \mbox{ is prime}}$,
+            i.e. $\set{P}$ is the set of all prime numbers.
+        \end{definition}
+        \begin{theorem}
+            $``$There are infinitely many prime numbers.''
+            \label{Infinitely Many Primes}
+        \end{theorem}
+        \begin{proof}
+            We proceed via a proof by contradiction. Assume there are finitely
+            many prime numbers, i.e. $\exists n \in \set{N}$ such that $|\set{P}| = n$.
+            Moreover assume that $p_1, \dots, p_n$ are the only prime numbers, i.e.
+            $\set{P} = \Set{p_1, \dots, p_n}$. We will now define $q \in \set{N}$ as
+            follows
+            \[
+                q = \left(\prod_{i = 1}^n p_i\right) + 1
+            \]
+            First note that none of the $p_i$'s divide $q$, since $q$ will always by
+            congruent to $1 \mod p_i$ by construction. Thus we now have two cases:
+            $q$ is either prime or composite.
+            \begin{itemize}
+                \item
+                    If $q$ is prime then we know we have found a new prime number because
+                    $q$ cannot be one of the $p_i$'s since $q \equiv 1 \mod p_i$ for any
+                    $i$ ranging from 1 to $n$. Thus $q \in \set{P}$ and $|\set{P}| = n + 1$. 
+                \item
+                    If $q$ is composite, then by the Fundamental Theorem of Arithmetic we
+                    can find $r, s \in \set{N}$ such that $r$ is prime and $rs = q$.
+                    Note that $q \equiv 0 \mod r$ since $r$ divides $q$. This means
+                    that $r$ cannot be one of the $p_i$'s; so we have found a new prime.
+                    Thus $r \in \set{P}$ and $|\set{P}| = n + 1$.
+            \end{itemize}
+            In either case we are forced to conclude that $|\set{P}| = n + 1$, which is of course
+            a contradiction. \QED
+        \end{proof}
+    \section{The Sequence of Prime Numbers}
+        \begin{definition}
+            We defined the Sequence of Prime Numbers, $p: \set{N} \rightarrow \set{P}$, via
+            $p_i = n$ if and only if $n$ is the $i^{th}$ smallest prime number.
+        \end{definition}
+        \begin{theorem}[The Prime Gap Theorem]
+            $``\forall n \in \set{N} \ \exists k \in \set{N} \ p_{k + 1} - p_{k} \ge n$.''
+        \end{theorem}
+        \begin{proof}
+            Let $n \in \set{N}$ be given. We can now proceed by finding a sequence of $n$ consecutive
+            natural numbers that are composite. We now choose now consider the following sequence of
+            numbers
+            \[
+                (n + 1)! + 2, (n + 1)! + 3, \dots, (n + 1)! + n, (n + 1)! + (n + 1)
+            \]
+            We can clearly see that for all $2 \le i \le (n + 1)$ that $(n + 1)! + i$
+            is not prime because we can factor $i$ out of the sum. Thus we have a sequence of $n$
+            consequtive natural numbers that are composite, we can choose $k \in \set{N}$ such
+            that $p_k$ is the largest prime smaller than $(n + 1)! + 1$ and $p_{k + 1}$ is the
+            smallest prime larger than $(n + 1)! + (n + 1)$. We know such a $k$ exists since there
+            are infintely many primes (theorem \ref{Infinitely Many Primes}). Thus we have found
+            $k \in \set{N}$ such that $p_{k + 1} - p_k \ge n$. Thus there are arbitrarily large
+            prime gaps as required. \QED
+        \end{proof}
+    \section{Chinese Remainder Theorem}
+        \begin{lemma}
+            $``\forall a, b, n \in \set{Z}$ if $\gcd{a}{b} = 1, \divides{a}{n},$ and $\divides{b}{n}$
+            then $\divides{ab}{n}$.''
+            \label{CRT uniquness lemma}
+        \end{lemma}
+        \begin{proof}
+            Let $a, b, n \in \set{Z}$ be given such that $\gcd{a}{b} = 1, \divides{a}{n},$ and
+            $\divides{b}{n}$. By definition of divisibility $\frac{n}{a}, \frac{n}{b} \in \set{Z}$.
+            We now let $c = \frac{n}{a}$ and $d = \frac{n}{b}$, i.e. $n = ac = bd$. Since $\divides{a}{n}$
+            we know that $\divides{a}{bd}$. Since $\gcd{a}{b} = 1$ we know that $\divides{a}{d}$ by 
+            lemma \ref{FTA lemma 2}. Thus by definition of divisibility $\frac{d}{a} = \frac{n}{ab} \in \set{Z}$.
+            This of course implies that $\divides{ab}{n}$ as required. \QED
+        \end{proof}
+        \begin{corollary}
+            $\forall k \in \setsub{\set{N}}{\Set{1}} \ \forall a_1, \dots, a_k, n \in \set{Z}$ if
+            the $a_i$'s are pairwise relatively prime and $\forall i \in [k] \ \divides{a_i}{n}$ then
+            $\divides{\prod_{j = 1}^k a_j}{n}.$''
+            \label{CRT uniquness corollary}
+        \end{corollary}
+        \begin{proof}
+            We proceed by induction on $k$ to show $\inductive{P}{k}$ true for all $k \ge 2$.
+            \[\begin{array}{r@{\ = \ }c}
+                \inductive{P}{k} & ``\mbox{$\forall a_1, \dots, a_k, n \in \set{Z}$ if the $a_i$'s are
+                                    pairwise co-prime and $\forall i \in [k] \ \divides{a_i}{n}$} \\
+                \multicolumn{1}{l}{} & \mbox{then $\divides{\prod_{j = 1}^{k} a_i}{n}$.''}
+            \end{array}\]
+            \begin{itemize}
+                \item
+                    Base Case: If $k = 2$ we know $\inductive{P}{2}$ is true by lemma \ref{CRT uniquness lemma}.
+                \item
+                    Induction Step: Let $k \in \set{N}$ be given such that $k \ge 2$ and assume
+                    $\inductive{P}{k}$ is true. Let $a_1, \dots, a_k, a_{k + 1}, n \in \set{Z}$ be
+                    given such that $\forall i, j \in [k + 1]$ if $i \neq j$ then $\gcd{a_i}{a_j} = 1$
+                    and $\divides{a_i}{n}$. By $\inductive{P}{k}$ we can conclude that
+                    $\divides{\prod_{i = 1}^k a_i}{n}$. We now let $m = \prod_{i = 1}^k a_i$ and note
+                    that $\gcd{a_{k + 1}}{m} = 1$. Thus by $\inductive{P}{2}$ we can conclude that
+                    $\divides{ma_{k + 1}}{n}$. In other words $\divides{\prod_{i = 1}^{k + 1} a_i}{n}$;
+                    thus $\inductive{P}{k + 1}$ is true as required.
+            \end{itemize}
+            Thus we can conclude that $\inductive{P}{k}$ is true for all $k \ge 2$ as required. \QED
+        \end{proof}
+        \begin{theorem}
+            $``\forall k \in \set{N} \ \forall a_1, \dots, a_k \in \set{Z} \
+            \forall n_1, \dots, n_k \in \set{N}$ if  the $n_i$'s are pairwise relatively prime
+            then there is a unique $x$ modulo $\prod_{i = 1}^{k} n_i$ such that $\forall i \in [k] \ 
+            x \equiv a_i \mod n_i$.''
+            \label{Chinese Remainder Theorem}
+        \end{theorem}
+        \begin{proof}
+            Let $k \in \set{N}, a_1, \dots, a_k \in \set{Z}$, and $n_1, \dots, n_k \in \set{N}$ 
+            be given such that the $n_i$'s are pairwise relatively prime, i.e. $\forall i, j \in [k]$
+            if $i \neq j$ then $\gcd{n_i}{n_j} = 1$. We now proceed by first proving that a 
+            solution exists and then showing that the solution is unique. For existence we
+            are essentially trying to solve the following system of congruences. 
+            \begin{figure}[H]
+                \centering
+                $\begin{array}{c}
+                    x \equiv a_1 \mod n_1 \\
+                    \vdots \\
+                    x \equiv a_k \mod n_k
+                \end{array}$
+                \caption{The system of congruences that we are trying to solve.}
+                \label{CRT congruences}
+            \end{figure}
+            We now let $N = \prod_{i = 1}^{k} n_i$ and $N_i = \frac{N}{n_i}$ for each $i \in [k]$. 
+            Let $i \in [k]$ be given. We must have $\gcd{N_i}{n_i} = 1$ since $n_i$ is relatively
+            prime to every term in the product that represents $N_i$. Thus by corollary 
+            \ref{diophantine inverse} $\exists y_i, z_i \in \set{Z}$ such that
+            $N_iy_i + n_iz_i = 1$. We can now take this equation modulo $n_i$ and 
+            find that $N_iy_i \equiv 1 \mod n_i$. We are now ready to define the solution, $x_0$,
+            to the system of congruences in Figure \ref{CRT congruences}.
+            \begin{equation}
+                x_0 = \sum_{i = 1}^{k} a_iN_iy_i
+                \label{CRT solution}
+            \end{equation}
+            To see that equation (\ref{CRT solution}) solves the system of congruences we proceed
+            as follows. Let $i \in [k]$ be given. We now note that $\forall j \in [k]$ if
+            $j \neq i$ then $N_j \equiv 0 \mod n_i$ since there is a factor of $n_i$ in the product
+            that defines $N_j$. Thus all but the $i^{th}$ term of the sum will be congruent to $0
+            \mod n_i$. Thus we can conclude the following
+            \[
+                x_0 \equiv \sum_{j = 0}^{k} a_jN_jy_j \equiv a_iN_iy_i\mod n_i
+            \]
+            We now note that $N_iy_i \equiv 1 \mod n_i$ by
+            construction of $y_i$. Thus $x_0 \equiv a_i \mod n_i$ as required. Thus we can
+            clearly see that $x_0$ is a solution to the system of congruences
+            in Figure \ref{CRT congruences}; furthermore we can also see that
+            $x = x_0 + Nk$ is also a solution for all $k \in \set{Z}$ since $N \equiv 0 \mod n_i$
+            for all $i \in [k]$.
+            In other words $x \equiv x_0 \mod N$ is a solution to the system of
+            congruences in Figure \ref{CRT congruences}.
+
+            We now proceed via contradiction to show that $x \equiv x_0 \mod N$ is the only solution.
+            Assume $\exists y \in \set{Z}$ such that $y \not\equiv x_0 \mod N$ and 
+            $\forall i \in [k] \ y \equiv a_i \mod n_i$, i.e. assume $y$ is a different solution. 
+            Since we have shown that $x_0$
+            is a solution we know that $\forall i \in [k] \ x_0 \equiv a_i \mod n_i$.
+            This implies that $\forall i \in [k] \ x_0 \equiv y \mod n_i$. By definition
+            of congruence we can conclude that $\forall i \in [k] \ \divides{n_i}{(x_0 - y)}$.
+            Since the $n_i$'s are pairwise relatively prime we can invoke corollary
+            \ref{CRT uniquness corollary} to conclude that
+            $\divides{\left(\prod_{i = 1}^{k} n_i\right)}{(x_0 - y)}$.
+            In other words $\divides{N}{(x_0 - y)}$ since $N = \prod_{i = 1}^{k} n_i$.
+            Now by definition of congruence we can conclude that $x_0 \equiv y \mod N$.
+            This is of course a contradiction.
+
+            Thus $x \equiv x_0 \mod n$ is the only solution to
+            the system of congruences in Figure \ref{CRT congruences}. \QED
+        \end{proof}
+     \section{Fermat's Little Theorem}
+        \begin{lemma}
+            $``\forall p \in \set{N}$ if $p$ is prime then 
+            $\forall k \in [p - 1] \ \binom{p}{k} \equiv 0 \mod p$.''
+            \label{prime binomials}
+        \end{lemma}
+        \begin{proof}
+            Let $p \in \set{P}$ and $k \in [p - 1]$ be given. We now note since
+            $\binom{p}{k} = \frac{p!}{k!(p - k)!} \in \set{Z}$ $k!(p - k)!$ 
+            must divide $p! = p(p - 1)!$. Since $p$ is prime and each term
+            of $k!(p - k)!$ is between $1$ and $p - 1$ we can conclude that
+            $\gcd{k!(p - k)!}{p} = 1$. Thus we can conclude that $k!(p - k)!$
+            must divide $(p - 1)!$. Thus $\frac{\binom{p}{k}}{p} = \frac{(p - 1)!}{k!(p - k)!}
+            \in \set{Z}$ and $p$ divides $\binom{p}{k}$. This of course implies that
+            $\binom{p}{k} \equiv 0 \mod p$. \QED
+        \end{proof}
+        \begin{lemma}
+            $``\forall p \in \set{N}$ if $p$ is prime then 
+            $\forall n \in \set{Z} \ n^p - n \equiv 0 \mod p$.''
+            \label{fermat lemma}
+        \end{lemma}
+        \begin{proof}
+            Let $p \in \set{P}$ be given. We proceed by proving the following statement
+            for all $n \in \set{N}$ via induction.
+            \[
+                \inductive{P}{n} = ``n^p - n \equiv 0 \mod p."
+            \]
+            \begin{itemize}
+                \item
+                    Base Case: We can clearly see that $\inductive{P}{1}$ is true since
+                    $1^p - 1 \equiv 1 - 1 \equiv 0 \mod p$.
+                \item
+                    Induction Step: Let $k \in \set{N}$ be given; assume $\inductive{P}{k}$
+                    is true. We proceed by computing $(k + 1)^p - (k + 1) \mod p$. We now invoke
+                    the Binomial Theorem to conclude that
+                    \[
+                        (k + 1)^p - (k + 1) \equiv \left(\sum_{i = 0}^p \binom{p}{i} k^i 1^{p - i}\right) - (k + 1) \mod p
+                    \]
+                    We can rewrite the summation as follows
+                    \[
+                       (k + 1)^p - (k + 1) \equiv \left(\dbinom{p}{0} k^0 + \sum_{i = 1}^{p - 1} \dbinom{p}{i}k^i + \dbinom{p}{p}k^p\right) - (k + 1) \mod p
+                    \]
+                    We now note by lemma \ref{prime binomials} each term $\sum_{i = 1}^{p - 1} \binom{p}{i}k^i$ 
+                    is 0 modulo $p$ since each of the binomial coefficients are 0 modulo $p$. Thus
+                    we can now conclude the following
+                    \[
+                       (k + 1)^p - (k + 1) \equiv (1 + k^p) - (k + 1) \equiv k^p - k \mod p
+                    \]
+                    By the inductive hypothesis we know that $k^p - k \equiv 0 \mod p$
+                    thus we can conclude that that $(k + 1)^p - (k + 1) \equiv 0 \mod p$
+                    as required.
+            \end{itemize}
+            Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \set{N}$. \QED
+        \end{proof}
+        \begin{theorem}[Fermat's Little Theorem]
+            $``\forall a, p \in \set{Z}$ if $p$ is prime and $\ndivides{p}{a}$, then
+            $a^{p - 1} \equiv 1 \mod p$.''
+            \label{Fermat's Little Theorem}
+        \end{theorem}
+        \begin{proof}
+            Let $a, p \in \set{Z}$ be given such that $p$ is prime and $\ndivides{p}{a}$.
+            Now consider the following $p - 1$ numbers:
+            \[
+                a, 2a, 3a, \dots, (p - 2)a, (p - 1)a
+            \]
+            We will first note that $p$ is not a divisor of any of the above numbers. This is true because
+            since $p$ is prime we know $\forall i \in [p - 1] \ \ndivides{p}{i}$. Thus $\divides{p}{ia} \iff
+            \divides{p}{a}$, but we know by construction of $a$ and $p$ that $\ndivides{p}{a}$ so we can
+            conclude that $\ndivides{p}{ia}$.
+
+            We now note that no two different numbers on the above list are in the same equivalence
+            class modulo $p$. Without loss of generality let $i, j \in [p - 1]$ be given 
+            such that $i > j$. By definition of 
+            congruence we know that $ia \equiv ja \mod p \iff \divides{p}{ia - ja}$. We know
+            $\divides{p}{ia - ja} \iff \divides{p}{(i - j)a}$, but since $i > j$ we know $(i - j) \in [p - 1]$.
+            Thus $(i - j)a$ must be one of the numbers on our list, so $\ndivides{p}{(i - j)a}$.
+            This of course implies that $ia \not\equiv ja \mod p$.
+
+            We can now clearly see that each of the non-zero equivalence classes modulo $p$ are
+            achieved exactly once by the above numbers. Thus we can conclude the following:
+            \[
+                a \cdot 2a \cdots (p - 1)a \equiv 1 \cdot 2 \cdots (p - 1) \mod p
+            \]
+            We can rewrite the congruence relation above as follows:
+            \begin{equation}
+                a^{p - 1} (p - 1)! \equiv (p - 1)! \mod p 
+                \label{fermateq1}
+            \end{equation}
+            We note that $\gcd{(p - 1)!}{p} = 1$ because since $p$ is prime the only none of the
+            natural numbers less that $p$, other than 1, evenly divide it. Thus we can conclude
+            $\exists x, y \in \set{Z}$ such that $(p - 1)! \ x + py = 1$. Taking this equation
+            modulo $p$ yields the following:
+            \[
+                (p - 1)! \ x \equiv 1 \mod p
+            \]
+            In other words $x$ is the inverse of $(p - 1)!$ modulo $p$.
+            We can now multiply equation (\ref{fermateq1}) by $x$
+            \begin{derivation}{\equiv}
+                a^{p - 1} (p - 1)! \ x & (p - 1)! \ x \mod p \\
+                a^{p - 1} \cdot 1 & 1 \mod p \\
+                a^{p - 1} & 1 \mod p
+            \end{derivation}
+            Thus we can conclude that $a^{p - 1} \equiv 1 \mod p$ as required. \QED
+        \end{proof}
+        \begin{proof}[Alternate Proof]
+            Let $a, p \in \set{Z}$ be given such that $p$ is prime and $\ndivides{p}{a}$.
+            We proceed by invoking lemma \ref{fermat lemma} to conclude
+            \[
+                a^p - a \equiv 0 \mod p
+            \]
+            We can now add $a$ to both sides
+            \begin{equation}
+                a^p \equiv a \mod p
+                \label{fermat equation}
+            \end{equation}
+            Since $\ndivides{p}{a}$ and $p$ is prime we can conclude that $\gcd{a}{p} = 1$,
+            thus by theorem \ref{lineardiophantinegcd} $\exists x, y \in \set{Z}$ such that
+            $ax + py = 1$. Taking this equation modulo $p$ gives us the following
+            \[
+                ax \equiv 1 \mod p
+            \]
+            In other words $x$ is the inverse of $a$ modulo $p$. We can now multiply
+            equation \ref{fermat equation} by $x$ and conclude $a^{p - 1} \equiv 1 \mod p$
+            as required. \QED
+        \end{proof}
+        \begin{theorem}[Generalization to Polynomials]
+            $``\forall a, p \in \set{Z}$ if $\ndivides{p}{a}$ then
+            $p$ is prime if and only if $\forall x \in \set{Z} \ (x + a)^p \equiv x^p + a \mod p$.''
+        \end{theorem}
+        \begin{proof}
+            Let $a, p \in \set{Z}$ be given such that $\ndivides{p}{a}$.
+            \begin{itemize}
+                \item
+                    We first show that if $p$ is prime, then $\forall x \in \set{Z} \
+                    (x + a)^p \equiv x^p + a \mod p$. So assume that $p$ is prime and let
+                    $x \in \set{Z}$ be given. We now compute $(x + a)^p$ by invoking the 
+                    the Binomial Theorem (theorem \ref{Binomial Theorem}) as follows.
+                    \begin{derivation}{\equiv}
+                        (x + a)^p & \dsum_{k = 0}^{p} \binom{p}{k} x^k a^{p - k} \mod p \\
+                                  & a^p + \left( \dsum_{k = 1}^{p - 1} \binom{p}{k} x^k a^{p - k} \right) 
+                                    + x^p \mod p
+                    \end{derivation}
+                    Since $p \in \set{P}$ we can invoke lemma \ref{prime binomials} to conclude that
+                    if $1 \le k < p$ then $\binom{p}{k} \equiv 0 \mod p$, thus we can conclude the following.
+                    \begin{derivation}{\equiv}
+                        (x + a)^p & a^p + \left( \dsum_{k = 1}^{p - 1} (0) x^k a^{p - k} \right) 
+                                    + x^p \mod p \\
+                                  & a^p + x^p \mod p \\
+                                  & x^p + a^p \mod p
+                    \end{derivation}
+                    We can now invoke Fermat's Little Theorem (theorem \ref{Fermat's Little Theorem})
+                    to conclude that $a^p \equiv a \cdot a^{p - 1} \equiv a \mod p$. Thus we can
+                    conclude that 
+                    \[
+                        (x + a)^p \equiv x^n + a \mod p
+                    \]
+                    as required.
+                \item
+                    We now show that if $(x + a)^p \equiv x^p + a \mod p$ then $p$ is prime.
+                    % TODO
+            \end{itemize}
+            Thus we can conclude that $p \in \set{P}$ if and only if $(x + a)^n \equiv x^n + a \mod p$. \QED
+        \end{proof}
+    \section{Euler's Theorem}
+        \begin{definition}
+            Let $n \in \set{N}$.
+            \begin{itemize}
+                \item
+                    $\Z{n} = \Set{a \in \set{Z} \mid 0 \le a < n}$
+                \item
+                    $\Zmult{n} = \Set{a \in \set{Z}_{n} \mid \gcd{a}{n} = 1}$
+                \item
+                    The Euler Totient Function is defined as $\varphi: \set{N} \rightarrow \set{N}$ 
+                    such that $\eulerphi{n} = |\Zmult{n}|$.
+            \end{itemize}
+        \end{definition}
+        \begin{fact}
+            $\Z{n}$ is a group under modular addition and $\Zmult{n}$ is a group under modular
+            multiplication. Furthermore each of these groups is commutative.
+        \end{fact}
+        \begin{theorem}[Euler's Theorem]
+            \label{Euler's Theorem}
+            $``\forall n \in \set{N} \ \forall a \in \Zmult{n} \ \ a^{\eulerphi{n}} \equiv 1 \mod n.$''
+        \end{theorem}
+        \begin{proof}
+            Let $n \in \set{N}$ and $a \in \Zmult{n}$ be given. Let $f: \Zmult{n} \rightarrow \Zmult{n}$
+            be given via 
+            \[
+                f(m) = am
+            \]
+            We now claim that $f$ must be a bijection. We know $f$ is injective because if we take
+            $b, c \in \Zmult{n}$ and assume that that $f(b) = f(c)$, i.e. $ab = ac$, then we can
+            multiply both sides by the inverse of $a$ modulo $n$, $a^{-1}$, and conclude that $b = c$. We know
+            that $f$ is a surjection because if we take $b \in \Zmult{n}$ then 
+            $f(a^{-1}b) = aa^{-1}b = b$. In both cases we know that $a^{-1}$ exists because $\Zmult{n}$
+            is a group.
+
+            We now consider the product of all the elements $\Zmult{n}$ and use the fact that $f$
+            is a bijection to derive the following:
+            \[
+                \prod_{b \in \Zmult{n}} b = \prod_{b \in \Zmult{n}} f(b) = \prod_{b \in \Zmult{n}} ab
+            \]
+            Now since the product is independent of $a$ we can factor it out as follows:
+            \[
+                \prod_{b \in \Zmult{n}} ab = a^{|\Zmult{n}|} \prod_{b \in \Zmult{n}} b
+                                           = a^{\eulerphi{n}} \prod_{b \in \Zmult{n}} b
+            \]
+            We can thus conclude the following:
+            \[
+                \prod_{b \in \Zmult{n}} b = a^{\eulerphi{n}} \prod_{b \in \Zmult{n}} b
+            \]
+            Since $\Zmult{n}$ is a group we can multiply both sides of the above equation
+            by the inverse of $\left(\prod_{b \in \Zmult{n}} b\right)$ as conclude that $a^{\eulerphi{n}} = 1$.
+            Thus we can conclude that $a^{\eulerphi{n}} \equiv 1 \mod n$ as desired. \QED
+        \end{proof}
+        \begin{proof}[Alternate Proof (Manuel Blum)]
+            % TODO Write the proof that uses group theory and considers the subgroup of Z*_n that
+            %      is generated by a. This group has order(a, n) many elements and this number
+            %      divides phi(n) by Lagrange Theorem. Thus if a^order(a, n) mod n = 1 then so
+            %      does a^phi(n) = 1. QED
+        \end{proof}
+    \section{Wilson's Theorem}
+        \begin{lemma}
+            $``\forall p \in \set{P} \ \forall i \in \set{Z} \ i^2 \equiv 1 \mod p$ if and only if
+            $i \equiv 1 \mod p$ or $i \equiv -1 \mod p$.''
+            \label{Wilson's Theorem Lemma 1}
+        \end{lemma}
+        \begin{proof}
+            Let $i, p \in \set{Z}$ be given such that $p$ is prime and $i^2 \equiv 1 \mod p$.
+            We now proceed via a sequence of if and only ifs to show that $i \equiv 1 \mod p$ or
+            $i \equiv -1 \mod p$.
+            \begin{derivation}{\iff}
+                i^2 \equiv 1 \mod p & i^2 - 1 \equiv 0 \mod p \\
+                                    & (i - 1)(i + 1) \equiv 0 \mod p \\
+            \end{derivation}
+            Now by definition of modular arithmetic we can conclude that 
+            \[
+                i^2 \equiv 1 \mod p \iff \divides{p}{(i - 1)(i + 1)}
+            \]
+            We can now invoke lemma \ref{FTA Lemma 3} to conclude $p$ must divide at least one
+            of $i + 1$ and $i - 1$. Also if $p$ divides one of $i + 1$ and $i - 1$ then we also know
+            that $p$ divides their product, thus 
+            \[
+                i^2 \equiv 1 \mod p \iff \divides{p}{(i - 1)} \mbox{ or } \divides{p}{(i + 1)}
+            \]
+            We can now invoke the definition of modular arithmetic to conclude that
+            \begin{derivation}{\iff}
+                i^2 \equiv 1 \mod p & (i - 1 \equiv 0 \mod p) \mbox{ or } (i + 1 \equiv 0 \mod p) \\
+                                    & (i \equiv 1 \mod p) \mbox{ or } (i \equiv -1 \mod p)
+            \end{derivation}
+            Thus $i$ is either $1$ or $-1$ modulo $p$ as required. \QED
+        \end{proof}
+        \begin{lemma}[Uniqueness of Inverse]
+            $``\forall p \in \set{P} \ \forall n \in \Zmult{p} \ n$ has a unique inverse in $\Zmult{p}$.''
+            \label{Wilson's Theorem Lemma 2}
+        \end{lemma}
+        \begin{proof}
+            Let $p \in \set{P}$ and $n \in \Zmult{p}$ be given. We know that the inverse of $n$
+            modulo $p$ exists since $\gcd{n}{p} = 1$, so all we have to do is prove its uniqueness.
+            Assume for contradiction that
+            the inverse of $n$ in $\Zmult{p}$ is not unique, i.e. assume that $x, y \in \Zmult{p}$
+            are inverses of $n$. We now show $x \equiv  y \mod p$ as follows:
+            \begin{derivation}{\equiv}
+                x & x \cdot 1 \mod p & \\
+                  & x \cdot (n \cdot y) \mod p& \just{Since $y$ is the inverse of $n$.}
+                  & (x \cdot n) \cdot y \mod p& \just{Since multiplication modulo $p$ is associative.}
+                  & 1 \cdot y \mod p & \just{Since $x$ is the inverse of $n$.}
+                  & y \mod p
+            \end{derivation}
+            Thus we can conclude that $n$ has a unique inverse modulo $p$. \QED
+        \end{proof}
+        \begin{theorem}[Wilson's Theorem]
+            ``$\forall p \in \set{N} \ \ p$ is prime if and only if $(p - 1)! \equiv -1 \mod p.$''
+            \label{Wilson's Theorem}
+        \end{theorem}
+        \begin{proof}
+            We will proceed by first showing that if $p$ is prime then $(p - 1)! \equiv -1 \mod p$ and then
+            showing the converse by proving its contrapositive.
+
+            \begin{itemize}
+                \item
+                    Let $p \in \set{N}$ be given such that $p$ is prime. 
+                    We first note that by Lemma \ref{Wilson's Theorem Lemma 1} $1$ and $p - 1$ are the
+                    only elements of $\Zmult{p}$ that are their own inverse modulo $p$. Now consider
+                    all the other elements of $\Zmult{p}$. By Lemma \ref{Wilson's Theorem Lemma 2} we know
+                    that each of these elements has a unique inverse modulo $p$. This along with the fact
+                    that the inverse relation is symmetric tells us the inverse equivalence relation
+                    partitions $\setsub{\Zmult{p}}{\Set{1, p - 1}}$ into parts of size 2. Now consider
+                    $(p - 1)! \mod p$. Since multiplication modulo $p$ is commutative we can pair up each
+                    $x \in \Zmult{p}$ with its unique inverse and cancel it out from the product. This
+                    will simplify the product into the following form:
+                    \[
+                        (p - 1)! \equiv 1 \cdot (p - 1) \equiv p - 1 \equiv -1 \mod p
+                    \]
+                    Thus $(p - 1)! \equiv -1 \mod p$ as required.
+                \item
+                    We now show that if $(p - 1)! \equiv -1 \mod p$ then $p$ is prime by proving
+                    its contrapositive. So assume that $p$ is composite. This implies there are
+                    $a, b \in [p - 1]$ such that $p = ab$. We now have two cases based on whether
+                    or not $a$ is equal to $b$.
+                    \begin{itemize}
+                        \item
+                            If $a \neq b$ then we are done since $(p - 1)!$ has both a factor of $a$
+                            and $b$ since they are both positive and less then $p$. Thus in this case
+                            $(p - 1)! \equiv 0 \mod p$.
+                        \item 
+                            If $a = b$, then we know that $p = a^2$ so we need to find another factor
+                            of $a$. We now have 2 cases based on whether $a = 2$ or $a > 2$. If $a = 2$
+                            then we know $p = 4$, one can quickly verify that
+                            \[
+                                3! \equiv 6 \equiv 2 \not\equiv -1 \mod 4
+                            \]
+                            as desired. If $a > 2$ then we can find another factor of $a$ amongst
+                            the terms of $(p - 1)!$. Since $p = a^2$ and $a > 2$ we know that $p > 2a$.
+                            So $2a$ is amongst the terms of $(p - 1)!$. Thus we can conclude that
+                            \[
+                                (p - 1)! \equiv 0 \mod p
+                            \]
+                            as required.
+                    \end{itemize}
+                    Thus we can conclude that if $p$ is not prime then $(p - 1)! \not\equiv -1 \mod p$
+                    as required.
+            \end{itemize}
+            Thus we can conclude that $p$ is prime if and only if $(p - 1)! \equiv -1 \mod p$. \QED
+        \end{proof}
+    \section{M\"obius Inversion}
+        \begin{definition}
+            % TODO Define the notion of an arithmetic function.
+        \end{definition}
+        \begin{theorem}
+            ``$\forall n \in \set{N} \ n = \dsum_{\divides{d}{n}} \eulerphi{d}$.''
+        \end{theorem}
+        \begin{proof}
+            Let $n \in \set{N}$ be given. We now proceed by counting that set $[n]$ in two way. Clearly
+            $[n]$ has $n$ elements; so we only have to show that $|[n]| = \sum_{\divides{d}{n}} \eulerphi{d}$.
+            For each divisor, $d$, of $n$ we define the set $T_d$ as follows
+            \[
+                T_d = \Set{k \in [n] \mid \gcd{k}{n} = d}
+            \]
+            We can clearly see that $\Set{T_d}_{\divides{d}{n}}$ partitions $[n]$ since each $k \in [n]$
+            has a unique greatest common divisor with $n$. Thus by the Rule of Sum we can conclude that
+            \[
+                n = \sum_{\divides{d}{n}} |T_d|
+            \]
+            We now simply have to count the number of elements in each of the partitions. Let $d$ be a
+            divisor of $n$. We first note that $T_d \subseteq \Set{kd \ | \ k \in \left[\frac{n}{d}\right]}$,
+            since those are the only number less than $n$ that can have a factor of $d$. So now we simply
+            need to find all $k \in \left[\frac{n}{d}\right]$ such that $\gcd{kd}{n} = d$. If we divide both
+            sides of this equation by $d$ we can conclude that $\gcd{k}{\frac{n}{d}} = 1$. Thus we can conclude
+            that $T_d = \Set{kd \ | \ \gcd{k}{\frac{n}{d}} = 1}$, i.e.
+            $T_d = \Set{kd \ | \ k \in \Zmult{\frac{n}{d}}}$. We can now clearly see that
+            $|T_d| = |\Zmult{\frac{n}{d}}| = \eulerphi{\frac{n}{d}}$. Thus we can conclude the following
+            \[
+                n = \sum_{\divides{d}{n}} |T_d| = \sum_{\divides{d}{n}} \eulerphi{\frac{n}{d}}
+            \]
+            We now simple note that
+            $\Set{d \in [n] \mid \divides{d}{n}} = \Set{\frac{n}{d} \in [n] \mid \divides{d}{n}}$ and
+            conclude that
+            \[
+                n = \sum_{\divides{d}{n}} \eulerphi{d}
+            \]
+            as required. \QED
+        \end{proof}
+        \begin{definition}
+            % TODO Define the Mobius Function.
+        \end{definition}
+        \begin{theorem}
+            ``$\forall n \in \set{N} \ \eulerphi{n} = \dsum_{\divides{d}{n}} \mu(n) \frac{n}{d}$.''
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+        \begin{theorem}[M\"obius Inversion Theorem]
+            % TODO
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{The RSA Cryptosystem}
+        \begin{definition}
+            The \emph{RSA Cryptosystem} is a protocol which allows an entity to recieve
+            encrypted messages from another entity. Say Bob would like to be able to recieve
+            a message from anyone else in the world. Bob can follow the following protocol
+            to allow others to send him messages.
+            \begin{itemize}
+                \item
+                    First Bob has to generate the public and private keys that will
+                    be used throughout the protocol.
+                    \begin{enumerate}
+                        \item
+                            Generate two large prime number $p$ and $q$.
+                        \item
+                            Define $n = pq$.
+                        \item
+                            Choose some $e \in [n]$ such that $e$ and $\eulerphi{n}$ are
+                            relatively prime.
+                        \item
+                            Find $d$ such that $ed \equiv 1 \mod \eulerphi{n}$.
+                        \item 
+                            Now Bob's private key is the triple $(p, q, d)$ and his public
+                            key is $(n, e)$. Bob must keep his private key secret, but 
+                            can publish his private key to the rest of the world.
+                    \end{enumerate}
+                    Now Bob is ready to recieve messages from anyone else in the world.
+                \item
+                    Now if Alice wants to securely send Bob a message she simply follows 
+                    the following steps.
+                    \begin{enumerate}
+                        \item
+                            Alice first retrieves Bob's public key: $(n, e)$ as defined above.
+                        \item
+                            She then takes her message and breaks it up into blocks of size $\ceil{\lg n}$.
+                        \item
+                            Now Alice replaces each block, $m$, of her message with
+                            the cypher text generated by the following encryption function:
+                            \begin{equation}
+                                E_{n, e}(m) = m^e \mod n
+                            \end{equation}
+                        \item
+                            Alice can now send the cipher text of her message to Bob. Note Alice's
+                            message now looks like
+                            \[
+                                E_{n, e}(m_1) \ | \ E_{n, e}(m_2) \ | \ \cdots \ | \ E_{n, e}(m_k)
+                            \]
+                            where $k = \ceil{\frac{\abs{m}}{\ceil{\lg n}}}$ is the number of message blocks
+                            and $|$ denote concatenation.
+                    \end{enumerate}
+                    Using this method Alice can send any message she wants to Bob.
+                \item
+                    Once Bob recieves Alice's message over some sort of network connection
+                    he can decrypt her message by following these steps.
+                    \begin{enumerate}
+                        \item
+                            Bob first retrieves his private key: $(p, q, d)$ and his public key: $(n, e)$
+                            as defined above.
+                        \item   
+                            He then takes the cipher text and breaks it up into blocks of size $\ceil{\lg n}$. 
+                        \item
+                            Now Bob decodes each block, $c$, of the cipher text using the following
+                            function:
+                            \[
+                                D_{n, d}(c) = c^d \mod n
+                            \]
+                        \item
+                            Bob should now Bob has the message Alice sent in the form
+                            \[
+                                D_{n, d}(c_1) \ | \ D_{n, d}(c_2) \ | \ \cdots \ | \ D_{n, d}(c_k)
+                            \]
+                            where $k = \ceil{\frac{\abs{m}}{\ceil{\lg n}}}$ is the number of message blocks
+                            and $|$ denote concatenation.
+                    \end{enumerate}
+                    Bob has now successfully recieved Alice's message.
+            \end{itemize}
+            \begin{claim}
+                $``$If Alice and Bob follow the protocol outlined above then Bob
+                will always successfully recieve Alice's message.''
+            \end{claim}
+            \begin{proof}
+                Assume that Bob want to recieve a message from Alice, so he generates a
+                public-private key pair $(n, e)$ and $(p, q, d)$ such that
+                \begin{align}
+                    p, q & \in \set{P} \\
+                    n & = pq \\
+                    \gcd{e}{\eulerphi{n}} & = 1 \\
+                    \label{ed requirement}
+                    ed & \equiv 1 \mod \eulerphi{n}
+                \end{align}
+                Now assume that Alice sends Bob a message, $m$, using the RSA protocol. To show
+                that Bob will always recieve her message unaltered it suffices to show that
+                Bob will recieve any block of size $k = \ceil{\frac{\abs{m}}{\ceil{\lg n}}}$.
+
+                Let $i \in [k]$ be given. We now want to show that block $m_i$ of Alices message
+                will always be recieved by Bob. If Alice is following the protocol then she will send
+                \begin{equation}
+                    c_i = E_{n, e}(m_i) = m_i^e \mod n
+                \end{equation}
+                to Bob. Now when Bob recieves the cipher text block $c_i$ from Alice, then if
+                he is following the protocol he will decrypt it as follows:
+                \begin{equation}
+                    \label{rsa decrypt}
+                    D_{n, d}(c_i) = c_i^d \mod n
+                \end{equation}
+                We now note that since $c_i$ and $m_i^e$ are congruent modulo $n$ that we 
+                can substitute $m_i^e$ for $c_i$ is equation ($\ref{rsa decrypt}$).
+                \begin{equation}
+                    \label{rsa decrypt 2}
+                    D_{n, d}(c_i) = (m_i^e)^d \mod n = m_i^{ed} \mod n
+                \end{equation}
+                We will now proceed to show that $D_{n, d}(c_i)$ is always equal to $m_i$
+                in two parts. We will first show that $D_{n, d}(c_i) \equiv m_i \mod p$ and
+                $D_{n, d}(c_i) \equiv m_i \mod q$. Then we will show that if any $x \equiv m_i \mod p$
+                and $x \equiv m_i \mod q$, then $x \equiv m_i \mod pq$. The result then follows
+                from Modus Ponens.
+                \begin{itemize}
+                    \item
+                        Let $P \in \set{P}$ be an aribtrary prime number. We now show that
+                        $D_{n, d}(c_i) \equiv m_i \mod P$. There are two cases: either $P$ is
+                        a divisor of $m_i$ or not.
+                        \begin{itemize}
+                            \item
+                                Assume $P$ is a divisor of $m_i$.
+                                \begin{derivation}{\equiv}
+                                    D_{n, d}(c_i) & m_i^{ed} \mod P & \just{By equation $\ref{rsa decrypt 2}$.}
+                                                  & 0^{ed} \mod P & \just{Since $\divides{P}{m_i}$.}
+                                                  & 0 \mod P & \\
+                                                  & m \mod P & \just{Since $\divides{P}{m_i}$.}
+                                \end{derivation}
+                            \item
+                                Assume $P$ is not a divisor of $m_i$. This implies that $P$
+                                is relatively prime to $m_i$ since $P$ is prime.
+                                \begin{derivation}{\equiv}
+                                    D_{n, d}(c_i) & m_i^{eq} \mod P \\
+                                                  & m_i^{k \eulerphi{n} + 1} \mod P & \just{By equation $\ref{ed requirement}$.}
+                                                  & m_i \cdot m_i^{k(p - 1)(q - 1)} \mod P & \just{Since $\eulerphi{n} = (p - 1)(q - 1)$.}
+                                                  & m_i \cdot \left(m_i^{p - 1}\right)^{k(q - 1)} \mod P \\
+                                                  & m_i \cdot 1^{k(q - 1) + 1} \mod P & \just{By Theorem $\ref{Fermat's Little Theorem}$.}
+                                                  & m_i \cdot 1 \mod P \\
+                                                  & m_i \mod P 
+                                \end{derivation}
+                                Thus for any prime $P$ we know that $D_{n, d}(c_i) = m_i$, namely:
+                                \begin{align}
+                                    D_{n, d}(c_i) = m^{ed} \equiv m \mod p \\
+                                    D_{n, d}(c_i) = m^{ed} \equiv m \mod q
+                                \end{align}
+                        \end{itemize}
+                    \item
+                        We now use the Chinese Remainder Theorem to show that for any $u \in \set{Z}$,
+                        then if $u \equiv m_i \mod p$ and $u \equiv m_i \mod q$, then
+                        $u \equiv m_i \mod pq$. So let $u \in \set{Z}$ be given such that
+                        \begin{align*}
+                            u &\equiv m_i \mod p \\
+                            u &\equiv m_i \mod q \\
+                        \end{align*}
+                        Since $p$ and $q$ are trivially relatively prime we know by Theorem
+                        \ref{Chinese Remainder Theorem} That there is a unique $u$ modulo
+                        $pq$ that satisfies our system of congruences. Furthermore, the proof
+                        of the Chinese Remainder Theorem tells us that this $u$ is congruent to
+                        \[
+                            m_ipx + m_iqy
+                        \]
+                        where $x$ and $y$ are integers such that $px + qy = 1$. Thus we can
+                        rewrite our solution as follows
+                        \[
+                            m_ipx + m_iqy = m_i(px + qy) = m_i
+                        \]
+                        Now we can finally conclude that $u \equiv m_i \mod pq$ as required. \QED
+                \end{itemize}
+                Thus by Modus Ponens we can conclude that $D_{n, d}(c_i) = m_i$, i.e. Bob successfully
+                received Alice's message. \QED
+            \end{proof}
+        \end{definition}
+    \section{Common Divisibility Rules}
+        \begin{theorem}
+            ``An integer is divisible by $3$ if and only if the sum of the digits in its base 10
+            representation is divisible by $3$.''
+        \end{theorem}
+        \begin{proof}
+            Let $n \in \set{Z}$ be given. Suppose the base 10 representation of $n$ is
+            $d_k \cdots d_1 d_0$, which can be written as
+            \[
+                n = \sum_{i = 0}^{k} d_i \cdot 10^i
+            \]
+            We now simply note that $10^i \equiv 1 \mod 3$ for all $i \in \set{N}$. We now simply
+            analyze the base 10 representation of $n$ modulo 3 as follows
+            \[
+                n \equiv \sum_{i = 0}^{k} d_i \cdot 10^i \equiv \sum_{i = 0}^{k} d_i \cdot 1 \equiv \sum_{i = 0}^{k} d_i \mod 3
+            \]
+            Thus we have shown the $n$ and the sum of the digits in the base 10 representation of
+            $n$ are in the same equivalence class modulo 3. Thus we can conclude that $n$
+            is divisible by 3 if and only if the sum of the digits in the base 10 representation of $n$
+            is divisible by 3. \QED
+        \end{proof}
+        \begin{theorem}
+            $``$Let $b, n \in \set{N}$ and let $n = \sum_{i = 0}^{k} n_i \cdot b^i$ be the base
+            $b$ representation of $n$. Then $b + 1$ divides $n$ if and only if $b + 1$ divides
+            $\sum_{i = 0}^{k} (-1)^{i} \cdot n_i$.''
+        \end{theorem}
+        \begin{proof}
+            Let $b, n \in \set{N}$ be given. Consider the base $b$ represenation of $n$
+            \[
+                n = \sum_{i = 0}^{k} n_i \cdot b^i
+            \]
+            We first note that $\divides{(b + 1)}{n}$ if and only if $n \equiv 0 \mod (b + 1)$.
+            We also note that $b \equiv -1 \mod (b + 1)$. Thus we can now make the following
+            simple calculation:
+            \[
+                n \equiv \sum_{i = 0}^{k} n_i \cdot b^i \equiv  \sum_{i = 0}^{k} b_i \cdot (-1)^i \mod (b + 1)
+            \]
+            Since congruence modulo $b + 1$ is an equivalence relation we can conclude that
+            $n \equiv 0 \mod (b + 1)$ if and only if $\dsum_{i = 0}^{k} b_i \cdot (-1)^i \equiv 0 \mod (b + 1)$.
+            But this just means that $(b + 1)$ divides ${\dsum_{i = 0}^{k} b_i \cdot (-1)^i}$. \QED
+        \end{proof}
+        \begin{corollary}
+            $``$An integer is divisible by 11 if and only if the alternating sum of the digits
+            in its base 10 representation is divisible by 11.''
+        \end{corollary}
+        \begin{theorem}
+            ``$\forall a, b, n \in \setsub{\set{N}}{\Set{1}} \ \ndivides{(a^n - b^n)}{(a^n + b^n)}$.'' 
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+        \begin{theorem}
+            ``$\forall n, s \in \set{N} \ \divides{n!}{\prod_{k = 0}^{n - 1} (s + k)}$.''
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+        % TODO
+    \section{Continued Fractions}
+        \begin{definition}
+            Let $r$ be a real number. We define the continued fractions representation of $r$ as
+            \[
+                r = \frac{q_0}{q_1 +
+                    \frac{1}{q_2 + 
+                        \frac{1}{q_3 + 
+                            \frac{1}{\ddots}
+                        }
+                    }
+                }
+            \]
+            such that $\forall i \in \set{N} \ q_i \in \set{Z}$. For simply we write that
+            $r = [q_0; q_1, q_2, \dots]$ to denote the above continued fractions representation
+            of $r$. We also call the $q_i$'s partial quotients of $[q_0; q_1, q_2, \dots]$.
+        \end{definition}
+        \begin{theorem}
+            ``The continued fractions representation of any rational number has a finite number
+              of partial quotients.''
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+        \begin{definition}
+            % Define convergents.
+        \end{definition}
+        \begin{theorem}
+            % Fast left to right generation of convergents.
+        \end{theorem}
+    \section{Unique Base $q$ Representation}
+        \begin{definition}
+            Let $q \in \set{N}$ and $n \in \set{Z}$. We define $d_k\cdots d_1$ to be a base
+            $q$ representation of $n$ if and only if the following hold
+            \begin{itemize}
+                \item
+                    $d_k \neq 0$
+                \item
+                    $\forall i \in [k] \ d_i \in \unionzero{[q - 1]}$
+                \item
+                    $n = \dsum_{i = 1}^k d_i \cdot q^{i - 1}$
+            \end{itemize}
+            We represent negative integers by prepending a $-$ to the representation. We also
+            say $d_k\cdots d_1$ has length $k$. We will write $n = \base{d_k \cdots d_1}{q}$ to indicate that
+            $d_k \cdots d_1$ is a base $q$ representation of $n$.
+        \end{definition}
+        \begin{theorem}
+            $``\forall q \in \set{N} \ \forall n \in \set{Z} \ n$ has a unique base $q$ represenation.''
+        \end{theorem}
+        \begin{proof}
+            Let $n \in \set{Z}$ and $q \in \set{N}$ be given. If $n = 0$ we know that
+            $n = \base{0}{q}$, so assume $n \neq 0$. Furthermore we note that if $n < 0$,
+            then the base $q$ representation of $n$ is just the base $q$ representation of $|n|$
+            with a $-$ prepended to it. Thus we can assume $n > 0$. We can now proceed to show
+            the existence and uniqueness of base $q$ representation of $n$.
+            \begin{itemize}
+                \item
+                \item
+            \end{itemize}
+            Thus we can conclude that $n$ has a unique base $q$ representation. \QED
+        \end{proof}
+    \section{$\sqrt{2}$ is Irrational}
+        \begin{lemma}
+            $``\forall a \in \set{Z} \ a^2 \equiv a \mod 2.$''
+        \end{lemma}
+        \begin{proof}
+            Let $a \in \set{Z}$ be given. We now have two cases based on the parity of $a$.
+            \begin{itemize}
+                \item
+                    If $a$ is even we can see that $a \equiv 0 \mod 2$. This implies that
+                    $a^2 \equiv 0^2 \equiv 0 \mod 2$. Thus we can see that $a^2 \equiv a \mod 2$.
+                \item
+                    If $a$ is odd we can see that $a \equiv 1 \mod 2$. This implies that
+                    $a^2 \equiv 1^2 \equiv 1 \mod 2$. Thus we can see that $a^2 \equiv a \mod 2$.
+            \end{itemize}
+            Thus we can see that $a^2 \equiv a \mod 2.$. \QED
+        \end{proof}
+        \begin{theorem}
+            $``\sqrt{2} \not\in \set{Q}.$''
+        \end{theorem}
+        \begin{proof}
+            We proceed via a proof by contradiction, thus assume that $\sqrt{2} \in \set{Q}$,
+            i.e. assume that $\sqrt{2}$ is rational. This implies that there are integers
+            $a$ and $b$ such that $\sqrt{2} = \dfrac{a}{b}$. Furthermore we will insist that
+            $\gcd{a}{b} = 1$, i.e. we want $\dfrac{a}{b}$ to be in lowest terms. Now we can square
+            both sides of the equation and deduce 
+            \[
+                \sqrt{2}^2 = \left(\dfrac{a}{b}\right)^2 \then 2 = \dfrac{a^2}{b^2} \then a^2 = 2b^2
+            \]
+            Since we now know that $a^2 = 2b^2$ we can conclude that $a^2$ must be even. By the
+            previous Lemma we can conclude that $a$ must also be even. Thus we know there is an
+            integer $c$ such that $a = 2c$. Substituting the new form of $a$ we can conclude
+            \[
+                a^2 = 2b^2 \then (2c)^2 = 2b^2 \then 4c^2 = 2b^2 \then b^2 = 2c^2
+            \]
+            Since we know that $b^2 = 2c^2$ we can conclude that $b^2$ must also be even. Again
+            by the previous Lemma we can conclude that $b$ must also be even. This of course implies
+            that the $\gcd{a}{b} = 2 \neq 1$, thus $\dfrac{a}{b}$ was not a lowest terms representation
+            of $\sqrt{2}$. This is of course a contradiction. \QED
+        \end{proof}
+    \section{$e$ is Irrational}
+        \begin{definition}
+            We define $e$ and $S_n$, for $n \ge 0$, as
+            \begin{align*}
+                e = \dsum_{k = 0}^{\infty} \frac{1}{k!}
+                & & S_n = \dsum_{k = 0}^{n} \frac{1}{k!}
+            \end{align*}
+        \end{definition}
+        \begin{lemma}
+            \label{e is Irrational Lemma}
+            $``\forall n \in \set{N} \ \ 0 < n! (e - S_n) < \dfrac{1}{n}$.''
+        \end{lemma}
+        \begin{proof}
+            Let $n \in \set{N}$ be given. We first show that $e - S_n > 0$.
+            \begin{align*}
+                e - S_n &= \sum_{k = 0}^{\infty} \frac{1}{k!} - \sum_{k = 0}^{n} \frac{1}{k!}
+                        & \just{By definition of $e$ and $S_n$.}
+                        &= \sum_{k = n + 1}^{\infty} \frac{1}{k!} \\
+            \end{align*}
+            Since each term of the sum above is positive we can conclude that $e - S_n > 0$.
+            We now show that $e - S_n < \frac{1}{n}$ by continuing the computation above.
+            \begin{align*}
+                e - S_n &= \sum_{k = n + 1}^{\infty} \frac{1}{k!} & \just{As above}
+                        &= \frac{1}{(n + 1)!} \sum_{k = n + 1}^{\infty} \frac{(n + 1)!}{k!}
+                        & \just{By factoring out $(n + 1)!$.}
+            \end{align*}
+            We now note that for $k \ge n + 1$
+            \begin{equation}
+                \label{sum term equation}
+                \frac{(n + 1)!}{k!} = \left(\prod_{j = n + 2}^{k} j\right)^{-1}
+            \end{equation}
+            since we can cancel out a factor of $(n + 1)!$ from both the numerator and
+            denominator. We now want to upper bound equation
+            (\ref{sum term equation}). We do this by making each term of the product
+            smaller; thus making the reciprocal of the product larger.
+            \begin{align*}
+                \frac{(n + 1)!}{k!} &= \left(\prod_{j = n + 2}^{k} j \right)^{-1}
+                                    & \just{By equation (\ref{sum term equation}).}
+                                    &< \left(\prod_{j = n + 2}^{k} (n + 1) \right)^{-1}\\
+            \end{align*}
+            Thus we can now conclude that
+            \begin{equation}
+                \label{sum term equation 2}
+                \frac{(n + 1)!}{k!} < \frac{1}{(n + 1)^{k - (n + 1)}}
+            \end{equation}
+            We can now continue our computation of $e - S_n$.
+            \begin{align*}
+                e - S_n &= \frac{1}{(n + 1)!} \sum_{k = n + 1}^{\infty} \frac{(n + 1)!}{k!} \\
+                        &< \frac{1}{(n + 1)!} \sum_{k = n + 1}^{\infty} \frac{1}{(n + 1)^{k - (n + 1)}}
+                        & \just{By equation $(\ref{sum term equation 2})$.}
+                        &= \frac{1}{(n + 1)!} \sum_{k = 0}^{\infty} \frac{1}{(n + 1)^{k}}
+                        & \just{By re-indexing the sum.}
+                        &= \frac{1}{(n + 1)!} \frac{1}{1 - \frac{1}{n + 1}}
+                        & \just{Since the sum is a geometric series.}
+                        &= \frac{1}{(n + 1)!} \frac{n + 1}{n} \\
+                        &= \frac{1}{n! \cdot n}
+            \end{align*}
+            Thus we can conclude that $0 < e - S_n < \frac{1}{n! \cdot n}$. We can now multiply
+            this inequality by $n!$ to conclude that
+            \begin{equation}
+                0 < n! (e - S_n) < \frac{1}{n}
+            \end{equation}
+            as required. \QED
+        \end{proof}
+        \begin{theorem}
+            $``e \not\in \set{Q}$.''
+        \end{theorem}
+        \begin{proof}
+            We proceed via contradiction, so assume that $e \in \set{Q}$. In other
+            words assume there are $a, b \in \set{N}$ such that $b \neq 0$ and $e = \dfrac{a}{b}$.
+            Now choose $n \in \set{N}$ such that $n > b$, in particular note that $n > b \ge 1$.
+            We can now invoke Lemma \ref{e is Irrational Lemma} to conclude that
+            \begin{equation*}
+                0 < n! (e - S_n) < \frac{1}{n}
+            \end{equation*}
+            Since $e = \dfrac{a}{b}$ we can conclude that
+            \begin{equation*}
+                0 < n! \left(\frac{a}{b} - S_n\right) < \frac{1}{n}
+            \end{equation*}
+            We can rearrange this formula and use the fact that $\frac{1}{n} < 1$ to conclude that
+            \begin{equation}
+                0 < a \left(\frac{n!}{b}\right) - S_n n! < \frac{1}{n} < 1
+            \end{equation}
+            In particular the inequality above tells us that $a \left(\frac{n!}{b}\right) - S_n n!$
+            cannot be an integer.
+
+            We will now show that this above quantity must be an integer thus giving us our contradiction.
+            First note that $b$ is a factor of $n!$ since $n > b$.
+            This implies that $\frac{n!}{b}$ is an integer. Since $a$ is an integer and the
+            integers are closed under multiplication we can conclude that $a \left(\frac{n!}{b}\right)$
+            is also an integer. Now lets expand out $S_n n!$
+            \begin{align*}
+                S_n n! &= n! \sum_{k = 0}^{n} \frac{1}{k!} & \just{By definition of $S_n$.}
+                       &= \sum_{k = 0}^{n} \frac{n!}{k!} 
+            \end{align*}
+            We first note that each of terms of the above summation must be an integer since
+            for each $k \in \Set{0, 1, \dots, n}$ we know that $k!$ is a factor of $n!$. Since
+            the integers are closed under addition we can conclude that the entire sum is an
+            integer, i.e. $S_n n!$ must be an integer. Now since the integers are closed under
+            subtraction we can conclude that $a\left(\frac{n!}{b}\right) - S_n n!$ must be an
+            integer; which is of course a contradiction. Thus we can conclude that $e \not\in \set{Q}$
+            as required. \QED
+        \end{proof}
+    \section{$\pi$ is Irrational}
+        \begin{definition}
+            % TODO
+        \end{definition}
+        \begin{theorem}
+            % TODO
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{Harmonic Numbers}
+        \begin{definition}
+            Let $n \in \set{N}$. We define the $n^{th}$ Harmonic Number, denoted $H_n$, as follows
+            \[
+                H_n = \sum_{i = 1}^{n} \frac{1}{i} = 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \dots
+            \]
+        \end{definition}
+        \begin{theorem}
+            $``\forall n \in \set{N} \ H_{2^n} > n.$''
+        \end{theorem}
+        \begin{proof}
+            We proceed by induction on $n$ to prove $\inductive{P}{n}$ for each $n \in \set{N}$.
+            \[
+                \inductive{P}{n} = ``H_{2^n} > n."
+            \]
+            \begin{itemize}
+                \item
+                    Base Case: Let $n = 1$, then $H_{2^1} = H_2 = 1 + \frac{1}{2} = \frac{3}{2} > 1$
+                    as required.
+                \item
+                    Induction Step: Let $k \in \set{N}$ be given, assume $\inductive{P}{k}$ is true.
+                    We will now simply try to bound $H_{2^{k + 1}}$ by $k + 1$.
+                    \begin{derivation}{=}
+                        H_{2^{k + 1}} & \sum_{i = 1}^{2^{k + 1}} \frac{1}{i} 
+                                      & \just{By definition of $H_{2^{k + 1}}$.}
+                                      & \left(\sum_{i = 1}^{2^{k}} \frac{1}{i}\right) + 
+                                        \left(\sum_{i = 2^k + 1}^{2^{k + 1}} \frac{1}{i}\right) \\
+                                      & H_{2^k} + \left(\sum_{i = 2^k + 1}^{2^{k + 1}} \frac{1}{i}\right) 
+                                      & \just{By definition of $H_{2^k}$.}
+                        \multicolumn{1}{l@{\ > \ }}{}
+                                      & k + \left(\sum_{i = 2^k + 1}^{2^{k + 1}} \frac{1}{i}\right) 
+                                      & \just{By $\inductive{P}{k}$.}
+                        \multicolumn{1}{l@{\ > \ }}{}
+                                      & k + \left(\sum_{i = 2^k + 1}^{2^{k + 1}} \frac{1}{2^k}\right)
+                                      & \just{By $\frac{1}{2^k} > \frac{1}{j}$ 
+                                              if $2^{k} + 1 \le j \le 2^{k + 1}$.}
+                                      & k + 2^{k} \left(\frac{1}{2^k}\right) \\
+                                      & k + 1
+                    \end{derivation}
+                    Thus $H_{2^{k + 1}} > k + 1$ as required.
+            \end{itemize}
+            Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \set{N}$. \QED
+        \end{proof}
+        \begin{corollary}
+            $``H_{\infty} = \dlim_{n \rightarrow \infty} H_n$ diverges.''
+        \end{corollary}
+    \section{The AKS Primality Test}
+        % TODO
+

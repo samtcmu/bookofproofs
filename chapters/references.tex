@@ -1,0 +1,18 @@
+% name: Sam Tetruashvili
+% title: references.tex
+% date created: Fri Jan 30 21:57:45 EST 2009
+% description: Creates the bibliography for The Book of Proofs.
+
+% last modified: Tue Jun  2 16:25:09 EDT 2009
+
+\clearpage
+\phantomsection
+    \addcontentsline{toc}{chapter}{\bibname}
+
+    % Create the bibliography.    
+    \bibliographystyle{alpha}
+    \bibliography{refs/probability,refs/number-theory,refs/algebra,refs/analysis,refs/preliminaries,refs/combinatorics}
+
+    % Include every file that has an entry in one of the .bib files.
+    \nocite{*}
+

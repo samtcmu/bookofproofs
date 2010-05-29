@@ -1,0 +1,376 @@
+% name: Sam Tetruashvili
+% title: combinatorics.tex
+% date created: Fri Dec  5 16:07:32 EST 2008
+% description: The Combinatorics chapter of The Book of Proofs.
+
+% last modified: Sun Apr 18 10:53:19 EDT 2010
+
+\chapter{Combinatorics}
+    \section{The Pigeonhole Principle}
+        \begin{theorem}
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{Binomial Theorem}
+        \begin{definition}
+            Let $n \in \set{N}$ and $k \in \set{Z}$ such that $0 \le k \le n$.
+            We define $\binom{n}{k}$, read $n$ choose $k$, to be the number of
+            $k$ element subsets of an $n$ element set. Also note that $\binom{n}{k}$
+            is called a binomial coefficient.
+        \end{definition}
+        \begin{lemma}
+            $``\forall n \in \set{N} \ \forall k \in \union{[n]}{\Set{0}} \ 
+            \binom{n}{k} = \binom{n - 1}{k} + \binom{n - 1}{k - 1}.$''
+            \label{rec binom lemma}
+        \end{lemma}
+        \begin{proof}
+            Let $n \in \set{N}$ and $k \in \union{[n]}{\Set{0}}$ be given. We now proceed
+            by counting the set, $S$, of $k$ element subsets of $[n]$ in two ways.
+            \[
+                S = \Set{\subs{A}{[n]} \mid |A| = k}
+            \]
+            \begin{itemize}
+                \item
+                    We know that by the definition of $\binom{n}{k}$ that $S$ has $\binom{n}{k}$
+                    elements.
+                \item
+                    We will now try to count the number of elements of $S$ by partitioning it
+                    based on whether or not 1 is contained in a subset. Thus we define the
+                    partitions $S_1$ and $S_2$ as follows:
+                    \[
+                        S_1 = \Set{A \in S \mid 1 \in A} \mbox{ and } S_2 = \Set{A \in S \mid 1 \not\in A}
+                    \]
+                    We know that $S_1$ has $\binom{n - 1}{k - 1}$ elements because
+                    any $A \in S_1$ must contain 1, thus we need to choose
+                    $k - 1$ of the remaining $n - 1$ elements of $[n]$ to be in $A$. We also
+                    know that $S_2$ has $\binom{n - 1}{k}$ elements because any $A \in S_2$ must
+                    no contain 1, thus we need to choose $k$ of the remaining $n - 1$ of $[n]$ to
+                    be in $A$. Since we know $S_1$ and $S_2$ partition $S$ we can now conclude
+                    via the rule of sum that $|S| = |S_1| + |S_2| = \binom{n - 1}{k - 1} + \binom{n - 1}{k}.$
+            \end{itemize}
+            Thus we can conclude that $\binom{n}{k} = \binom{n - 1}{k} + \binom{n - 1}{k - 1}$. \QED
+        \end{proof}
+        \begin{theorem}[Binomial Theorem]
+            $``\forall n \in \set{N} \ \forall a, b \in \set{R} \ (a + b)^2 = \dsum_{i = 0}^{n} \binom{n}{i}a^ib^{n - i}.$''
+            \label{Binomial Theorem}
+        \end{theorem}
+        \begin{proof}
+            Let $n \in \set{N}$ and $a, b \in \set{R}$ be given. Consider the following:
+            \[
+                (a + b)^n = \underbrace{(a + b)(a + b) \cdots (a + b)}_{\mbox{$n$ terms}}
+            \]
+            To construct a term in the closed form of $(a + b)^n$ we must first choose the power
+            of $a$'s in the term, this value ranges from 0 to $n$. Assume we choose to have 
+            $i \in \union{[n]}{\Set{0}}$ $a$'s; this
+            implies that we have $n - i$ $b$'s in the term. So now we just have to go through each
+            of the $n$ binomial terms and choose if we will take an $a$ or $b$ from it. Thus we
+            are going through the $n$ terms and choosing $i$ of them to take an $a$ from; so there
+            are $\binom{n}{i}$ different ways to choose $i$ $a$'s from the $n$ terms. Thus we can
+            conclude that $(a + b)^n = \sum_{i = 0}^{n} \binom{n}{i} a^ib^{n - i}$. \QED
+        \end{proof}
+        \begin{proof}[Alternate Proof]
+            We may also proceed by induction on $n$ to prove $\inductive{P}{n}$ for all
+            $n \in \unionzero{\set{N}}$.
+            \[
+                \inductive{P}{n} = ``\forall x, y \in \set{R} \ (x + y)^n = \sum_{k = 0}^{n} \binom{n}{k} x^k y^{n - k}."
+            \]
+            \begin{itemize}
+                \item
+                    Base Case: Let $x, y \in \set{R}$ be given. We can clearly see that
+                    \[
+                        (x + y)^0 = 1 = \binom{0}{0} x^0 y^{0 - 0} 
+                                  = \sum_{k = 0}^{0} \binom{0}{k} x^k y^{n - K}
+                    \]
+                    as required. Thus $\inductive{P}{0}$ is true.
+                \item
+                    Induction Step: Let $n \in \unionzero{\set{N}}$ and $x, y \in \set{R}$ 
+                    be given; assume $\inductive{P}{n}$ is true. We will now simply
+                    compute $(x + y)^{n + 1}$ to establish that $\inductive{P}{n + 1}$ is
+                    true.
+                    \[
+                        (x + y)^{n + 1} = (x + y)(x + y)^n
+                    \]
+                    By the inductive hypothesis we can know that 
+                    $(x + y)^n = \sum_{k = 0}^n \binom{n}{k} x^k y^{n - k}$. Thus 
+                    substituting this gives us the following.
+                    \begin{derivation}{=}
+                        (x + y)^{n + 1} & (x + y)\dsum_{k = 0}^n \dbinom{n}{k} x^k y^{n - k} \\
+                                        & \dsum_{k = 0}^n \dbinom{n}{k} x^{k + 1} y^{n - k} + 
+                                          \dsum_{k = 0}^n \dbinom{n}{k} x^k y^{n - k + 1} 
+                    \end{derivation}
+                    We now take the last term out of the first summation and first term
+                    out of the second summation.
+                    \[
+                        \dsum_{k = 0}^{n - 1} \dbinom{n}{k} x^{k + 1} y^{n - k} + \dbinom{n}{n} x^{n + 1}y^0 + 
+                        \dbinom{n}{0} x^0y^{n + 1} + \dsum_{k = 1}^{n} \dbinom{n}{k}x^k y^{n - k + 1}
+                    \]
+                    We now note that $\binom{n}{n} = \binom{n}{0} = \binom{n + 1}{n + 1} = \binom{n + 1}{0} = 1$
+                    and then re-index the first summation as follows.
+                    \[
+                        \dsum_{k = 1}^{n} \dbinom{n}{k - 1} x^{k} y^{n - (k + 1)} + \dbinom{n + 1}{n + 1} x^{n + 1}y^0 + 
+                        \dbinom{n + 1}{0} x^0y^{n + 1} + \dsum_{k = 1}^{n} \dbinom{n}{k}x^k y^{n - k + 1}
+                    \]
+                    We can now combine the two summations
+                    \[
+                        \binom{n + 1}{0} x^0y^{n + 1} + 
+                        \sum_{k = 1}^{n} \left(\binom{n}{k} + \binom{n}{k - 1}\right) x^{k} y^{(n + 1) - k)} + 
+                        \binom{n + 1}{n + 1} x^{n + 1}y^0 
+                    \]
+                    We can now invoke lemma \ref{rec binom lemma} to simply $\binom{n}{k} + \binom{n}{k - 1}$
+                    to $\binom{n + 1}{k}$.
+                    \[
+                        \binom{n + 1}{0} x^0y^{n + 1} + 
+                        \sum_{k = 1}^{n} \binom{n + 1}{k}x^{k} y^{(n + 1) - k)} + 
+                        \binom{n + 1}{n + 1} x^{n + 1}y^0
+                    \]
+                    We now bring the two non-summation terms into the summation and conclude
+                    that
+                    \[
+                        (x + y)^{n + 1} = \sum_{k = 0}^{n + 1} \binom{n + 1}{k} x^k y^{(n + 1) - k}
+                    \]
+                    Thus $\inductive{P}{k + 1}$ is true as required.
+            \end{itemize}
+            Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \unionzero{\set{N}}$
+            as required. \QED
+        \end{proof}
+    \section{Chairperson Identity}
+        \begin{theorem}
+            $``\forall n \in \set{N} \ \forall k \in [n] \ k \binom{n}{k} = n \binom{n - 1}{k - 1}$.''
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{Sterling Numbers}
+        \begin{definition}
+            % Define Sterling Numbers of the First Kind.
+        \end{definition}
+        \begin{theorem}
+            ``$\forall n \in \set{N} \ \forall k \in [n] \ \npermk{n}{k} = (n - 1) \npermk{n - 1}{k} + \npermk{n - 1}{k - 1}$.''
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+        \begin{definition}
+            % Define Sterling Numbers of the Second Kind.
+        \end{definition}
+        \begin{theorem}
+            ``$\forall n \in \set{N} \ \forall k \in [n] \ \npartk{n}{k} = k \npartk{n - 1}{k} + \npartk{n - 1}{k - 1}$.''
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{Cantor-Schroeder-Bernstein Theorem}
+        \begin{definition}
+            Let $A$ and $B$ be sets. We say that $A$ and $B$ have the same cardinality if and
+            only if there is a bijection from $A$ to $B$.
+        \end{definition}
+        \begin{theorem}
+            % TODO
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{Cantor's Diagonalization}
+        \begin{definition}
+            Let $S$ be a set. We say that $S$ is countably infinite if and only if
+            there is a bijection from $\set{N}$ to $S$. We say that $S$ is uncountably
+            infinite if and only if there is no bijection from $\set{N}$ to $S$ and
+            $S$ is not finite.
+        \end{definition}
+        \begin{theorem}
+            % $``\set{N}$ and $[0, 1)$ do not have the same cardinality.''
+            $``\power{\set{N}}$ is uncountably infinite.''
+            \label{diagonalization}
+        \end{theorem}
+        \begin{proof}
+            Since $\power{\set{N}}$ is clearly infinite it suffices to show that there is
+            no bijection from $\set{N}$ to $\power{\set{N}}$. Thus we proceed by showing
+            that there cannot be a surjection from $\set{N}$ to $\power{\set{N}}$ via the
+            method of diagonalization.
+
+            Assume for the sake of contradiction that $\power{\set{N}}$ is countably infinite.
+            Then there must be a function $f : \set{N} \rightarrow \power{\set{N}}$ such that
+            $f$ is a bijection. By definition of bijectivity we know that $f$ must also be surjective.
+            We will now construct $S \in \power{\set{N}}$ as follows.
+            \[
+                S = \Set{i \in \set{N} \mid i \not\in f(i)}
+            \]
+            We now proceed via contradiction to show that there is no $i \in \set{N}$ such
+            that $f(i) = S$.
+            Thus assume $\exists i \in \set{N}$ such that $f(i) = S$. We will now case on whether
+            or not $i \in f(i)$.
+            \begin{itemize}
+                \item
+                    If $i \in f(i)$, then by definition of $S$ we know that $i \not\in S$; thus $f(i) \neq S$.
+                \item
+                    If $i \not\in f(i)$, then by definition of $S$ we know that $i \in S$; thus $f(i) \neq S$.
+            \end{itemize}
+            In either case we can clearly see that $f(i) \neq S$. Thus we can conclude that
+            $f$ is not a surjection (since it doesn't map anything to $S$), which is of course 
+            a contradiction. Thus $\power{\set{N}}$ is uncountably infinite. \QED
+
+            % To show that $\set{N}$ and $[0, 1)$ do not have the same size it suffices
+            % to show that there cannot be bijection from $\set{N}$ to $[0, 1)$. Thus we
+            % will proceed by contradiction to show that there cannot be a surjection from
+            % $\set{N}$ to $[0, 1)$.
+
+            % Assume for the sake of contradiction that $\set{N}$ and $[0, 1)$ have the same
+            % cardinality. By definition of cardinality we know that there must be some function
+            % $f : \set{N} \rightarrow [0, 1)$ such that $f$ is a bijection. We now look at
+            % the decimal expansion of $f(i)$ for each $i \in \set{N}$ and define
+            % $A_{i, j}$ to be $j^{th}$ digit in the decimal expansion of $f(i)$. Thus we can
+            % represent $f$ in tabular form as shown in Figure \ref{ftable}.
+            % \begin{figure}[H]
+            %     \centering
+            %     $\begin{array}{c@{\ \mapsto \ }c@{\ . \ }ccccc}
+            %         1 & 0 & \color{red} A_{1, 1} & A_{1, 2} & A_{1, 3} & A_{1, 4} & \cdots \\
+            %         2 & 0 & A_{2, 1} & \color{red} A_{2, 2} & A_{2, 3} & A_{2, 4} & \cdots \\
+            %         3 & 0 & A_{3, 1} & A_{3, 2} & \color{red} A_{3, 3} & A_{3, 4} & \cdots \\
+            %         4 & 0 & A_{4, 1} & A_{4, 2} & A_{4, 3} & \color{red} A_{4, 4} & \cdots \\
+            %         \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots
+            %     \end{array}$
+            %     \caption{A tabular representation of $f$.}
+            %     \label{ftable}
+            % \end{figure}
+            % We now construct $q \in [0, 1)$ as follows.
+            % \begin{equation}
+            %     q = \sum_{i = 1}^{\infty} B_i \cdot 10^{-i} = 0.B_1B_2B_3B_4\cdots \mbox{, where }
+            %     B_{i} = \left\{\begin{array}{cl} 
+            %                 1 & \mbox{, if $A_{i, i} \neq 1$} \\ 
+            %                 2 & \mbox{, otherwise}
+            %             \end{array}\right.
+            % \end{equation}
+            % Since we know that every decimal expansion corresponds to a real number, we know that
+            % $q \in [0, 1)$. Thus we should be able to find $j \in \set{N}$ such that
+            % $f(j) = q$, but such a $j$ cannot exist because we know that $q$ will differ from $f(j)$ 
+            % in the $j^{th}$ decimal place $\forall j \in \set{N}$ by construction of $q$. 
+            % Thus $f$ cannot be surjective since $q$ is a real number between 0 and 1 that is not
+            % in the image of $f$. Thus $f$ is not a bijection, which is of course a contradiction.
+            % \QED
+        \end{proof}
+        \begin{corollary}
+            % TODO
+        \end{corollary}
+        \begin{proof}
+            % TODO
+        \end{proof}
+        % \begin{corollary}
+        %     $``\set{N}$ and $\set{R}$ do not have the same cardinality.''
+        % \end{corollary}
+        % \begin{proof}
+        %     By theorem \ref{diagonalization} we know that $\set{N}$ and $[0, 1)$ do not
+        %     have the same cardinality. Since $\subs{[0, 1)}{\set{R}}$ and we know that $[0, 1)$
+        %     is larger than $\set{N}$ in some sense, we can conclude that $\set{N}$
+        %     and $\set{R}$ do not have the same cardinality. \QED
+        % \end{proof}
+    \section{Pirates and Gold}
+        \begin{theorem}
+            % TODO
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{Inclusion Exclusion Theorem}
+        \begin{theorem}
+            % TODO
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{Generating Functions}
+        \begin{definition}
+            We define the ordinary power series generating function of a sequence of integers
+            $a_0, a_1, \dots$ to be $A(x) = \dsum_{n = 0}^{\infty} a_n x^n$.
+        \end{definition}
+        \begin{theorem}
+            ``The generating function of a sequence is rational if and only if the sequence is linear recurrent.''
+        \end{theorem}
+        \begin{proof}
+            We proceed by showing each direction of the claim separately.
+            \begin{itemize}
+                \item
+                    Consider the following linear $k^{th}$ order linear recurrence.
+                    \begin{equation}
+                        a_{n + k}= \sum_{i = 0}^{k - 1} c_i a_{n + i} \mbox{, where $\forall i \in \Set{0, \dots, k - 1} c_i \in \set{Z}$}
+                    \end{equation}
+                    We will now try to find the ordinary power series generating function of this recurrence
+                    as follows
+                    \begin{equation}
+                        A(x) = \sum_{n = 0}^{\infty} a_n x^n
+                    \end{equation}
+                    We first define the generating function we are looking for above.
+                    \[\begin{array}{cr@{\ = \ }l}
+                              & \dsum_{n = 0}^{\infty} a_{n + k} x^n  & \dsum_{n = 0}^{\infty} \dsum_{i = 0}^{k - 1} c_i a_{n + i} x^n \\
+                        \then & \dfrac{1}{x^k} \dsum_{n = 0}^{\infty} a_{n + k} x^{n + k} & \dsum_{i = 0}^{k - 1} \dsum_{n = 0}^{\infty} c_i a_{n + i} x^n \\
+                        \then & \dfrac{1}{x^k} \left(\dsum_{n = 0}^{\infty} a_n x^n - \dsum_{n = 0}^{k - 1} a_n x^n\right) & \dsum_{i = 0}^{k - 1} c_i \dsum_{n = 0}^{\infty} a_{n + i} x^n \\
+                        \then & \dfrac{1}{x^k} \left(A(x) - \dsum_{n = 0}^{k - 1} a_n x^n\right) & \dsum_{i = 0}^{k - 1} \dfrac{c_i}{x^i} \dsum_{n = 0}^{\infty} a_{n + i} x^{n + i} \\
+                        \then & \dfrac{1}{x^k} \left(A(x) - \dsum_{n = 0}^{k - 1} a_n x^n\right) & \dsum_{i = 0}^{k - 1} \dfrac{c_i}{x^i} \left(\dsum_{n = 0}^{\infty} a_{n} x^{n} - \dsum_{n = 0}^{i - 1} a_n x^n\right) \\
+                        \then & A(x) - \dsum_{n = 0}^{k - 1} a_n x^n & \dsum_{i = 0}^{k - 1} c_i x^{k - i} \left(A(x) - \dsum_{n = 0}^{i - 1} a_n x^n\right) \\
+                        \then & A(x) - \dsum_{n = 0}^{k - 1} a_n x^n & \dsum_{i = 0}^{k - 1} c_i x^{k - i} A(x) - \dsum_{i = 0}^{k - 1} c_i x^{k - i} \dsum_{n = 0}^{i - 1} a_n x^n \\
+                        \then & A(x) - \dsum_{i = 0}^{k - 1} c_i x^{k - i} A(x) & \dsum_{n = 0}^{k - 1} a_n x^n - \dsum_{i = 0}^{k - 1} c_i x^{k - i} \dsum_{n = 0}^{i - 1} a_n x^n \\
+                        \then & A(x) \left(1 - \dsum_{i = 0}^{k - 1} c_i x^{k - i}\right) & \dsum_{n = 0}^{k - 1} a_n x^n - \dsum_{i = 0}^{k - 1} c_i x^{k - i} \dsum_{n = 0}^{i - 1} a_n x^n \\
+                        \then & A(x) \left(1 - \dsum_{i = 0}^{k - 1} c_i x^{k - i}\right) & \dsum_{n = 0}^{k - 1} \left(a_n - \dsum_{i = k - n}^{k - 1} c_i a_{n - (k - j)}\right) x^n\\
+                    \end{array}\]
+                    We can now define $b_n$ for $0 \le n \le k - 1$ as follows:
+                    \begin{equation}
+                        b_n = \left\{\begin{array}{ll}
+                                  a_0 & \mbox{, if $n = 0$} \\
+                                  a_n - \dsum_{i = k - n}^{k - 1} c_i a_{n - (k - j)} & \mbox{, otherwise}
+                              \end{array}\right.
+                    \end{equation}
+                    We can now write $A(x)$ is the following convenient form
+                    \begin{equation}
+                        A(x) = \frac{\dsum_{n = 0}^{k - 1} b_n x^n}{1 - \dsum_{i = 0}^{k - 1} c_i x^{k - i}}
+                    \end{equation}
+                    We can clearly see that $A(x)$ is a rational function. Thus every linear recurrence has a rational generating function.
+                \item
+                    We now proceed to show that every rational generating function generates a linear recurrent sequence of integers.
+                    So consider the following rational generating function
+                    \begin{equation}
+                        A(x) = \frac{f(x)}{g(x)} = \sum_{n = 0}^{\infty} a_n x^n
+                    \end{equation}
+                    Where $f(x)$ and $g(x)$ are polynomials of degree $j$ and $k$ respectively, i.e.
+                    \[
+                        f(x) = \sum_{n = 0}^{d_1} f_n x^n \mbox{ and } g(x) = \sum_{n = 0}^{d_n} g_n x^n
+                    \]
+                    We now try to find a linear recurrence for the sequence that is generated by $A(X)$
+                    as follows:
+                    \[\begin{array}{rr@{\ = \ }l}
+                              & \dfrac{f(x)}{g(x)} & \dsum_{n = 0}^{\infty} a_n x^n\\
+                        \then & f(x) & g(x) \dsum_{n = 0}^{\infty} a_n x^n \\
+                        \then & \dsum_{n = 0}^{j} f_n x^n & \dsum_{i = 0}^{k} g_i x^i \dsum_{n = 0}^{\infty} a_n x^n \\
+                        \then & \dsum_{n = 0}^{j} f_n x^n & \dsum_{i = 0}^{k} \dsum_{n = 0}^{\infty} g_i a_n x^{n + i} \\
+                    \end{array}\]
+                    We now want to group together like factors of $x^i$ on the right hand side by splitting up the
+                    sum into two sums as follows.
+                    \[\begin{array}{rr@{\ = \ }l}
+                        \then & \dsum_{n = 0}^{j} f_n x^n & \left(\dsum_{i = 0}^{k - 1} \dsum_{l = 0}^{i} g_i a_{i - l} x^i\right) + \left(\dsum_{n = 0}^{\infty} \dsum_{i = 0}^{k} g_i a_{n + i} x^{n + k}\right)
+                    \end{array}\]
+                    The two summations on the right-hand side of the above equation represent the initial conditions and recurrence relation
+                    of the linear recurrence represented by $A(x)$. We now proceed to solve for the initial conditions and linear
+                    recurrence by using the fact that two ordinary power series are equal if and only if their coefficients are equal.
+                    Since we know the $f(x)$ is a polynomial of order $j$, and that $j < k$ we can conclude that
+                    \[
+                        \forall n \in \union{\set{N}}{\Set{0}} \ \sum_{i = 0}^{k} g_i a_{n + i} = 0
+                    \]
+                    We can solve the above equation of $a_{n + k}$ in terms of $a_n, \dots, a_{n + k - 1}$ and conclude that
+                    \begin{equation}
+                            a_{n + k} = \sum_{i = 0}^{k - 1} -\frac{g_i}{g_0} a_{n + i}
+                        \label{recurrence equation}
+                    \end{equation}
+                    Thus we can clearly see that $a_i$'s can be generated by a linear recurrence of order $k$. All that's left now is to determine
+                    the initial conditions. We again use the fact that two ordinary power series are equal if and only if they
+                    have the same coefficients to conclude that
+                    \begin{equation}
+                        \forall 0 \le i < k \ \sum_{l = 0}^{i} g_i a_{i - l} = f_i
+                        \label{initial conditions equations}
+                    \end{equation}
+                    By solving this system of equations we can determine the initial conditions of our linear recurrence since
+                    we have $k$ equation and $k$ unknowns. Thus we can conclude that rational generating functions generate
+                    linear recurrences.
+            \end{itemize}
+            Thus we can conclude that the generating function of a sequence is
+            rational if and only if the sequence is linear recurrent. \QED
+        \end{proof}
+

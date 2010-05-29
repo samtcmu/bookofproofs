@@ -1,0 +1,1040 @@
+% name: Sam Tetruashvili
+% title: probability-discrete.tex
+% date created: Tue Dec  2 21:04:54 EST 2008
+% description: The Discrete Probability chapter of The Book of Proofs.
+
+% last modified: Wed May 19 11:57:40 EDT 2010
+
+\chapter{Discrete Probability}
+    \section{The Axioms of Probability}
+        \begin{definition}
+            Throughout this section the sample space, $\Omega$, will denote the set of
+            all possible outcomes of a randomized experiment. We will abide by the restriction
+            that $\Omega$ is a countable set. We say $l \in \Omega$ is an outcome and that
+            $\subs{E}{\Omega}$ is an event.
+        \end{definition}
+        \begin{axiom}
+            We will use the Kolmogorov axioms for our presentation of the theory of
+            discrete probability. The axioms below define the notion of the probability
+            of an event.
+            \begin{itemize}
+                \item
+                    $\pr{\Omega} = 1$.
+                \item
+                    $\forall \subs{E}{\Omega} \ \pr{E} \in [0, 1]$.
+                \item
+                    $\forall \subs{P}{\power{\Omega}}$
+                    if $\forall E_1, E_2 \in P  \ E_1 \neq E_2 \then \intersect{E_1}{E_2} = \Set{}$ then 
+                    \[
+                        \pr{\dunion_{E \in P} E} = \sum_{E \in P} \pr{E}.
+                    \]
+                    In other words if the $E_i$'s are disjoint then then probability of their
+                    union is sum of their individual probabilities.
+            \end{itemize}
+            If all of these conditions hold we say that $\Pr : \power{\Omega} \rightarrow [0, 1]$
+            is a probability mass function.
+            \label{Axioms of Probability}
+        \end{axiom}
+        \begin{definition}
+            Let $\subs{A, B}{\Omega}$ be events. We say $A$ and $B$ are independent if
+            $\pr{\intersect{A}{B}} = \pr{A}\pr{B}$. We write $\ind{A}{B}$ if $A$ and $B$ are independent.
+        \end{definition}
+        \begin{definition}
+            Let $\subs{A, B}{\Omega}$ be events such that $\pr{B} \neq 0$. We define
+            conditional probability of $A$ given $B$ (the probability of $A$ given that
+            we know an outcome in $B$ has occurred) to be
+            \[
+                \condpr{A}{B} = \frac{\pr{\intersect{A}{B}}}{\pr{B}}
+            \]
+        \end{definition}
+    \section{Useful Lemmas}
+        \begin{lemma}
+            $``\forall \subs{A, E}{\Omega}$ if $\pr{E} \neq 0$, then
+            $\pr{\intersect{A}{E}} = \condpr{A}{E} \pr{E}$.''
+            \label{Conditional Probability Lemma}
+        \end{lemma}
+        \begin{proof}
+            Let $\subs{A, E}{\Omega}$ be given such that $\pr{E} \neq 0$.
+            Since $\pr{E} \neq 0$ we can now invoke the definition of conditional probability to
+            conclude that
+            \begin{equation}
+                \condpr{A}{E} = \frac{\pr{\intersect{A}{E}}}{\pr{E}}
+                \label{Conditional Probability Lemma equation 1}
+            \end{equation}
+            We can now multiply both sides of equation (\ref{Conditional Probability Lemma equation 1})
+            by $\pr{E}$ to conclude that $\pr{\intersect{A}{E}} = \condpr{A}{E} \pr{E}$ as
+            required. \QED
+        \end{proof}
+        \begin{lemma}[Rule of Complement]
+            $``\forall \subs{E}{\Omega} \ \pr{E} = 1 - \pr{\setsub{\Omega}{E}}.$''
+            \label{Complement Lemma}
+        \end{lemma}
+        \begin{proof}
+            Let $\subs{E}{\Omega}$ be an event. We now proceed by noting that
+            $P = \Set{E, \left(\setsub{\Omega}{E}\right)}$ partitions $\Omega$; thus
+            $\Omega = \union{E}{\left(\setsub{\Omega}{E}\right)}$.
+            We can now invoke part 1 of the Axioms of Probability to conclude that
+            $\pr{\Omega} = 1$. Thus we can conclude that 
+            \[
+                \pr{\Omega} = \pr{\union{E}{\left(\setsub{\Omega}{E}\right)}} = 1
+            \]
+            Since $P$ is a partition we also know that $E$ and $\setsub{\Omega}{E}$ are
+            mutually exclusive, thus we can invoke part 3 of the Axioms of Probability
+            to conclude that
+            \[
+                \pr{\union{E}{\left(\setsub{\Omega}{E}\right)}} = \pr{E} + \pr{\setsub{\Omega}{E}} = 1
+            \]
+            We can now subtract $\pr{\setsub{\Omega}{E}}$ from both sides to conclude that
+            \[
+                \pr{E} = 1 - \pr{\setsub{\Omega}{E}}
+            \]
+            as required. \QED
+        \end{proof}
+        \begin{corollary}
+            $``\pr{\Set{}} = 0$.''
+        \end{corollary}
+        \begin{proof}
+            $\pr{\Set{}} = \pr{\C{\Omega}} = 1 - \pr{\Omega} = 1 - 1 = 0$ as required. \QED
+        \end{proof}
+    \section{The Union Bound}
+        \begin{theorem}
+            $``\forall \subs{A, B}{\Omega} \ \pr{\union{A}{B}} = \pr{A} + \pr{B} - \pr{\intersect{A}{B}}$.''
+            \label{Pr union Theorem}
+        \end{theorem}
+        \begin{proof}
+            Let $\subs{A, B}{\Omega}$ be events. We will calculate $\pr{\union{A}{B}}$
+            by first partitioning $\union{A}{B}$ and $B$, and then invoking part 3 of the Axioms
+            of Probability. Clearly we know that $\Set{A, \setsub{B}{A}}$ partitions $\union{A}{B}$;
+            thus we can invoke part 3 of the Axioms of Probability to conclude the following.
+            \begin{equation}
+                \pr{\union{A}{B}} = \pr{A} + \pr{\setsub{B}{A}}
+                \label{Pr union equation 1}
+            \end{equation}
+            We can also clearly see that $\Set{\setsub{B}{A}, \intersect{A}{B}}$ partitions $B$;
+            thus we can invoke part 3 of the Axioms of Probability to similarly conclude the following.
+            \begin{equation}
+                \pr{B} = \pr{\setsub{B}{A}} + \pr{\intersect{A}{B}}
+                \label{Pr union equation 2}
+            \end{equation}
+            We now subtract $\pr{\intersect{A}{B}}$ from both sides of equation (\ref{Pr union equation 2})
+            to conclude that
+            \begin{equation}
+                \pr{\setsub{B}{A}} = \pr{B} -  \pr{\intersect{A}{B}}
+                \label{Pr union equation 3}
+            \end{equation}
+            We can now substitute equation (\ref{Pr union equation 3}) into equation (\ref{Pr union equation 1})
+            to conclude that
+            \[
+                \pr{\union{A}{B}} = \pr{A} + \pr{B} - \pr{\intersect{A}{B}}
+            \]
+            as required. \QED
+        \end{proof}
+        \begin{corollary}
+            $``\forall \subs{A, B}{\Omega} \ \pr{\union{A}{B}} \le \pr{A} + \pr{B}$.''
+            \label{Union Bound n = 2}
+        \end{corollary}
+        \begin{proof}
+            Let $\subs{A, B}{\Omega}$ be events. By theorem \ref{Pr union Theorem}
+            we know that 
+            \begin{equation}
+                \pr{\union{A}{B}} = \pr{A} + \pr{B} - \pr{\intersect{A}{B}}
+                \label{Union Bound Corollary 1}
+            \end{equation}
+            We now note that by part 2 of the Axioms of Probability we know that
+            \[
+                0 \le \pr{\intersect{A}{B}} \le 1
+            \]
+            Thus equation (\ref{Union Bound Corollary 1}) is maximized when $\pr{\intersect{A}{B}} = 0$, i.e.
+            \[
+                \pr{\union{A}{B}} = \pr{A} + \pr{B} - \pr{\intersect{A}{B}} \le \pr{A} + \pr{B} - 0
+            \]
+            Thus we can conclude that $\pr{\union{A}{B}} \le \pr{A} + \pr{B}$ as required. \QED
+        \end{proof}
+        \begin{theorem}[Union Bound]
+            \label{Union Bound}
+            $``\forall n \in \set{N} \ \forall \subs{A_1, \dots, A_n}{\Omega}$
+            \[
+                \pr{\dunion_{i = 1}^{n} A_i} \le \sum_{i = 1}^{n} \pr{A_i}."
+            \]
+        \end{theorem}
+        \begin{proof}
+            We proceed by induction on $n$ to show $\inductive{P}{n}$ for all $n \in \set{N}$.
+            \[
+                \inductive{P}{n} = ``\forall \subs{A_1, \dots, A_n}{\Omega} \
+                                     \pr{\dunion_{i = 1}^{n} A_i} \le \sum_{i = 1}^{n} \pr{A_i}."
+            \]
+            \begin{itemize}
+                \item
+                    Base Case: $\inductive{P}{1}$ is clearly true since $\forall \subs{A}{\Omega}$
+                    we have that $\pr{A} \le \pr{A}$.
+                \item
+                    Induction Step: Let $k \in \set{N}$ be given; assume $\inductive{P}{k}$ is true.
+                    Now let $\subs{A_1, \dots, A_k, A_{k + 1}}{\Omega}$ be events. We now know that
+                    $k$ is either equal to or larger than 1.
+                    \begin{itemize}
+                        \item
+                            If $k = 1$ then we know that $\pr{\union{A_1}{A_2}} \le \pr{A_1} + \pr{A_2}$
+                            by corollary \ref{Union Bound n = 2}.
+                        \item
+                            If $k \ge 2$ then we proceed by first break the event $\dunion_{i = 1}^{k + 1} A_i$
+                            into two parts as follows.
+                            \[
+                                \pr{\dunion_{i = 1}^{k + 1} A_i} = 
+                                \pr{\union{\left(\dunion_{i = 1}^{k} A_i\right)}{A_{k + 1}}}
+                            \]
+                            We can now invoke $\inductive{P}{2}$ (or corollary \ref{Union Bound n = 2}) to
+                            conclude that.
+                            \[
+                                \pr{\dunion_{i = 1}^{k + 1} A_i} \le
+                                \pr{\dunion_{i = 1}^{k} A_i} + \pr{A_{k + 1}}
+                            \]
+                            We can now invoke $\inductive{P}{k}$ to conclude that
+                            \[
+                                \pr{\dunion_{i = 1}^{k + 1} A_i} \le
+                                \left(\sum_{i = 1}^{k} \pr{A_i}\right) + \pr{A_{k + 1}} = \sum_{i = 1}^{k + 1} \pr{A_i}
+                            \]
+                    \end{itemize}
+                    In either case we have show that $\inductive{P}{k + 1}$ is true.
+            \end{itemize}
+            Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \set{N}$
+            as required. \QED
+        \end{proof}
+    \section{The Law of Total Probability}
+        \begin{definition}
+            We say that $\subs{P}{\power{\Omega}}$ is a probabilistic partition
+            if and only if the following two conditions hold.
+            \begin{itemize}
+                \item 
+                    (Mutual Exclusion) $\forall E_1, E_2 \in P$ if $E_1 \neq E_2$ 
+                    then $\intersect{E_1}{E_2} = \Set{}$.
+                \item
+                    $\forall E \in P \ \pr{E} \neq 0$.
+                \item
+                    (Probabilistic Exhaustion) $\dsum_{E \in P} \pr{E} = 1$.
+            \end{itemize}
+        \end{definition}
+        \begin{lemma}
+            $``$Let $S$ be a set. $\forall \subs{P}{\power{S}} \forall \subs{A}{S}$ if $P$ partitions $S$, then
+            $\Set{\intersect{A}{E} \mid E \in P}$ partitions $A$.''
+            \label{LTP Partition Lemma}
+        \end{lemma}
+        \begin{proof}
+            Let $S$ be a set and let $\subs{P}{\power{S}}$ and $\subs{A}{S}$ be given such
+            that $P$ partitions $S$. We define $Q$ as follows
+            \[
+                Q = \Set{\intersect{A}{E} \mid E \in P}
+            \]
+            and show that $Q$ partitions $A$ by showing that $Q$ is both mutually exclusive
+            and collectively exhaustive.
+            \begin{itemize}
+                \item
+                    We first show that $Q$ is mutually exclusive via contradiction.
+                    So assume that $Q$ is not mutually exclusive, i.e. $\exists E, F \in P$
+                    such that $\intersect{A}{E} \neq \intersect{A}{F}$ and 
+                    $\intersect{\left(\intersect{A}{E}\right)}{\left(\intersect{A}{F}\right)} \neq \Set{}$.
+                    By definition of intersection we know that $\exists s \in S$ such that
+                    $s \in \left(\intersect{A}{E}\right)$ and $s \in \left(\intersect{A}{F}\right)$. Again by definition 
+                    of intersection we can conclude that $s \in E$ and $s \in F$, which implies
+                    that $s \in \intersect{E}{F}$. Thus we can conclude that $\intersect{E}{F} \neq \Set{}$,
+                    which of course contradicts the fact that $P$ is mutually exclusive; so $Q$
+                    is mutually exclusive.
+                \item
+                    We now show that $Q$ collectively exhausts $A$ by showing that
+                    $A = \Union_{E \in P} \left(\intersect{A}{E}\right)$.
+                    \begin{itemize}
+                        \item
+                            We first show that $\subs{A}{\Union_{E \in P} \intersect{A}{E}}$, so let
+                            $a \in A$ be given. Now since $P$ is a partition we can conclude
+                            $\exists E \in P$ such that $a \in E$. Now by definition of intersection    
+                            we can conclude that $a \in \intersect{A}{E}$. Thus by definition of
+                            union we can conclude that $a \in \Union_{E \in P} \intersect{A}{E}$ as
+                            required.
+                        \item
+                            We now show that $\subs{\left(\Union_{E \in P} \intersect{A}{E}\right)}{A}$, so let
+                            $a \in \Union_{E \in P} \intersect{A}{E}$ be given. By definition of union
+                            we know $\exists E \in P$ such that $a \in \intersect{A}{E}$. Now by definition of 
+                            intersection we can conclude that $a \in A$ as required.
+                    \end{itemize}
+                    Thus we can conclude that $Q$ collectively exhausts $A$ as required.
+            \end{itemize}
+            Thus we can conclude that $Q$ partitions $A$ as required. \QED
+        \end{proof}
+        \begin{theorem}[The Law of Total Probability]
+            $``\forall \subs{P}{\power{\Omega}} \forall \subs{A}{\Omega}$
+            if $P$ is a probabilistic partition, then $\pr{A} = \dsum_{E \in P} \condpr{A}{E} \pr{E}$.''
+            \label{The Law of Total Probability}
+        \end{theorem}
+        \begin{proof}
+            Let $\subs{P}{\power{\Omega}}$ be given such that $P$ is probabilistic partition
+            and let $\subs{A}{\Omega}$ be an event. We now define $\subs{P'}{\power{\Omega}}$
+            as follows
+            \[
+                P' = \union{P}{\left\{\setsub{\Omega}{\dunion_{E \in P} E}\right\}}
+            \]
+            and in doing so we make sure that $P'$ completely partitions $\Omega$. We
+            can now define $P''$ as follows
+            \[
+                P'' = \dunion_{E \in P'} \{\intersect{A}{E}\}
+            \]
+            and invoke lemma \ref{LTP Partition Lemma} to conclude that $P''$ partitions $A$.
+            Now since $P''$ partitions $A$ we can invoke part 3 of the Axioms of Probability
+            (axiom \ref{Axioms of Probability}) to conclude that
+
+            \[
+                \pr{A} = \pr{\dunion_{E \in P'} \intersect{A}{E}} = \sum_{E \in P'} \pr{\intersect{A}{E}}
+            \]
+            We can now re-write the summation above as follows
+            \[
+                \pr{A} = \left(\sum_{E \in P} \pr{\intersect{A}{E}}\right) + \pr{\intersect{A}{\left(\setsub{\Omega}{\Union_{E \in P} E}\right)}}
+            \]
+            Now since we know that $\pr{\setsub{\Omega}{\Union_{E \in P} E}} = 0$ by lemma \ref{Complement Lemma}
+            we can conclude that $\pr{\intersect{A}{\left(\setsub{\Omega}{\Union_{E \in P} E}\right)}} = 0$. Thus
+            we can see that
+            \begin{equation}
+                \pr{A} = \sum_{E \in P} \pr{\intersect{A}{E}}
+                \label{LTP equation 1}
+            \end{equation}
+            We now note that $\forall E \in P$ we know that $\pr{E} \neq 0$ since $E$ comes
+            from a probabilistic partitions; thus we can invoke lemma \ref{Conditional Probability Lemma}
+            to conclude that
+            \[
+                \pr{\intersect{A}{E}} = \condpr{A}{E} \pr{E}
+            \]
+            We can now substitute this into equation (\ref{LTP equation 1})
+            to conclude that 
+            \[
+                \pr{A} = \sum_{E \in P} \condpr{A}{E} \pr{E}
+            \]
+            as required. \QED
+        \end{proof}
+    \section{Baye's Rule}
+        \begin{theorem}
+            $``\forall \subs{P}{\power{\Omega}} \forall \subs{A}{\Omega} \ \forall E \in P$
+            if $P$ is a probabilistic partition and $\pr{A} \neq 0$, then 
+            \[
+                \condpr{E}{A} = \dfrac{\condpr{A}{E} \pr{E}}{\dsum_{F \in P} \condpr{A}{F} \pr{F}}."
+            \]
+        \end{theorem}
+        \begin{proof}
+            Let $\subs{P}{\power{\Omega}}$ be given such that $P$ is a probabilistic partition.
+            Let $\subs{A}{\Omega}$ and $E \in P$ be given such that $\pr{A} \neq 0$. We 
+            now simply proceed using  the Law of Total Probability and the definition of
+            conditional probability to compute $\condpr{E}{A}$ as follows. We can 
+            invoke the definition of conditional probability to conclude that
+            \begin{equation}
+                \condpr{E}{A} = \frac{\pr{\intersect{E}{A}}}{\pr{A}}
+                \label{Baye's Rule equation 1}
+            \end{equation}
+            Since $E$ come from a probabilistic partition we know that $\pr{E} \neq 0$.
+            Thus we can now invoke lemma \ref{Conditional Probability Lemma} to conclude that
+            \begin{equation}
+                \pr{\intersect{E}{A}} = \pr{\intersect{A}{E}} = \condpr{A}{E} \pr{E}
+                \label{Baye's Rule equation 3}
+            \end{equation}
+            Since $\sum_{F \in P} \pr{F} = 1$ we use the Law of Total Probability
+            (lemma \ref{The Law of Total Probability}) to conclude that
+            \begin{equation}
+                \pr{A} = \sum_{F \in P} \condpr{A}{F} \pr{F}
+                \label{Baye's Rule equation 4}
+            \end{equation}
+            We can now substitute equations (\ref{Baye's Rule equation 3})
+            and $(\ref{Baye's Rule equation 4})$ into equation (\ref{Baye's Rule equation 1})
+            to conclude that
+            \[
+                \condpr{E}{A} = \frac{\condpr{A}{E} \pr{E}}{\dsum_{F \in P} \condpr{A}{F} \pr{F}}
+            \]
+            as required. \QED
+        \end{proof}
+    \section{The Birthday Paradox}
+    \section{Linearity of Expectation}
+        \begin{definition}
+            We define a discrete random variable to be a function from the sample
+            space, $\Omega$, to the real numbers; i.e. $X : \Omega \rightarrow \set{R}$
+            is a discrete random variable. For the remainder of this chapter we will
+            refer to discrete random variables as random variables.
+        \end{definition}
+        \begin{definition}
+            Let $X : \Omega \rightarrow \set{R}$ be a discrete random variable. The expected value
+            of $X$ is defined to be
+            \[
+                \ex{X} = \sum_{l \in \Omega} X(l) \ \pr{l} = \sum_{i \in \image{X}} i \cdot \pr{X = i}
+            \]
+        \end{definition}
+        \begin{theorem}
+            $``\forall X, Y : \Omega \rightarrow \set{R} \ \ \ex{X + Y} = \ex{X} + \ex{Y}.$''
+            \label{Linearity of Expectation}
+        \end{theorem}
+        \begin{proof}
+            Let $X, Y : \Omega \rightarrow \set{R}$ be random variables. We will now
+            simply compute the expected value of $Z = X + Y$ using the definition of expected value.
+            \begin{derivation}{=}
+                \ex{X + Y} & \dsum_{l \in \Omega} Z(l) \ \pr{l} & \just{By definition of expected value.}
+                           & \dsum_{i \in \Omega} (X(l) + Y(l)) \ \pr{l} & \just{By definition of $Z$.}
+                           & \dsum_{i \in \Omega} X(l) \ \pr{l} + Y(l) \ \pr{l} & \\
+                           & \dsum_{i \in \Omega} X(l) \ \pr{l} + \dsum_{i \in \Omega} Y(l) \ \pr{l}
+                           & \just{By linearity of summation over addition.}
+                           & \ex{X} + \ex{Y} & \just{By definition of expected value.}
+            \end{derivation}
+            Thus we can conclude that $\ex{X + Y} = \ex{X} + \ex{Y}$ as required. \QED
+        \end{proof}
+        \begin{corollary}
+            $``\forall X: \Omega \rightarrow \set{R} \ \forall c \in \set{R}$ \ $\ex{cX} = c \ex{X}$.''
+        \end{corollary}
+        \begin{proof}
+            Let $X: \Omega \rightarrow \set{R}$ be a random variable and let $c \in \set{R}$ be
+            given. Now let $Y$ be a random variable defined as
+            \[
+                Y(l) = c \cdot X(l)
+            \]
+            We now compte the expected value of $Y$ as follows
+            \begin{derivation}{=}
+                \ex{Y} & \dsum_{l \in \Omega} Y(l) \pr{l} & \just{By definition of expected value.}
+                       & \dsum_{l \in \Omega} c X(l) \pr{l} & \just{By definition of $Y$.}
+                       & c \dsum_{l \in \Omega} X(l) \pr{l} \\
+                       & c \ex{X} & \just{By definition of expected value.}
+            \end{derivation}
+            We now note that, $Y = cX$. Thus $\ex{cX} = c \ex{X}$ as required. \QED
+        \end{proof}
+        \begin{definition}
+            Let $X, Y : \Omega \rightarrow \set{R}$ be random variables. We say $X$ and $Y$
+            are independent if $\pr{\intersect{(X = u)}{(Y = v)}} = \pr{X = u}\pr{Y = v}$. We
+            write $\ind{X}{Y}$ is $X$ and $Y$ are independent.
+        \end{definition}
+        \begin{theorem}
+            $``\forall X, Y : \Omega \rightarrow \set{R}$ if $\ind{X}{Y}$,
+            then $\ex{XY} = \ex{X}\ex{Y}.$''
+        \end{theorem}
+        \begin{proof}
+            Let $X, Y : \Omega \rightarrow \set{R}$ be independent random variables. We will now
+            compute the expected value of $Z = XY$.
+            \begin{derivation}{=}
+                \ex{XY} & \dsum_{j \in \image{Y}} \dsum_{i \in \image{X}} ij \ \pr{\intersect{(X = i)}{(Y = j)}}
+                        & \just{By definition of expected value.}
+                        & \dsum_{j \in \image{Y}} \dsum_{i \in \image{X}} ij \ \pr{X = i} \pr{Y = j}
+                        & \just{By $\ind{X}{Y}$.}
+                        & \dsum_{j \in \image{X}} j \ \pr{Y = j}\dsum_{i \in \image{X}} i \ \pr{X = i} & \\
+                        & \dsum_{j \in \image{X}} j \ \pr{Y = j} \ex{X} & \just{By definition of $\ex{X}$.}
+                        & \ex{X} \dsum_{j \in \image{Y}} j \ \pr{Y = j}  \\
+                        & \ex{X} \ex{Y} & \just{By definition of $\ex{Y}$.}
+            \end{derivation}
+            Thus we can conclude that $\ex{XY} = \ex{X}\ex{Y}$ as desired. \QED
+        \end{proof}
+    \section{Linearity of Variance}
+        \begin{definition}
+            The variance of a random variable $X : \Omega \rightarrow \set{R}$, denoted
+            $\var{X}$, is
+            \[
+                \var{X} = \ex{(X - \ex{X})^2}
+            \]
+        \end{definition}
+        \begin{theorem}
+            $``\forall X : \Omega \rightarrow \set{R} \ \var{X} = \ex{X^2} - \ex{X^2}.$''
+            \label{varformula}
+        \end{theorem}
+        \begin{proof}
+            Let $X : \Omega \rightarrow \set{R}$ be a random variable. We will simply proceed
+            by calculating $\var{X}$ by invoking its definition.
+            \begin{derivation}{=}
+                \var{X} & \ex{(X - \ex{X})^2} & \just{By definition of $\var{X}$.}
+                        & \ex{X^2 - 2X \ex{X} + \ex{X}^2} \\
+                        & \ex{X^2} - \ex{2X \ex{X}} + \ex{\ex{X}^2} & \just{By linearity of expectation.}
+                        & \ex{X^2} - 2\ex{X}\ex{X} + \ex{X}^2 & \just{By linearity of expectation.}
+                        & \ex{X^2} - \ex{X}^2
+            \end{derivation}
+            Thus we have shown that $\var{X} = \ex{X^2} - \ex{X}^2$ as desired. \QED
+        \end{proof}
+        \begin{theorem}
+            $``\forall X, Y : \Omega \rightarrow \set{R}$ if $\ind{X}{Y}$ then 
+            $\var{X + Y} = \var{X} + \var{Y}$.''
+        \end{theorem}
+        \begin{proof}
+            Let $X, Y : \Omega \rightarrow \set{R}$ independent random variables. To compute
+            $\var{X + Y}$ we will first compute the $\ex{X + Y}^2$ and $\ex{(X + Y)^2}$, and
+            then use those results to compute the variance via the following formula
+            \[
+                \var{S} = \ex{S^2} - \ex{S}^2
+            \]
+            which we have proven above.
+            \begin{itemize}
+                \item
+                    We will first compute $\ex{X + Y}^2$.
+                    \begin{derivation}{=}
+                        \ex{X + Y}^2 & (\ex{X} + \ex{Y})^2 & \just{By Linearity of Expectation.}
+                                     & \ex{X}^2 + 2\ex{X}\ex{Y} + \ex{Y}^2 
+                    \end{derivation}
+                \item
+                    We will now compute $\ex{(X + Y)^2}$.
+                    \begin{derivation}{=}
+                        \ex{(X + Y)^2} & \ex{X^2 + 2XY + Y^2} \\
+                                       & \ex{X^2} + 2\ex{XY} + \ex{Y^2} & \just{By Linearity of Exectation.}
+                                       & \ex{X^2} + 2\ex{X}\ex{Y} + \ex{Y^2} & \just{By $\ind{X}{Y}$.}
+                    \end{derivation}
+            \end{itemize}
+            We now compute the variance the above results.
+            \begin{derivation}{=}
+                \var{X + Y} & \ex{(X + Y)^2} - \ex{X + Y}^2 \\
+                            & \left(\ex{X^2} + 2\ex{X}\ex{Y} + \ex{Y^2}\right) -
+                              \left(\ex{X}^2 + 2\ex{X}\ex{Y} + \ex{Y}^2\right) \\
+                            & \ex{X^2} + \ex{Y^2} - \ex{X}^2 - \ex{Y}^2 \\
+                            & \left(\ex{X^2} - \ex{X}^2\right) + \left(\ex{Y^2} - \ex{Y}^2\right) \\
+                            & \var{X} + \var{Y}
+            \end{derivation}
+            Thus we can conclude that $\var{X + Y} = \var{X} + \var{Y}$ as desired. \QED
+        \end{proof}
+        \begin{theorem}
+            $``\forall X: \Omega \rightarrow \set{R} \ \forall n \in \set{N} \ \var{nX} = n^2 \var{X}$.''
+        \end{theorem}
+        \begin{proof}
+            Let $X: \Omega \rightarrow \set{R}$ be a random variable and let $n \in \set{N}$ be given.
+            We now simply proceed to calculate $\var{nX}$ using theorem \ref{varformula}.
+            \begin{derivation}{=}
+                \var{nX} & \ex{n^2 X^2} - \ex{nX}^2 & \just{By theorem \ref{varformula}.}
+                         & n^2 \ex{X^2} - (n \ex{X})^2 & \just{By linearity of expectation (theorem \ref{Linearity of Expectation}).}
+                         & n^2(\ex{X^2} - \ex{X}^2)  \\
+                         & n^2 \var{X} & \just{By theorem \ref{varformula}}
+            \end{derivation}
+            Thus we can conclude that $\var{nX} = n^2\var{X}$ as required. \QED
+        \end{proof}
+    \section{The Bernoulli Distribution}
+        \begin{definition}
+            Let $X$ be a random variable and let $p \in [0, 1]$. We say $\dist{X}{\bern{p}}$
+            if and only if $\pr{X = 1} = p$ and $\pr{X = 0} = 1 - p$.
+        \end{definition}
+        \begin{theorem}
+            $``\forall p \in [0, 1]$ if $\dist{X}{\bern{p}}$ then $\ex{X} = p$ and $\var{X} = p(1 - p)$.''
+            \label{bern}
+        \end{theorem}
+        \begin{proof}
+            Let $p \in [0, 1]$ and $\dist{X}{\bern{p}}$ be given. We will proceed by simply
+            calculating the expected value and variance of $X$.
+            \begin{itemize}
+                \item
+                    $\ex{X} = 1 \cdot \pr{X = 1} + 0 \cdot \pr{X = 0} = 1 \cdot p = p$
+                \item
+                    We first compute $\ex{X^2}$ 
+                    \[
+                        \ex{X^2} = 1^2 \cdot \pr{X = 1} + 0^2 \cdot \pr{X = 0} = 1 \cdot p = p
+                    \]
+                    We now use the above quantity to compute the variance as follows
+                    \[
+                        \var{X} = \ex{X^2} - \ex{X}^2 = p - p^2 = p(1 - p)
+                    \]
+            \end{itemize}
+            Thus we have shown that $\ex{X} = p$ and $\var{X} = p(1 - p)$ as required. \QED
+        \end{proof}
+    \section{The Binomial Distribution}
+        \begin{definition}
+            Let $X$ be a random variable, $p \in [0, 1], n \in \set{N}$. If there exists 
+            be a sequence of independent random variables $X_1, \dots, X_n$ such that $\forall i \in [n] \ \dist{X_i}{\bern{p}}$
+            and $X = \sum_{i = 1}^{n} X_i$, then we say that $\dist{X}{\bin{n}{p}}$. More informally,
+            lets say we have $n$ independent coins each of which comes up heads with probability $p$,
+            a $\bin{n}{p}$ random variable simply counts the number of heads that come up when each 
+            of the $n$ coins is flipped.
+        \end{definition}
+        \begin{theorem}
+            $``\forall n \in \set{N} \ \forall p \in [0, 1]$ if $\dist{X}{\bin{n}{p}}$ then \\
+            $\forall i \in \union{[n]}{\Set{0}} \ \pr{X = i} = \binom{n}{i}p^i(1 - p)^{n - i}$.''
+        \end{theorem}
+        \begin{proof}
+            Let $n \in \set{N}, p \in [0, 1]$, and $\dist{X}{\bin{n}{p}}$ be given. By definition
+            of the binomial distribution we know there exists a sequence of independent random variables
+            $X_1, \dots, X_n$ such that $\forall i \in [n] \ \dist{X}{\bern{p}}$ and
+            $X = \sum_{i = 1}^{n} X_i$. Let $i \in \union{[n]}{\Set{0}}$ be given and consider
+            the event $X = i$. If $X = i$ that means that exactly $i$ random variables in the
+            sequence came up 1, there are $\binom{n}{i}$ way to choose $i$ of $X_1, \dots, X_n$
+            to come up 1. Once we have the $i$ that came up 1, we use the fact that probability that
+            each of them came up 1 is $p$, by definition of the Bernoulli distribution, and the 
+            independence of the $X_j$'s to conclude 
+            the probability that they all came up 1 is $p^{i}$.
+            The probability that the remaining $n - i$ random variables came up 0 is $(1 - p)^{n - i}$
+            by the same logic. Thus we can conclude that $\pr{X = i} = \binom{n}{i}p^i(1 - p)^{n - i}$
+            as required. \QED
+        \end{proof}
+        \begin{theorem}
+            $``\forall n \in \set{N} \ \forall p \in [0, 1]$ if $\dist{X}{\bin{n}{p}}$ then
+            $\ex{X} = np$ and $\var{X} = np(1 - p).$''
+            \label{bin}
+        \end{theorem}
+        \begin{proof}
+            Let $n \in \set{N}, p \in [0, 1]$, and $\dist{X}{\bin{n}{p}}$ be given.
+            By definition of the binomial distribution there exists a sequence of independent random variables
+            $X_1, \dots, X_n$ such that $\forall i \in [n] \ \dist{X_i}{\bern{p}}$ and
+            $X = \sum_{i = 1}^{n} X_i$. We will now compute $\ex{X}$ using these facts along
+            with linearity of expectation.
+            \begin{derivation}{=}
+                \ex{X} & \ex{\sum_{i = 1}^{n} X_i} & \just{By definition of $\dist{X}{\bin{n}{p}}$.}
+                       & \sum_{i = 1}^{n} \ex{X_i} & \just{By Linearity of Expectation.}
+                       & \sum_{i = 1}^{n} p & \just{By $\ex{X_i} = p$ as shown in theorem \ref{bern}.}
+                       & np
+            \end{derivation}
+            Similarly we compute the $\var{X}$ below.
+            \begin{derivation}{=}
+                \var{X} & \var{\sum_{i = 1}^{n} X_i} & \just{By definition of $\dist{X}{\bin{n}{p}}$.}
+                        & \sum_{i = 1}^n \var{X_i} & \just{By the $X_i$'s being independent and linearity of variance.}
+                        & \sum_{i = 1}^n p(1 - p) & \just{By $\var{X_i} = p(1 - p)$ as shown in theorem \ref{bern}.}
+                        & np(1 - p)
+            \end{derivation}
+            Thus can see that $\ex{X} = np$ and $\var{X} = np(1 - p)$ as required. \QED
+        \end{proof}
+    \section{The Geometric Distribution}
+        \begin{definition}
+            Let $X$ be a random variable and let $p \in (0, 1]$. We say that $\dist{X}{\geo{p}}$
+            if and only if $X$ counts the number of times we need to examine a $\bern{p}$ random
+            variable until we first get a 1. More informally $X$ counts the number of times we need
+            to flip a coin until we get our first head, given that the coin comes up heads with
+            probability $p$.
+        \end{definition}
+        \begin{theorem}
+            $``\forall p \in (0, 1] \ \forall n \in \set{N} \ \ \pr{X = n} = (1 - p)^{n - 1}p.$''
+            \label{geopmf}
+        \end{theorem}
+        \begin{proof}
+            Let $p \in (0, 1]$, $\dist{X}{\geo{p}}$, and $n \in \set{N}$  be given. 
+            We now consider the event $X = n$. If $X = n$ that means that we got $n - 1$
+            consecutive 0 from the $\bern{p}$ and then a 1 on the $n^{th}$ iteration
+            of the $\bern{p}$. By definition of $\bern{p}$ we can conclude that 
+            the probability of getting tails $n - 1$ times is $(1 - p)^{n - 1}$ since
+            the flips are independent; similarly the probability that we get heads on
+            the $n^{th}$ iteration is $p$. Thus we can conclude that $\pr{X = n} = (1 - p)^{n - 1}p$
+            as desired. \QED
+        \end{proof}
+        \begin{theorem}
+            $``\forall p \in (0, 1]$ if $\dist{X}{\geo{p}}$ then $\ex{X} = \dfrac{1}{p}$.''
+        \end{theorem}
+        \begin{proof}
+            Let $p \in (0, 1]$ and $\dist{X}{\geo{p}}$ be given. We now proceed simply
+            by calculating $\ex{X}$ from first principles.
+            \begin{derivation}{=}
+                \ex{X}         & \dsum_{i = 1}^{\infty} i \cdot \pr{X = i} & \just{By definition of $\ex{X}$.}
+                               & \dsum_{i = 1}^{\infty} i \cdot (1 - p)^{i - 1}p \\
+            \end{derivation}
+            We can now multiply both sides of the equation for $\ex{X}$ by $1 - p$.
+            \[
+                 (1 - p)\ex{X} = \sum_{i = 1}^{\infty} i \cdot (1 - p)^{i}p 
+                               = \sum_{i = 0}^{\infty} i \cdot (1 - p)^{i}p 
+            \]
+            We can also now re-index the formula for $\ex{X}$ as follows.
+            \[
+                \ex{X} = \sum_{i = 0}^{\infty} (i + 1) (1 - p)^ip
+            \]
+            We now compute the quantity $\ex{X} - (1 - p)\ex{X}$.
+            \begin{derivation}{=}
+                \ex{X} - (1 - p)\ex{X} & \left(\dsum_{i = 0}^{\infty} (i + 1) (1 - p)^{i}p\right) - 
+                                         \left(\dsum_{i = 0}^{\infty} i (1 - p)^ip\right) \\
+                \ex{X} (1 - (1 - p)) & p \dsum_{i = 0}^{\infty} ((i + 1) - i) \cdot (1 - p)^i   \\
+                p\ex{X} & p \dsum_{i = 0}^{\infty} (1 - p)^i 
+            \end{derivation}
+            Since $\dsum_{i = 0}^{\infty} (1 - p)^i$ is a geometric series we can find a closed
+            form for it; namely $\frac{1}{1 - (1 - p)} = \frac{1}{p}$. We now use this fact
+            to finish off the above computation.
+            \[
+                p \ex{X} = p \left(\frac{1}{p}\right) = 1 \iff \ex{X} = \frac{1}{p}
+            \] 
+            Thus we can conclude that $\ex{X} = \frac{1}{p}$ as required. \QED
+        \end{proof}
+        \begin{theorem}
+            $``\forall p \in (0, 1]$ if $\dist{X}{\geo{p}}$ then $\var{X} = \dfrac{1 - p}{p^2}$.''
+        \end{theorem}
+        \begin{proof}
+            Let $p \in (0, 1]$ and $\dist{X}{\geo{p}}$. We will proceed by computing
+            $\var{X}$ using theorem \ref{varformula}, i.e. we will compute $\ex{X^2}$ and
+            then compute the variance using the following formula.
+            \[
+                \var{X} = \ex{X^2} - \ex{X}^2
+            \]
+            We now compute $\ex{X^2}$ as follows.
+            \begin{derivation}{=}
+                \ex{X^2} & \dsum_{i = 1}^{\infty} i^2 \cdot \pr{X = i} & \just{By definition of expected value.}
+                         & \dsum_{i = 1}^{\infty} i^2 \cdot (1 - p)^{i - 1}p 
+                         & \just{By $\pr{X = i} = (1 - p)^{i - 1}p$.}
+            \end{derivation}
+            We now multiply both sides of the above equation by $1 - p$.
+            \[
+                (1 - p) \ex{X^2} = \dsum_{i = 1}^{\infty} i^2 \cdot (1 - p)^{i}p =
+                                   \dsum_{i = 0}^{\infty} i^2 \cdot (1 - p)^{i}p
+            \]
+            We now re-index the formula for $\ex{X^2}$ as follows.
+            \[
+                \ex{X^2} = \dsum_{i = 0}^{\infty} (i + 1)^2 \cdot (1 - p)^ip 
+            \]
+            We can now compute $\ex{X^2} - (1 - p)\ex{X^2}$.
+            \begin{derivation}{=}
+                \ex{X^2} - (1 - p)\ex{X^2} & \left(\dsum_{i = 0}^{\infty} (i + 1)^2 \cdot (1 - p)^ip\right) - 
+                                             \left(\dsum_{i = 0}^{\infty} i^2 \cdot (1 - p)^{i}p\right) & \\
+                \ex{X^2}(1 - (1 - p)) & \dsum_{i = 0}^{\infty} (i^2 + 2i + 1 - i^2) \cdot (1 - p)^i p \\
+                p \ex{X^2} & \dsum_{i = 0}^{\infty} (2i + 1) \cdot (1 - p)^i p \\
+                           & \left(\dsum_{i = 0}^{\infty} 2i \cdot (1 - p)^i p\right) + 
+                             \left(\dsum_{i = 0}^{\infty} 1 \cdot (1 - p)^i p\right) \\
+                           & 2(1 - p)\left(\dsum_{i = 0}^{\infty} i \cdot (1 - p)^{i - 1}p\right) + 
+                             \left(p\dsum_{i = 0}^{\infty} (1 - p)^i\right) \\
+            \end{derivation}
+            We now notice that $\sum_{i = 0}^{\infty} i \cdot (1 - p)^{i - 1}p = 
+            \sum_{i = 1}^{\infty} i \cdot (1 - p)^{i - 1}p = \ex{X} = \frac{1}{p}$ since $X$ is a geometric 
+            random variable. We also notice that $\sum_{i = 0}^{\infty} (1 - p)^i$ is a geometric
+            series, thus we can replace it by its closed form; namely $\frac{1}{1 - (1 - p)} = \frac{1}{p}$.
+            Thus we arrive at the following.
+            \begin{derivation}{=}
+                p\ex{X^2} & 2(1 - p) \ex{X}+ p\left(\dfrac{1}{p}\right) \\
+                         & 2(1 - p)\left(\dfrac{1}{p}\right) + \dfrac{p}{p} \\
+                         & \dfrac{2 - p}{p} 
+            \end{derivation}
+            We can now multiply both sides of the above equation by $\frac{1}{p}$ as conclude
+            the following
+            \begin{equation}
+                \ex{X^2} = \frac{2 - p}{p^2}
+                \label{geoxsquared}
+            \end{equation}
+            We can now compute $\var{X}$ as follows.
+            \begin{derivation}{=}
+                \var{X} & \ex{X^2} - \ex{X}^2 & \just{By theorem \ref{varformula}.}
+                        & \dfrac{2 - p}{p^2} - \dfrac{1}{p^2} 
+                        & \just{By $\ex{X} = \frac{1}{p}$ and equation \ref{geoxsquared}.}
+                        & \dfrac{1 - p}{p^2}
+            \end{derivation}
+            Thus we can conclude that $\var{X} = \frac{1 - p}{p^2}$ as required. \QED
+        \end{proof}
+        \begin{lemma}
+            $``\forall p \in (0, 1]$ if $\dist{X}{\geo{p}}$ then $\forall t \in \set{N} \ \ 
+            \pr{X > t} = (1 - p)^t$.''
+            \label{memorylesslemma}
+        \end{lemma}
+        \begin{proof}
+            Let $p \in (0, 1], \dist{X}{\geo{p}}$, and $t \in \set{N}$ be given. We now simply compute
+            the probability that $X$ is exceeds $t$.
+            \begin{derivation}{=}
+                \pr{X > t} & 1 - \pr{X \le t} & \just{By one of the axioms of probability.}
+                           & 1 - \dsum_{i = 1}^{t} \pr{X = i} \\
+                           & 1 - \dsum_{i = 1}^{t} (1 - p)^{i - 1}p & \just{By $\dist{X}{\geo{p}}$ and theorem \ref{geopmf}.}
+                           & 1 - p\dsum_{i = 0}^{t - 1} (1 - p)^i & \just{By re-indexing the sum.}
+            \end{derivation}
+            We now notice that the summation into the formula above is a finite geometric series.
+            Thus we can replace it with its closed form as follows.
+            \begin{derivation}{=}
+                \pr{X > t} & 1 - p \left(\dfrac{1 - (1 - p)^t}{1 - (1 - p)}\right) \\
+                           & 1 - p \left(\dfrac{1 - (1 - p)^t}{p}\right) \\
+                           & 1 - \left(1 - (1 - p)^t\right) \\
+                           & (1 - p)^t
+            \end{derivation}
+            Thus we have shown that $\pr{X > t} = (1 - p)^t$ as required. \QED
+        \end{proof}
+        \begin{theorem}[Memorylessness]
+            $``\forall p \in (0, 1]$ if $\dist{X}{\geo{p}}$ then $\forall s, t \in \set{N} \ \
+            \condpr{X = s + t}{X > s} = \pr{X = t}.$''
+            \label{memorylessness}
+        \end{theorem}
+        \begin{proof}
+            Let $p \in (0 , 1], \dist{X}{\geo{p}}$ and $s, t \in \set{N}$ be given. We will now
+            proceed by calculating $\condpr{X = s + t}{X > s}$ using the definition of
+            conditional probability and lemma \ref{memorylesslemma}. We first invoke the definition
+            of condition probability as follows.
+            \[
+                \condpr{X = s + t}{X > s} = \dfrac{\pr{\union{(X = s + t)}{(X > s)}}}{\pr{X > s}}
+            \]
+            We now note that the event $X = s + t$ is a subset of the event $X > s$ since $t > 0$.
+            Using this fact we arrive at the following.
+            \begin{derivation}{=}
+                \condpr{X = s + t}{X > s} & \dfrac{\pr{X = s + t}}{\pr{X > s}} \\
+                                          & \dfrac{(1 - p)^{s + t - 1}p}{(1 - p)^s}
+                                          & \just{By theorem \ref{geopmf} and lemma \ref{memorylesslemma}.}
+                                          & (1 - p)^{t - 1}p \\
+                                          & \pr{X = t} & \just{By theorem \ref{geopmf}.}
+            \end{derivation}
+            Thus $\condpr{X = s + t}{X > s} = \pr{X = t}$ as required. \QED
+        \end{proof}
+        \begin{corollary}
+            $``\forall p \in (0, 1]$ if $\dist{X}{\geo{p}}$ then $\forall s \in \set{N} \ \ 
+            \condex{X}{X > s} = s + \ex{X}$.''
+            \label{memorylessness expectation}
+        \end{corollary}
+        \begin{proof}
+            Let $p \in (0, 1]$ and $s \in \set{N}$ be given; choose $\dist{X}{\geo{p}}$. We now
+            proceed to compute $\condex{X}{X > s}$.
+            \begin{derivation}{=}
+                \condex{X}{X > s} & \dsum_{n = 1}^{\infty} (s + n) \condpr{X = s + n}{X > s} 
+                                  & \just{By definition of conditional expectation.}
+                                  & \dsum_{n = 1}^{\infty} (s + n) \pr{X = n}
+                                  & \just{By theorem \ref{memorylessness}.}
+                                  & \dsum_{n = 1}^{\infty} s \pr{X = n} + \dsum_{n = 1}^{\infty} n \pr{X = n}
+                                  & \just{By linearity of summation over addition.}
+                                  & s \dsum_{n = 1}^{\infty} \pr{X = n} + \ex{X}
+                                  & \just{By definition of expected value.}
+                                  & s + \ex{X}
+            \end{derivation}
+            Thus we can conclude that $\condex{X}{X > s} = s + \ex{X}$ as required. \QED
+        \end{proof}
+    \section{The Poisson Distribution}
+        \begin{definition}
+            Let $\l \in \unionzero{\set{R}^{+}}$ and let $X$ be a random variable.
+            We say $\dist{X}{\poisson{\l}}$ if and only if
+            \begin{equation}
+                \pr{X = n} = \left\{\begin{array}{ll}
+                    \dfrac{e^{-\l} \l^{n}}{n!} & \mbox{, if } n \in \unionzero{\set{N}} \\
+                    0 & \mbox{, otherwise}
+                \end{array}\right.
+            \end{equation}
+            In this instance we define a
+            random variable using its probability mass function.
+        \end{definition}
+        \begin{theorem}
+            $``\forall \l \in \unionzero{\set{R}^{+}}$ 
+            if $\dist{X}{\poisson{\l}}$ then $\ex{X} = \l$.''
+            \label{Expected Value Poisson}
+        \end{theorem}
+        \begin{proof}
+            Let $\l \in \unionzero{\set{R}^{+}}$ and $\dist{X}{\poisson{\l}}$ be given.
+            We proceed by simply computing $\ex{X}$.
+            \begin{derivation}{=}
+                \ex{X} & \dsum_{i = 0}^{\infty} i \cdot \pr{X = i} & \just{By definition of $\ex{X}$.}
+                       & \dsum_{i = 0}^{\infty} i \cdot \left(\dfrac{e^{-\l}\l^i}{i!}\right) 
+                       & \just{By definition of $\dist{X}{\poisson{\l}}.$}
+                       & \dsum_{i = 1}^{\infty} i \cdot \left(\dfrac{e^{-\l}\l^i}{i!}\right) 
+                       & \just{Since the $i = 0$ term of the sum is 0.}
+                       & e^{-\l} \dsum_{i = 1}^{\infty} \dfrac{\l^i}{(i - 1)!} \\
+                       & \l e^{-\l} \dsum_{i = 1}^{\infty} \dfrac{\l^{i - 1}}{(i - 1)!} \\
+                       & \l e^{-\l} \dsum_{i = p}^{\infty} \dfrac{\l^{i}}{i!}
+                       & \just{By re-indexing the summation.}
+            \end{derivation}
+            We now note that $\dsum_{i = 0}^{\infty} \frac{\l^{i}}{i!} = e^{\l}$
+            by definition. Thus we can arrive at the following.
+            \[
+                \ex{X} = \l e^{-\l} \sum_{i = 0}^{\infty} \frac{\l^i}{i!} = \l e^{-\l} e^{\l} = \l
+            \]
+            Thus we have show that $\ex{X} = \l$ as required. \QED
+        \end{proof}
+        \begin{theorem}
+            $``\forall \l \in \unionzero{\set{R}^{+}}$ 
+            if $\dist{X}{\poisson{\l}}$ then $\var{X} = \l$.''
+        \end{theorem}
+        \begin{proof}
+            Let $\l \in \unionzero{\set{R}^+}$ and $\dist{X}{\poisson{\l}}$ be given. We proceed
+            by computing $\var{X} = \ex{X^2} - \ex{X}^2$. Since we know $\ex{X} = \l$, by 
+            theorem \ref{Expected Value Poisson}, all we need to do is compute $\ex{X^2}$. Thus
+            we proceed by calculating $\ex{X^2}$ as follows.
+            \begin{derivation}{=}
+                \ex{X^2} & \dsum_{i = 0}^{\infty} i^2 \cdot \pr{X = i} & \just{By definition of expected value.}
+                         & \dsum_{i = 0}^{\infty} i^2 \cdot \dfrac{e^{-\l} \l^i}{i!} & \just{By $\dist{X}{\poisson{\l}}$.}
+                         & \dsum_{i = 1}^{\infty} i^2 \cdot \dfrac{e^{-\l} \l^i}{i!} & \just{Since the $i = 0$ term of the sum is 0.}
+                         & \l e^{-\l} \dsum_{i = 1}^{\infty} i \cdot \dfrac{\l^{i - 1}}{(i - 1)!} \\
+            \end{derivation}
+            We now re-index the summation as follows.
+            \begin{derivation}{=}
+                \ex{X^2} & \l e^{-\l} \dsum_{i = 0}^{\infty} (i + 1) \dfrac{\l^i}{i!} \\
+                         & \l e^{-\l} \left(\dsum_{i = 0}^{\infty} i\cdot \dfrac{\l^i}{i!} + 
+                                            \dsum_{i = 0}^{\infty} \dfrac{\l^i}{i!}\right)
+                         & \just{By linearity of summation of addition.}
+            \end{derivation}
+            We now note that $\dsum_{i = 0}^{\infty} \frac{\l^i}{i!} = e^{\l}$ be definition of $e^{\l}$.
+            \begin{derivation}{=}
+                \ex{X^2} & \l e^{-\l} \left(\left(\dsum_{i = 0}^{\infty} i\cdot \dfrac{\l^i}{i!}\right) + e^{\l}\right) \\
+                         & \l e^{-\l} \left(\left(\dsum_{i = 1}^{\infty} i\cdot \dfrac{\l^i}{i!}\right) + e^{\l}\right)
+                         & \just{Since the $i = 0$ term of the sum is 0.}
+                         & \l e^{-\l} \left(\l \left(\dsum_{i = 1}^{\infty} \dfrac{\l^{i - 1}}{(i - 1)!}\right) + e^{\l}\right) \\
+            \end{derivation}
+            We now re-index the summation as follows.
+            \begin{derivation}{=}
+                \ex{X^2} & \l e^{-\l} \left(\l \left(\dsum_{i = 0}^{\infty} \dfrac{\l^i}{i!}\right) + e^{\l}\right)  \\
+                         & \l e^{-\l} \left(\l e^{\l}  + e^{\l}\right) 
+                         & \just{By $\dsum_{i = 0}^{\infty} \dfrac{\l^i}{i!} = e^{\l}$ by definition.}
+                         & \l^2 + \l
+            \end{derivation}
+            Thus we can now compute $\var{X}$ as follows.
+            \[
+                \var{X} = \ex{X^2} - \ex{X}^2 = \l^2 + \l - \l^2 = \l
+            \]
+            Thus $\var{X} = \l$ as required. \QED
+        \end{proof}
+        \begin{theorem}[Additive Closure]
+            $``\forall \l_1, \l_2 \in \unionzero{\set{R}}$ if $\dist{X}{\poisson{\l_1}}$,
+            $\dist{Y}{\poisson{\l_2}}$, and $\ind{X}{Y}$ then $\dist{X + Y}{\poisson{\l_1 + \l_2}}$.''
+        \end{theorem}
+        \begin{proof}
+            Let $\l_1, \l_2 \in \unionzero{\set{R}}, \dist{X}{\poisson{\l_1}}$, and
+            $\dist{Y}{\poisson{\l_2}}$ be given such that $\ind{X}{Y}$. To show that
+            $\dist{X + Y}{\poisson{\l_1 + \l_2}}$ it suffices to show that
+            \[
+                \pr{X + Y = n} = \frac{e^{-(\l_1 + \l_2)} \ (\l_1 + \l_2)^n}{n!}
+            \]
+            Thus we proceed by computing $\pr{X + Y = n}$ by first noting that $X$ and $Y$
+            must sum to $n$ while each being non-negative.
+            \begin{derivation}{=}
+                \pr{X + Y = n} & \dsum_{i = 0}^{n} \pr{\intersect{(X = i)}{(Y = n - i)}} \\
+                               & \dsum_{i = 0}^{n} \pr{X = i} \cdot \pr{Y = n - i} & \just{By $\ind{X}{Y}$.}
+            \end{derivation}
+            Since $\dist{X}{\poisson{\l_1}}$ and $\dist{Y}{\poisson{\l_2}}$ we can
+            conclude the following
+            \begin{derivation}{=}
+                \pr{X + Y = n} & \dsum_{i = 0}^{n} \dfrac{e^{-\l_1} \ \l_1^i}{i!} \cdot
+                                                   \dfrac{e^{-\l_2} \ \l_2^{n - i}}{(n - i)!} \\
+                               & e^{-(\l_1 + \l_2)}\dsum_{i = 0}^{n} \dfrac{\l_1^i}{i!} \cdot \dfrac{\l_2^{n - i}}{(n - i)!}
+            \end{derivation}
+            We can now multiply the lefthand side of the inequality by $1$ in the form
+            of $\frac{n!}{n!}$ as follows
+            \begin{derivation}{=}
+                \pr{X + Y = n} & \dsum_{i = 0}^{n} \dfrac{e^{-\l_1} \ \l_1^i}{i!} \cdot
+                \pr{X + Y = n} & \dfrac{e^{-(\l_1 + \l_2)}}{n!} \dsum_{i = 0}^{n} \dfrac{n! \cdot \l_1^i \l_2^{n - i}}{i! (n - i)!} \\
+                               & \dfrac{e^{-(\l_1 + \l_2)}}{n!} \dsum_{i = 0}^{n} \dfrac{n! }{i! (n - i)!} \cdot \l_1^i \l_2^{n - i}\\
+            \end{derivation}
+            We now note that $\frac{n!}{i! (n - i)!} = \binom{n}{k}$ and that
+            $\sum_{i = 0}^{n} \binom{n}{i} \l_1^{i} \l_2^{n - i} = (\l_1 + \l_2)^n$
+            by the Binomial Theorem (theorem \ref{Binomial Theorem}).
+            \begin{derivation}{=}
+                \pr{X + Y = n} & \dsum_{i = 0}^{n} \dfrac{e^{-\l_1} \ \l_1^i}{i!} \cdot
+                \pr{X + Y = n} & \dfrac{e^{-(\l_1 + \l_2)}}{n!} \dsum_{i = 0}^{n} \binom{n}{i} \l_1^i \l_2^{n - i}\\
+                               & \dfrac{e^{-(\l_1 + \l_2)}}{n!} (\l_1 + \l_2)^n \\
+            \end{derivation}
+            Thus we can conclude that $\pr{X + Y = n} = \dfrac{e^{-(\l_1 + \l_2)} (\l_1 + \l_2)^n}{n!}$.
+            This of course implies that $\dist{X + Y}{\poisson{\l_1 + \l_2}}$ by definition
+            of the Poisson random variable. \QED
+        \end{proof}
+    \section{Balls and Bins}
+    \section{Markov's Inequality}
+        \begin{definition}
+            Let $X, Y : \Omega \rightarrow \set{R}$ be random variables. We say $X \le Y$
+            if and only if $\forall l \in \Omega \ X(l) \le Y(l)$.
+        \end{definition}
+        \begin{lemma}
+            $``\forall X, Y : \Omega \rightarrow \set{R}$ if $X \le Y$
+            then $\ex{X} \le \ex{Y}$.''
+            \label{Markov lemma 1}
+        \end{lemma}
+        \begin{proof}
+            Let $X, Y : \Omega \rightarrow \set{R}$ be random variables such that $X \le Y$.
+            We will now try to bound $\ex{X}$ from above with $\ex{Y}$ as follows.
+            \begin{derivation}{=}
+                \ex{X} & \dsum_{l \in \Omega} X(l) \ \pr{l} & \just{By definition of $\ex{X}$.}
+                \multicolumn{1}{r@{\ \le \ }}{} & \dsum_{l \in \Omega} Y(l) \ \pr{l} & \just{Since $X \le Y$.}
+                       & \ex{Y} & \just{by definition of $\ex{Y}$.}
+            \end{derivation}
+            Thus we can conclude that $\ex{X} \le \ex{Y}$ as required. \QED
+        \end{proof}
+        \begin{theorem}[Markov's Inequality]
+            $``\forall X : \Omega \rightarrow \unionzero{\set{R}^{+}} \ \forall t \in \set{R}^{+} \\
+            \pr{X \ge t} \le \frac{\ex{X}}{t}.$''
+            \label{Markov's Inequality}
+        \end{theorem}
+        \begin{proof}
+            Let $X : \Omega \rightarrow \unionzero{\set{R}^{+}}$ be a positive random variable and
+            let $t \in \set{R}^{+}$ be given. We now define $Y : \Omega \rightarrow \unionzero{\set{R}^+}$
+            as follows.
+            \[
+                Y(l) = \left\{\begin{array}{ll}
+                           0 & \mbox{, if } X(l) < t. \\
+                           t & \mbox{, if } X(l) \ge t.
+                       \end{array}\right.
+            \]
+            We now note that by construction of $Y$ we know that $Y \le X$, in other words
+            $\forall l \in \Omega \ Y(l) \le X(l)$ since $X(l) \ge 0$. Now we can invoke
+            lemma \ref{Markov lemma 1} to conclude that $\ex{Y} \le \ex{X}$. We can now
+            compute $\ex{Y}$ as follows.
+            \begin{derivation}{=}
+                \ex{Y} & 0 \cdot \pr{Y = 0} + t \cdot \pr{Y = t} & \just{By definition of $\ex{Y}$.}
+                       & 0 \cdot \pr{X < t} + t \cdot \pr{X \ge t} & \just{By definition of $Y$.}
+                       & t \cdot \pr{X \ge t}
+            \end{derivation}
+            Thus we can conclude that
+            \begin{equation}
+                t \cdot \pr{X \ge t} \le \ex{X}
+                \label{Markov equation 1}
+            \end{equation}
+            Since $t \neq 0$ we can divide equation (\ref{Markov equation 1}) by $t$ and
+            conclude that 
+            \[
+               \pr{X \ge t} \le \frac{\ex{X}}{t}
+            \]
+            as required. \QED
+        \end{proof}
+        \begin{corollary}
+            $``\forall X : \Omega \rightarrow \set{R}$ if
+            $\exists u \in \set{R}$ such that $\forall l \in \Omega \ X(l) \le u$,
+            then $\forall t < u \ \pr{X \le t} \le \dfrac{u - \ex{X}}{u - t}$.''
+            \label{Markov-esque Inequality}
+        \end{corollary}
+        \begin{proof}
+            Let $X : \Omega \rightarrow \set{R}$ be a random variable
+            such that $\exists u \in \set{R}$ such that $\forall l \in \Omega \
+            X(l) \le u$ and let $t < u$ be given. 
+            Since $\forall l \in \Omega \ X(l) \le u$ we know that $0 \le u - X(l)$,
+            thus we define 
+            $Y : \Omega \rightarrow \unionzero{\set{R}^{+}}$ as follows
+            \[
+                Y(l) = u - X(l)
+            \]
+            Since $u > t$ we know that $u - t > 0$ which implies that
+            $u - t \in \set{R}^{+}$. We can now invoke Markov's Inequality
+            (theorem \ref{Markov's Inequality}) as follows
+            \begin{equation}
+                \pr{Y \ge u - t} \le \frac{\ex{Y}}{u - t}
+                \label{Markov corollary equation}
+            \end{equation}
+            We now compute $\ex{Y}$ as follows
+            \begin{derivation}{=}
+                \ex{Y} & \ex{u - X} & \just{By definition of $Y$.}
+                       & \ex{u} - \ex{X} & \just{By Linearity of Expectation.}
+                       & u - \ex{X}
+            \end{derivation}
+            Thus by substituting our expression for $\ex{Y}$ into equation
+            (\ref{Markov corollary equation}) we can conclude that
+            \[
+                \pr{Y \ge u - t} \le \frac{u - \ex{X}}{u - t}
+            \]
+            We now note that $Y \ge u - t \iff u - X \ge u - t \iff X \le t$,
+            i.e. $Y \ge u - t$ is the same event as $X \le t$.
+            Thus we can conclude that 
+            \[
+                \pr{X \le t} \le \frac{u - \ex{X}}{ u - t}
+            \]
+            as required. \QED
+        \end{proof}
+    \section{Chebyshev's Inequality}
+        \begin{theorem}[Chebyshev's Inequality]
+            $``\forall X : \Omega \rightarrow \set{R} \ \forall t \in \set{R}^{+} \\
+            \pr{|X - \ex{X}| \ge t} \le \frac{\var{X}}{t^2}.$''
+            \label{Chebyshev's Inequality}
+        \end{theorem}
+        \begin{proof}
+            Let $X: \Omega \rightarrow \set{R}$ be a random variable
+            and $t \in \set{R}^+$ be given. We now proceed by analyzing the 
+            random variable $Y = (X - \ex{X})^2$. We first note that $Y$ is a
+            strictly non-negative random variable since the square of any real
+            number is non-negative, thus $Y: \Omega \rightarrow \unionzero{\set{R}^+}$.
+            We now compute the expected value of $Y$ as follows.
+            \begin{derivation}{=}
+                \ex{Y} & \ex{(X - \ex{X})^2} \\
+                       & \var{X} & \just{By definition of variance.}
+            \end{derivation}
+            Now we note that since $t > 0$ we also know that $t^2$ is greater than zero.
+            Thus we can now invoke Markov's Inequality (theorem \ref{Markov's Inequality}) as follows.
+            \[
+                \pr{Y \ge t^2} \le \frac{\ex{Y}}{t^2} = \frac{\var{X}}{t^2}
+            \]
+            We will now try to rewrite the event $Y \ge t^2$ as follows.
+            \[
+                Y \ge t^2 \iff (X - \ex{X})^2 \ge t^2 \iff |X - \ex{X}| \ge t
+            \]
+            Thus we can conclude that $\pr{|X - \ex{X}| \ge t} \le \dfrac{\var{X}}{t^2}$
+            as required. \QED
+        \end{proof}
+        \begin{corollary}[Alternate Form of Chebyshev's Inequality] \ \\
+            $``\forall X : \Omega \rightarrow \set{R} \ \forall t \in \set{R}^{+} \ 
+            \pr{|X - \ex{X}| \ge t \sqrt{\var{X}}} \le \frac{1}{t^2}$.''
+        \end{corollary}
+        \begin{proof}
+            Let $X : \Omega \rightarrow \set{R}$ be a random variable and let $t \in \set{R}^+$
+            be given. We now simply proceed by applying Chebyshev's Inequality
+            (theorem \ref{Chebyshev's Inequality}) as follows.
+            \[
+                \pr{|X - \ex{X}| \ge t \sqrt{\var{X}}} \le \frac{\var{X}}{(t \sqrt{\var{X}})^2} 
+                                                       = \frac{\var{X}}{t^2\var{X}} = \frac{1}{t^2}
+            \]
+            Thus we can conclude that $\pr{|X - \ex{X}| \ge t \sqrt{\var{X}}} \le \frac{1}{t^2}$. \QED
+        \end{proof}
+    \section{Chernoff Bounds}
+        \begin{theorem}
+            % TODO
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{The Probabilistic Method}
+        % TODO
+

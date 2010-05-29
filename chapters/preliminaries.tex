@@ -1,0 +1,368 @@
+% name: Sam Tetruashvili
+% title: preliminaries.tex
+% date created: Thu Dec 25 22:14:41 EST 2008
+% description: The Preliminaries chapter of The Book of Proofs.
+
+% last modified: Sun Apr 18 10:42:10 EDT 2010
+
+\chapter{Preliminaries}
+    \section{Set Operations}
+        \begin{definition}
+            Let $U$ be the universe of discourse and let $\subs{A, B}{U}$ be sets.
+            \begin{itemize}
+                \item
+                    We say that $A$ is a subset of $B$, denoted $\subs{A}{B}$, if and only
+                    if each element of $A$ is an element of $B$, in other words 
+                    $\forall a \in A \ a \in B$. We say that $A$ is a strict
+                    subset of $B$, denoted $\ssubs{A}{B}$, if and only if $\subs{A}{B}$
+                    and $\exists b \in B$ such that $b \not\in A$.
+                \item
+                    We define the intersection of $A$ and $B$, denoted $\intersect{A}{B}$,
+                    to be the set of all elements that are in both $A$ and $B$, i.e.
+                    $\intersect{A}{B} = \Set{u \in U \mid u \in A \mbox{ and } u \in B}$.
+                \item
+                    We define the union of $A$ and $B$, denoted $\union{A}{B}$,
+                    to be the set of all elements that are in $A$ or $B$, i.e.
+                    $\union{A}{B} = \Set{u \in U \mid u \in A \mbox{ or } u \in B}$.
+                \item
+                    We define the difference of $A$ and $B$, denoted $\setsub{A}{B}$, as
+                    the set of all elements that are in $A$ but not in $B$, i.e.
+                    $\setsub{A}{B} = \Set{u \in U \mid u \in A \mbox{ and } u \not\in B}$.
+                \item
+                    Finally we define the complement of $A$, denoted $\C{A}$, as the
+                    set of all elements in the universe that are not in $A$. i.e.
+                    $\C{A} = \setsub{U}{A}$.
+            \end{itemize}
+        \end{definition}
+    \section{AGM Inequality}
+        \begin{theorem}
+            \label{AGM Inequality 1}
+            $``\forall x, y \in \set{R} \ 2xy \le x^2 + y^2$ and $xy \le \left(\frac{x + y}{2}\right)^2$;
+            furthermore, equality holds only when $x = y$.''
+        \end{theorem}
+        \begin{proof}
+            Let $x, y \in \set{R}$ be given. We first note that squaring a real number
+            yields a nonnegative result, namely
+            \[
+                0 \le (x - y)^2 = x^2 - 2xy + y^2
+            \]
+            Note that the above inequality becomes an equality only when $x = y$.
+            Adding $2xy$ to the inequality above yields
+            \begin{equation}
+                2xy \le x^2 + y^2
+            \end{equation}
+            Adding $2xy$ to the inequality above yields
+            \begin{equation}
+                4xy \le x^2 + 2xy + y^2 = (x + y)^2 \iff xy \le \frac{(x + y)^2}{4}
+                                        = \left(\frac{x + y}{2}\right)^2
+            \end{equation}
+            Thus both inequalities hold and become equalities only when $x = y$. \QED
+        \end{proof}
+        \begin{corollary}
+            $``$The function $f(x) = x(1 - x)$ is maximized when $x = 1 - x$.''
+        \end{corollary}
+        \begin{proof}
+            Let $x \in \set{R}$ be given. By theorem \ref{AGM Inequality 1} we can conclude
+            \[
+                x(1 - x) \le \left(\frac{x + 2}{2}\right)^2
+            \]
+            With equality holding only when $x = 1 - x$. Thus if $x \neq 1 - x$ we know that
+            \[
+                x(1 - x) <  \left(\frac{x + 2}{2}\right)^2
+            \]
+            Thus we can maximize $x(1 - x)$ by setting $x = 1 - x$, i.e. $x = \frac{1}{2}$.
+            This will yield a maximum value of $f(\frac{1}{2}) = \frac{1}{4}$. \QED
+        \end{proof}
+        \begin{theorem}
+            $``\forall x, y \ge 0 \ \frac{2xy}{x + y} \le \sqrt{xy} \le \frac{x + y}{2}$;
+            furthermore equality holds only when $x = y$.''
+        \end{theorem}
+        \begin{proof}
+            Let $x, y \ge 0$ be given. By theorem \ref{AGM Inequality 1} we can conclude
+            \[
+                xy \le \left(\frac{x + y}{2}\right)^2
+            \]
+            Since $x$ and $y$ are both nonnegative we know that both sides of the inequailty
+            are nonnegative as well. Thus we can safely take the square root of both sides
+            and obtain
+            \begin{equation}
+                \label{AGM 1}
+                \sqrt{xy} \le \frac{x + y}{2}
+            \end{equation}
+            We now multiply both sides of this inequality by $\frac{2\sqrt{xy}}{x + y}$ to
+            conclude that
+            \begin{equation}
+                \label{AGM 2}
+                \frac{2xy}{x + y} \le \sqrt{xy}
+            \end{equation}
+            Combining equations (\ref{AGM 1}) and (\ref{AGM 2}) we can conclue that
+            \[
+                \frac{2xy}{x + y} \le \sqrt{xy} \le \frac{x + y}{2}
+            \]
+            Finally we note that the equalities in this equation hold only when $x = y$
+            since they were derived from theorem \ref{AGM Inequality 1}. \QED
+        \end{proof}
+    \section{The Principle of Mathematical Induction}
+        \begin{theorem}[The Principle of Mathematical Induction]
+            $``$Let $\inductive{P}{n}$ be a mathematical statement parametrized by $n$.
+            If the following two conditions hold
+            \begin{itemize}
+                \item
+                    $\inductive{P}{1}$ is true.
+                \item
+                    $\forall k \in \set{N}$ if $\inductive{P}{k}$ is true, then $\inductive{P}{k + 1}$ is true.
+            \end{itemize}
+            then $\inductive{P}{n}$ is true for all $n \in \set{N}$.''
+        \end{theorem}
+        \begin{proof}
+            Let $\inductive{P}{n}$ be a mathematical statement parametrized by $n$ such that
+            \begin{itemize}
+                \item
+                    $\inductive{P}{1}$ is true.
+                \item
+                    $\forall k \in \set{N}$ if $\inductive{P}{k}$ is true, then $\inductive{P}{k + 1}$ is true.
+            \end{itemize}
+            We now proceed by contradiction to show that   
+            $\inductive{P}{n}$ is true $\forall n \in \set{N}$. We first let $k \in \set{N}$ be
+            given such that $\inductive{P}{k}$ is false and $\forall j < k \
+            \inductive{P}{j}$ is true, i.e. choose $k$ to be the smallest natural number for whom
+            $\inductive{P}{k}$ is false. We know that such a $k$ exists due to the well ordering
+            of the natural numbers. Since we assumed that $\inductive{P}{1}$ is true, we know that
+            $k$ must be larger than 1. Thus by construction of $k$ we know that $\inductive{P}{k - 1}$
+            is true. By the second assumption we know that $\inductive{P}{k - 1} \then \inductive{P}{k}$
+            is true. Thus by modus ponens we can conclude that $\inductive{P}{k}$ is true. 
+            This is of course a contradiction; thus $\inductive{P}{n}$ is true for all $n \in \set{N}$
+            as required. \QED
+        \end{proof}
+        \begin{corollary}[The Principle of Strong Mathematical Induction]
+            $``$Let $\inductive{P}{n}$ be a mathematical statement.
+            If the following two conditions hold
+            \begin{itemize}
+                \item
+                    $\inductive{P}{1}$ is true.
+                \item
+                    $\forall k \in \set{N}$ if $\forall j \in [k] \ \inductive{P}{j}$ is 
+                    true, then $\inductive{P}{k + 1}$ is true.
+            \end{itemize}
+            then $\inductive{P}{n}$ is true for all $n \in \set{N}$.''
+        \end{corollary}
+        \begin{proof}
+            % TODO
+        \end{proof}
+        \begin{corollary}
+            % TODO
+        \end{corollary}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{The Geometric Series}
+        \begin{definition}
+            Let $a, \rho \in \set{R}$ and $n \in \set{N}$. 
+            \begin{itemize}
+                \item
+                    We say that $\dsum_{i = 0}^{\infty} a \cdot \rho^i$ is a geometric series.
+                \item
+                    We say that $\dsum_{i = 0}^{n} a \cdot \rho^i$ is a finite geometric series.
+            \end{itemize}
+        \end{definition}
+        \begin{theorem}
+            $``\forall \rho \in (0, 1) \
+            \dsum_{i = 0}^{\infty} \rho^i = \dfrac{1}{1 - \rho}$.''
+            \label{Close Form of Geometric Series}
+        \end{theorem}
+        \begin{proof}
+            Let $\rho \in (0, 1)$ be given. Let $X$ be defined as follows
+            \begin{equation}
+                X = \sum_{i = 0}^{\infty} \rho^i
+            \end{equation}
+            This implies that $\rho X$ is given as follows
+            \begin{equation}
+                \rho X = \rho \sum_{i = 0}^{\infty} \rho^i = \sum_{i = 0}^{\infty} \rho^{i + 1} =
+                         \sum_{i = 1}^{\infty} \rho^i
+            \end{equation}
+            We now compute $X - \rho X$ as follows
+            \begin{derivation}{=}
+                X - \rho X & \dsum_{i = 0}^{\infty} \rho^i - \dsum_{i = 1}^{\infty} \rho^i \\
+                           & 1 + \dsum_{i = 1}^{\infty} \rho^i - \dsum_{i = 1}^{\infty} \rho^i \\
+                           & 1 + \dsum_{i = 1}^{\infty} (\rho^i - \rho^i) \\
+                           & 1
+            \end{derivation}
+            Thus we have $X - \rho X = 1$, solving for $X$ given us
+            \begin{equation}
+                X = \frac{1}{1 - \rho}
+            \end{equation}
+            Thus we can conclude that $\dsum_{i = 0}^{\infty} \rho^i = \dfrac{1}{1 - \rho}$
+            as required. \QED
+        \end{proof}
+        \begin{corollary}
+            $``\forall a \in \set{R} \ \forall \rho \in (0, 1) \
+            \dsum_{i = 0}^{\infty} a \cdot \rho^i = \dfrac{a}{1 - \rho}$.''
+        \end{corollary}
+        \begin{proof}
+            Let $a \in \set{R}$ and $\rho \in (0, 1)$ be given. We now simply factor
+            $a$ from the entire sum and get
+            \[
+                \sum_{i = 0}^{\infty} a \cdot \rho^i = a \sum_{i = 0}^{\infty} \rho^i
+            \]
+            We can now apply Theorem \ref{Close Form of Geometric Series} to conclude
+            that
+            \[
+                \sum_{i = 0}^{\infty} a \cdot \rho^i = a \frac{1}{1 - \rho} = \frac{a}{1 - \rho}
+            \]
+            as required. \QED
+        \end{proof}
+        \begin{theorem}
+            % TODO
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{Functions}
+        \begin{definition}
+            Let $A$ and $B$ be sets. We say that $f : A \rightarrow B$ is a function if 
+            and only if $\subs{f}{\cross{A}{B}}$ such that
+            $\forall a \in A \ \exists ! b \in \set{B}$ such that $(a, b) \in f$.
+            When $f$ is a function and $(a, b) \in f$ we write $f(a) = b$. If
+            $f: A \rightarrow B$ is a function we define the following sets
+            \begin{itemize}
+                \item
+                    We say that $A$ is the domain of $f$, denoted $\domain{f}$.
+                \item
+                    We say that $B$ is the target of $f$, denoted $\target{f}$.
+                \item
+                    We define the image of $f$ as 
+                    $\image{f} = \Set{b \in B \mid \exists a \in A \mbox{ such that } f(a) = b}$.
+            \end{itemize}
+        \end{definition}
+        \begin{definition}
+            Let $A, B$ be sets and let $f : A \rightarrow B$ be a function.
+            \begin{itemize}
+                \item
+                    (Injectivity) We say that $f$ is injective (one to one) if and only if
+                    \[
+                        \forall a_1, a_2 \in A \mbox{ if } f(a_1) = f(a_2) \mbox{ then } a_1 = a_2.
+                    \]
+                \item
+                    (Surjectivity) We say that $f$ is surjective (onto) if and only if
+                    \[
+                        \forall b \in B \ \exists a \in A \mbox{ such that } f(a) = b.
+                    \]
+                \item
+                    (Bijectivity) We that that $f$ is bijective (one to one onto)
+                    if and only if $f$ is both injective and surjective.
+            \end{itemize}
+        \end{definition}
+        \begin{definition}
+            Let $A, B, C$ be sets and let $g: A \rightarrow B$ and $f: B \rightarrow C$
+            be functions. We define the composition of $f$ and $g$, denoted
+            $\comp{f}{g}: A \rightarrow C$, as $\forall a \in A \ (\comp{f}{g})(a) = f(g(a))$.
+            We can clearly see that $\comp{f}{g}$ is a function. Note that $\comp{g}{f}$
+            makes no sense in this context as $\domain{f} \neq \image{g}$.
+        \end{definition}
+    \section{Equivalence Relations}
+        \begin{definition}
+            Let $S$ and $T$ be sets. 
+            \begin{itemize}
+                \item
+                    We say $R$ is a relation from $S$ to $T$ if and only if     
+                    $\subs{R}{\cross{S}{T}}$.
+                \item
+                    We say $R$ is a relation on $S$ if and only if  
+                    $\subs{R}{\cross{S}{S}}$.
+                \item
+                    If $R$ is a relation from $S$ to $T$ and $(s, t) \in R$ then
+                    we write $s \ R \ t$.
+            \end{itemize}
+        \end{definition}
+        \begin{definition}
+            Let $S$ be a set and let $R$ be a relation on $S$. We say $R$ is an
+            equivalence relation if and only if $R$ has the following properties
+            \begin{itemize}
+                \item
+                    (Reflexivity) $\forall s \in S \ (s, s) \in R$.
+                \item
+                    (Symmetry) $\forall s_1, s_2 \in S$ if $(s_1, s_2) \in R$ then
+                    $(s_2, s_1) \in R$.
+                \item
+                    (Transitivity) $\forall s_1, s_2, s_3 \in S$ if $(s_1, s_2), (s_2, s_3) \in R$
+                    then $(s_1, s_3) \in R$.
+            \end{itemize}
+        \end{definition}
+        \begin{definition}
+            Let $S$ be a set, $R$ be an equivalence relation on $S$, $a \in S$.
+            The equivalence class of $a$ with respect to $R$ is 
+            $\eqclass{a}{R} = \Set{s \in S \mid (a, s) \in R}$, i.e. the set of elements
+            of $S$ related to $a$ by the relation $R$.
+        \end{definition}
+        \begin{definition}
+            Let $S$ be a set and $\subs{C}{\power{S}}$. We say
+            $C$ is a partition of $S$ if and only if the following are true.
+            \begin{itemize}
+                \item
+                    (Mutual Exclusion) $\forall A, B \in C$ if $A \neq B$ then $\intersect{A}{B} = \Set{}$.
+                \item
+                    (Collective Exhaustion) $\dunion_{A \in C} A = S$.
+            \end{itemize}
+            If $C$ is a finite set and $|C| = k$ then we say $C$ partitions
+            $S$ into $k$ pieces.
+        \end{definition}
+        \begin{theorem}[Equivalence Classes Partition]
+            ``Let $S$ be a set. If $R$ is an equivalence relation on $S$, then
+            the set of all equivalence classes with respect to $R$ form a 
+            partition of $S$.''
+        \end{theorem}
+        \begin{proof}
+            Let $S$ be a set and let $R$ be an equivalence relation on $S$. We will
+            now define $C$ to be the set of all equivalence class with respect to $R$
+            as follows
+            \[
+                C = \Set{\eqclass{a}{R} \mid a \in S}
+            \]
+            We can clearly see that $C$ is some subset of the powerset of $S$.
+            We now proceed by showing that $C$ is a partition of $S$ by showing that
+            it is both collectively exhaustive and mutually exclusive.
+            \begin{itemize}
+                \item
+                    We proceed by showing that $C$ is mutually exclusive via contradiction.
+                    So assume that $C$ is not mutually exclusive, i.e. $\exists a, b \in S$
+                    such that $\eqclass{a}{R} \neq \eqclass{b}{R}$ and 
+                    $\intersect{\eqclass{a}{R}}{\eqclass{b}{R}} \neq \Set{}$.
+                    Thus we now proceed by choosing $c \in \intersect{\eqclass{a}{R}}{\eqclass{b}{R}}$
+                    and using it to show that $\eqclass{a}{R} = \eqclass{b}{R}$.
+                    \begin{itemize}
+                        \item
+                            We first show $\subs{\eqclass{a}{R}}{\eqclass{b}{R}}$ as follows.
+                            Let $x \in \eqclass{a}{R}$ be given. Since $a, c \in \eqclass{a}{R}$, by 
+                            definition of $\eqclass{a}{R}$ we know that $(a, x), (a, c) \in R$.
+                            Since $R$ is an equivalence relation we know that $R$ is symmetric and transitive,
+                            so we also know that $(x, a) \in R$ and since $(a, c) \in R$ we have $(x, c) \in R$.
+                            We now note that since $c \in \eqclass{b}{R}$ we know that $(b, c) \in R$. Now by
+                            symmetry of $R$ we have $(c, b) \in R$. We can now invoke transitive on
+                            $(x, c)$ and $(c, b)$ to conclude that $(x, b) \in R$. Now by symmetry of $R$ we
+                            have $(b, x) \in R$, which of course implies that $x \in \eqclass{b}{R}$ as required.
+                        \item
+                            The same argument can be used to show that $\subs{\eqclass{b}{R}}{\eqclass{a}{R}}$.
+                    \end{itemize}
+                    We can now conclude that $\eqclass{a}{S} = \eqclass{b}{S}$ which is of course
+                    a contradiction. Thus $C$ is mutually exclusive as required.
+                \item
+                    We now proceed to show that $C$ collectively exhausts $S$ by showing that
+                    $\subs{\dunion_{A \in C} A}{S}$ and $\subs{S}{\dunion_{A \in C} A}$.
+                    \begin{itemize}
+                        \item
+                            We first show that $\subs{\dunion_{A \in C} A}{S}$ as follows. 
+                            Let $a \in \dunion_{A \in C} A$ be given. By definition of
+                            union there must exists $b \in S$ such that $a \in \eqclass{b}{R}$.
+                            Now by definition of $\eqclass{b}{R}$ we know that $a \in S$ as required.
+                        \item
+                            We now show that $\subs{S}{\dunion_{A \in C} A}$ as follows. 
+                            Let $a \in S$ be given. Since $R$ is an equivalence relation we know
+                            that it is reflexive, thus $(a, a) \in R$ and
+                            $a \in \eqclass{a}{R}$. By definition of $C$ we can conclude that
+                            $\eqclass{a}{R} \in C$, so $a \in \dunion_{A \in C} A$ as required.
+                    \end{itemize}
+                    Thus $C$ collectively exhausts $S$ as required.
+            \end{itemize}
+            Thus we can conclude that $C$ is a partition of $S$ as required. \QED
+        \end{proof}
+

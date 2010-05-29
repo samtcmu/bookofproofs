@@ -1,0 +1,176 @@
+% name: Sam Tetruashvili
+% title: probability-discrete.tex
+% date created: Tue Dec  2 21:04:54 EST 2008
+% description: The Continuous Probability chapter of The Book of Proofs.
+
+% last modified: Wed May 19 12:32:26 EDT 2010
+
+\chapter{Continuous Probability}
+    \section{The Axioms of Continuous Probability}
+        \begin{definition}
+            Throughout this section the sample space, $\Omega$, will denote the set of
+            all possible outcomes of a randomized experiment. We will abide by the restriction
+            that $\Omega$ is an uncountable set. We say $l \in \Omega$ is an outcome and that
+            $\subs{E}{\Omega}$ is an event.
+        \end{definition}
+        \begin{axiom}
+            % TODO
+        \end{axiom}
+    \section{Linearity of Expectation}
+        \begin{definition}
+            % TODO Define the continuous random variable.
+        \end{definition}
+        \begin{definition}
+            % TODO Define the expected value of a continuous random varialbe.
+        \end{definition}
+        \begin{theorem}
+            % TODO
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{Linearity of Variance}
+        \begin{definition}
+            % TODO
+        \end{definition}
+        \begin{theorem}
+            % TODO
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{The Uniform Random Variable}
+        \begin{definition}
+            Let $X$ be a random variable and let $a, b \in \set{R}$ be given
+            such that $a < b$. We say $X$ is uniformly distributed between $a$
+            $b$ if and only if the probabliity density function of $X$ is
+            \[
+                f_X(x) = \left\{\begin{array}{ll}
+                    \dfrac{1}{b - a} & \mbox{if $a \le x \le b$} \\
+                    0 & \mbox{otherwise}
+                \end{array}\right. 
+            \]
+            When this is the case we write $\dist{X}{\uniform{a}{b}}$.
+        \end{definition}
+        \begin{theorem}
+            $``$For all $a, b \in \set{R}$ with $a < b$ if $\dist{X}{\uniform{a}{b}}$,
+            then $\ex{X} = \dfrac{b + a}{2}$.''
+        \end{theorem}
+        \begin{proof}
+            Let $a, b \in \set{R}$ be given such that $a < b$ and choose
+            $\dist{x}{\uniform{a}{b}}$. We now compute $\ex{X}$
+            \begin{derivation}{=}
+                \ex{X} & \dint_{-\infty}^{\infty} x f_X(x) \ dx \\
+                       & \dint_{-\infty}^{\infty} \dfrac{x}{b - a} \ dx &
+                         \just{By definition of $\dist{X}{\uniform{a}{b}}$.}
+                       & \dint_{a}^{b} \dfrac{x}{b - a} \ dx &
+                         \just{Since $f_X(x) = 0$ if $x < a$ or $x > b$.}
+                       & \dfrac{1}{b - a} \left[\frac{1}{2} x^2\right] \\
+                       & \dfrac{b^2 - a^2}{2(b - a)} \\
+                       & \dfrac{(b + a)(b - a)}{2(b - a)} \\
+                       & \dfrac{b + a}{2}
+            \end{derivation}
+            Thus we can conclude $\ex{X} = \dfrac{b + a}{2}$ as required. \QED
+        \end{proof}
+        \begin{theorem}
+            % TODO Variance of Uniform Random Variable.
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{The Exponential Distribution}
+        \begin{definition}
+            Let $X$ be a random variable and let $\l \in \set{R}^+$ be given. We say that
+            $X$ has an exponential distribution with parameter $\l$ if and only if the
+            probability density function of $X$ is
+            \[
+                f_X(x) = \left\{\begin{array}{ll}
+                            \l e^{-\l x} & \mbox{if $x \ge 0$} \\
+                            0 & \mbox{otherwise}
+                         \end{array}\right.
+            \]
+            When this is the case we write $\dist{X}{\expdist{\l}}$.
+        \end{definition}
+        \begin{theorem}
+            $``$For all $\l \in \set{R}^+ $ if \dist{X}{\expdist{\l}}, then $\ex{X} = \dfrac{1}{\l}$.''
+            \label{exp expected value}
+        \end{theorem}
+        \begin{proof}
+            Let $\l \in \set{R}^+$ be given and choose $\dist{X}{\expdist{\l}}$.
+            We now simply proceed by simply counting the expected value of $X$.
+            \begin{derivation}{=}
+                \ex{X} & \dint_{-\infty}^{\infty} x f_X(x) \ dx & \just{By definition of expected value.}
+                       & \dint_{0}^{\infty} \l x e^{-\l x} \ dx & \just{By definition of $\dist{X}{\expdist{\l}}$.}
+            \end{derivation}
+            We may now proceed by invoking integration by parts
+            \begin{equation}
+                \int_{a}^{b} u \ dv = uv - \int_{a}^{b} v \ du
+                \label{integration by parts}
+            \end{equation}
+            We can now choose $u = x$ and $dv = \l e^{-\l x} \ dx$. This implies that
+            $du = dx$  and $v = - e^{-\l x}$. We can now invoke integration
+            by parts to conclude that
+            \begin{derivation}{=}
+                \ex{X} & \left[-x e^{-\l x}\right]_{0}^{\infty} + \dint_{0}^{\infty} e^{-\l x} \ dx & \just{By integration by parts.}
+                       & \left[-\dfrac{1}{\l} e^{-\l x}\right]_{0}^{\infty} \\
+                       & \dfrac{1}{\l}
+            \end{derivation}
+            Thus we can conclude that $\ex{X} = \dfrac{1}{\l}$ as required. \QED
+        \end{proof}
+        \begin{theorem}
+            $``$For all $\l \in \set{R}^+$ if \dist{X}{\expdist{\l}}, then $\var{X} = \dfrac{1}{\l^2}$.''
+        \end{theorem}
+        \begin{proof}
+            Let $\l \in \set{R}^+$ be given and choose $\dist{X}{\expdist{\l}}$. We simply proceed by
+            computing the variance of $X$.
+            \begin{derivation}{=}
+                \var{X} & \ex{X^2} - \ex{X}^2 & \just{By definition of variance.}
+                        & \ex{X^2} - \dfrac{1}{\l^2} & \just{By theorem \ref{exp expected value}.}
+            \end{derivation}
+            Now all we have to do is compute $\ex{X^2}$.
+            \begin{derivation}{=}
+                \ex{X^2} & \dint_{-\infty}^{\infty} x^2 f_X(x) \ dx & \just{By definition of expected value.}
+                         & \dint_{0}^{\infty} \l x^2 e^{-\l x} \ dx & \just{By definition of $\dist{X}{\expdist{\l}}$.}
+            \end{derivation}
+            We now simply proceed by invoking integration by parts. So let $u = x^2$ and let $dv = \l e^{-\l x} \ dx$.
+            This implies that $du = 2x \ dx$ and $v = -e^{\l x}$. Thus we can conclude that
+            \begin{derivation}{=}
+                \ex{X^2} & \left[-x^2 e^{\l x}\right]_{0}^{\infty} + \dint_{0}^{\infty} 2x e^{\l x} \ dx & \just{By integration by parts.}
+                         & \dfrac{2}{\l} \dint_{0}^{\infty} \l x e^{\l x} \ dx & \just{By factoring out $\dfrac{2}{\l}$ from the integrand.}
+                         & \dfrac{2}{\l} \ex{X} & \just{By $\dist{X}{\expdist{\l}}$.}
+                         & \dfrac{2}{\l^2}
+            \end{derivation}
+            Now that we know that $\ex{X^2} = \dfrac{2}{\l^2}$ we can conclude that
+            \[
+                \var{X} = \frac{2}{\l^2} - \frac{1}{\l^2} = \frac{1}{\l^2}
+            \]
+            as required. \QED
+        \end{proof}
+        \begin{lemma}
+            $``$For all $\l, t \in \set{R}^+$ if $\dist{X}{\expdist{\l}}$, then $\pr{X \le t} = 1 - e^{-\l t}$.''
+        \end{lemma}
+        \begin{proof}
+            Let $\l, t \in \set{R}^+$ be given and choose $\dist{X}{\expdist{\l}}$.
+            We simply proceed by computing $\pr{X \le t}$. 
+            \begin{derivation}{=}
+                \pr{X \le t} & \dint_{-\infty}^{t} f_X(x) dx \\
+                             & \dint_{0}^{t} \l e^{-\l x} dx & \just{By \dist{X}{\expdist{\l}}}
+                             & \inteval{-e^{\l x}}{0}{t} & \just{By integration.}
+                             & -e^{\l t} + 1
+            \end{derivation}
+            Thus we can conclude that $\pr{X \le t} = 1 - e^{\l t}$ as required. \QED
+        \end{proof}
+        \begin{theorem}[Memorylessness]
+            % TODO Need a notion of conditional probability first.
+        \end{theorem}
+    \section{The Pareto Distribution}
+    \section{The Bounded Pareto Distribution}
+    \section{The Weibull Distribution}
+    \section{Central Limit Theorem}
+        \begin{theorem}(Central Limit Theorem)
+            % TODO
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+

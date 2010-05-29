@@ -1,0 +1,53 @@
+name: Sam Tetruashvili
+title: TODO 
+date created: Sat Dec 13 12:04:47 EST 2008
+description: List of things to do for The Book of Proofs.
+
+last modified: Sun Apr  4 20:27:30 EDT 2010
+
+  X 1. Figure out how to use BibTex.
+    2. Number Theory Chapter
+      X a. Figure out the All Solutions proof in the Linear Diophantine Equation
+           section of the Number Theorey chapter.
+      X b. Finish the FTA proof in the Number Theory chapter.
+      X c. Start and finish the Modular Arithmetic section.
+          X 1. Define congruence.
+          X 2. Prove arithmetically oriented theorems about congruence.
+      X d. Find an acceptable proof for Wilson's Theorem.
+          X 1. Prove if p is prime then (p - 1)! = -1 mod p.
+          X 2. Prove if (p - 1)! = -1 mod p then p is prime.
+        e. Finish the proof for the unique base q representation of an integer.
+      X f. Find a proof for e being irrational.
+        g. Find a proof for pi being irrational.
+      X h. Find a proof for the Division Algorithm.
+        i. Finish the backward's implication in the generalization of Fermant's
+           Little Theorem to polynomials. An overview of this is given in the
+           Prime in P paper by AKS.
+        j. State the Euclidean Algorithm and the Extended Euclidean Algorithm.
+        k. Prove Lame's Theorem on the runtime of the Euclidean Algorithm.
+        l. Finish the section on Mobius Inversion.
+        m. Prove that r/p has a period of p - 1 in base b, when b bis a
+           generator of the multiplicative group modulo p.
+    3. Discrete Probability
+      X a. Finish the proof for var[pareto[l]] = l.
+      X b. Prove Markov's Inequality.
+      X c. Prove Baye's Rule.
+      X d. Start the Axioms of Probability section.
+          X 1. Prove the Union Bound.
+          X 2. Prove the Law of Total Probability.
+        e. Work on the Birthday Pardox.
+        f. Prove the various forms of the Chernoff Bound.
+        g. Make a section on the Probabalistic Method.
+        h. Work on the Balls and Bins problem.
+    4. Combinatorics
+      X a. Reprove that linear recurrences have rational generating functions.
+        b. Prove the Inclusion Exclusion Theorem.
+        c. Prove the Pigeon Hole Principle.
+        d. Prove the Priate and Gold equality.
+        e. Prove the Chairperson Identity.
+    5. Get a wordle pic for the cover.
+    6. When making an aversarial argument name the adversary The Infamous Luis Von NAhn.
+    7. Have a message in the beginning that dedicated the book to Grandma and
+       Angela.
+        a. Riva Mordekhashvili
+

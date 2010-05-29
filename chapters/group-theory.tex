@@ -1,0 +1,110 @@
+% name: Sam Tetruashvili
+% title: group-theory.tex
+% date created: Wed Dec 24 13:27:02 EST 2008
+% description: The Group Theorychapter of The Book of Proofs.
+
+% last modified: Thu Jul  2 22:58:22 EDT 2009
+
+\chapter{Group Theory}
+    \section{The Group}
+        \begin{definition}
+            Let $G$ be a set. We say $\star : \cross{G}{G} \rightarrow G$ is a binary
+            operation on $G$. When $\star$ is a binary operation on $G$ and $g, h \in G$
+            we write $g \star h$ to denote $\star(g, h)$. We also define the notions of
+            associativity and commutativity for binary operations as follows.
+            \begin{itemize}
+                \item
+                    We say that $\star$ is associative when
+                    $\forall x, y, z \in G \ x \star (y \star z) = (x \star y) \star z$.
+                \item
+                    We say that $\star$ is commutative when
+                    $\forall x, y \in G \ x \star y = y \star z$.
+            \end{itemize}
+        \end{definition}
+        \begin{definition}
+            Let $G$ be a set and let $\star$ be a binary operation on $G$. We say that
+            $(G, \star)$ is a group if and only if the following hold.
+            \begin{itemize}
+                \item
+                    (Existence of Identity) $\exists e \in G$ such that $\forall g \in G \ 
+                    e \star g = g \star e = g$.
+                \item
+                    (Existence of Inverse) $\forall g \in G \ \exists g^{-1} \in G$ such that
+                    $g \star g^{-1} = g^{-1} \star g = e$.
+                \item
+                    (Associativity) $\forall g_1, g_2, g_3 \in G \ 
+                    g_1 \star (g_2 \star g_3) = (g_1 \star g_2) \star g_3$, i.e.
+                    $\star$ is associative.
+            \end{itemize}
+            When the binary operation is clear from context we will simply say that
+            $G$ is a group, rather than $(G, \star)$.
+        \end{definition}
+        \begin{definition}
+            Let $(G, \star)$ be a group. We say that $(G, \star)$ is Abelian (commutative)
+            if and only if $\forall g, h \in G \ g \star h = h \star g$, i.e. $\star$ is
+            commutative.
+        \end{definition}
+        \begin{lemma}[Uniqueness of Identity]
+            $``\forall$ groups $(G, \star) \ \exists ! e \in G$ such that
+            $\forall g \in G \ g \star e = e \star g = g$.''
+        \end{lemma}
+        \begin{proof}
+            We proceed via a proof by contradiction; so assume that $(G, \star)$ is a
+            group with at least 2 distinct identity elements. We now show that $e_1 = e_2$ as follows.
+            \begin{derivation}{=}
+                e_1 & e_2 \star e_1 & \just{By $e_2$ being an identity of $G$.}
+                    & e_2 & \just{By $e_1$ being an identity of $G$.} 
+            \end{derivation}
+            Thus we have show that $e_1 = e_2$, which of course contradicts that the two are
+            distinct. $\quad \blacksquare$
+        \end{proof}
+        \begin{lemma}[Uniqueness of Inverse]
+            $``\forall$ groups $(G, \star) \ \forall g \in G \ \exists ! g^{-1} \in G$ 
+            such that $g \star g^{-1} = g^{-1} \star g = e$.'' 
+        \end{lemma}
+        \begin{proof}
+            Let $(G, \star)$ be a group. Since each group element has an inverse by definition,
+            we proceed to prove uniqueness of inverse via contradiction.
+            So let $g \in G$ be given such that both $a, b \in G$ are inverses of $G$, i.e.
+            \[
+                g \star a = a \star g = e \mbox{ and } g \star b = b \star g = e
+            \]
+            We now proceed via the following calculation
+            \begin{derivation}{=}
+                g \star a & a \star g & \just{By assumption.}
+                b \star (g \star a) & b \star (a \star g) & \just{By multiplying both sides by $b$.}
+                (b \star g) \star a & b \star (a \star g) & \just{By associativity of $G$.}
+                e \star a & b \star e & \just{Since both $a$ and $b$ are inverses of $g$.}
+                a & b & \just{Since $e$ is the identity of $G$.}
+            \end{derivation}
+            Thus we can conclude that $a = b$ and the assumption that we have two distinct inverses
+            leads to a contradiction. Thus we can conclude that each group element has a unique
+            inverse. \QED
+        \end{proof}
+        \begin{definition}
+            Let $(G, \star)$ be a group and let $\subs{H}{G}$. We say that $(H, \star)$
+            is a subgroup of $(G, \star)$, denoted $\subgroup{H}{G}$, if and only if
+            $(H, \star)$ is a group.
+        \end{definition}
+    \section{Lagrange's Theorem}
+        \begin{theorem}
+            % TODO
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{Cauchy's Theorem}
+        \begin{theorem}
+            % TODO
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{Sylow's Theorem}
+        \begin{theorem}
+            % TODO
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+

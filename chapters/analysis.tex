@@ -1,0 +1,93 @@
+% name: Sam Tetruashvili
+% title: analysis.tex
+% date created: Sat Jan 17 10:32:38 EST 2009
+% description: The Analysis chapter of The Book of Proofs.
+
+% last modified: Sun Jul  5 22:29:49 EDT 2009
+
+\chapter{Analysis}
+    \section{Constructing the Reals}
+        \begin{definition}
+            Let $\subs{A, B}{\set{Q}}$ be non-empty sets that
+            partition \set{Q}. We say that $\cut{A}{B}$
+            is a Dekekind cut (cut for short) in \set{Q} if and only if the following hold
+            \begin{itemize}
+                \item
+                    $\forall a \in A \ \forall b \in B \ a < b$.
+                \item
+                    $A$ does not have a maximal element.
+            \end{itemize}
+            If \cut{A}{B} is a cut, then we say that $A$ is a left cut and that $B$ is a right
+            cut.
+        \end{definition}
+        \begin{definition}
+            We define the set of all real numbers, \set{R}, as the set of all cuts in \set{Q}.
+            In other words we define \set{R} as follows
+            \[
+                \set{R} = \Set{\mbox{$\cut{A}{B}$ such that $\cut{A}{B}$ is a cut in $\set{Q}$}}
+            \]
+        \end{definition}
+        \begin{definition}
+            Let $x, y \in \set{R}$ be given such that $x = \cut{A}{B}$ and $y = \cut{C}{D}$.
+            We say $x$ is less than or equal to $y$, denoted $x \le y$, if and only if $\subs{A}{C}$.
+        \end{definition}
+        \begin{definition}
+            Let $\subs{A}{\set{R}}$ be given.
+            \begin{itemize}
+                \item
+                    We say that $a \in \set{R}$ is the maximum element of $A$, denoted $a = \max(A)$,
+                    if and only if $a \in A$ and $\forall b \in A \ b \le a$.
+                \item
+                    We say that $a \in \set{R}$ is the minimum element of $A$, denoted $a = \min(A)$,
+                    if and only if $a \in A$ and $\forall b \in A \ a \le b$.
+                \item
+                    We say that $a \in \set{R}$ is the supremum (or least upper bound) of $A$, denoted
+                    $a = \sup(A)$, if and only if $a$ is the smallest real number that is greater than
+                    or equal to every element of $A$. In other words
+                    \[
+                        a = \sup(A) \iff a = \min\Set{c \in \set{R} \mid \forall b \in A \ b \le c}.
+                    \]
+                \item
+                    We say that $a \in \set{R}$ is the infimum (or greatest lower bound) of $A$, denoted
+                    $a = \inf(A)$, if and only if $a$ is the largest real number that is less than or
+                    equal to every element of $A$. In other words
+                    \[
+                        a = \inf(A) \iff a = \max\Set{c \in \set{R} \mid \forall b \in A \ c \le b}
+                    \]
+            \end{itemize}
+        \end{definition}
+        \begin{theorem}[Least Upper Bound Thoerem]
+            ``Every non-empty subset of \set{R} that has an upper bound has a least upper bound
+            in \set{R}.''
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \section{Limits}
+        \begin{definition}
+            Let $f: \set{R} \rightarrow \set{R}$ and $a, L \in \set{R}$. We say that
+            $L$ is the limit of $f$ as $x$ approaches $a$ if and only if
+            $\forall \epsilon > 0 \ \exists \delta > 0$ such that $\forall x \in \set{R}$
+            if $\abs{x - a} < \delta$ then $\abs{f(x) - L} < \epsilon$.
+            We write $\limit{x}{a}{f(x)} = L$ when $L$ is the limit as $x$ approaches $a$.
+        \end{definition}
+        \begin{theorem}[Squeeze Theorem]
+            % TODO
+        \end{theorem}
+        \begin{proof}
+            % TODO
+        \end{proof}
+        \begin{theorem}
+            ``$\limit{x}{0}{\frac{\sin x}{x}} = 1$.''
+        \end{theorem}
+        \begin{proof}
+            We proceed by proving the following statement
+            \[
+                ``\forall \epsilon > 0 \ \exists \delta > 0 \mbox{ such that } \forall x \in \set{R} \
+                \abs{x - 0} < \delta \then \abs{\frac{\sin x}{x} - 1} < \epsilon."
+            \]
+            Let $\epsilon > 0$ be given and choose $\delta = \epsilon$. Now let $x \in \set{R}$
+            be given such that $\abs{x - 0} < \delta$.
+            % TODO
+        \end{proof}
+
