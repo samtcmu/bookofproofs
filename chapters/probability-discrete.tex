@@ -576,6 +576,31 @@
             \end{derivation}
             Thus can see that $\ex{X} = np$ and $\var{X} = np(1 - p)$ as required. \QED
         \end{proof}
+        \begin{theorem}[Binomial Chernoff Bound]
+            $``\forall n \in \set{N} \ \forall t \in [0, \sqrt{n}]$ if $\dist{X}{\bin{n}{\frac{1}{2}}}$ then
+            $\pr{|X - \ex{X}| \ge t \sqrt{\var{X}}} \le e^{-\frac{t^2}{2}}.$''
+        \end{theorem}
+        \begin{proof}
+            Let $n \in \set{N}$ and $t \in [0, \sqrt{n}]$ be given. Assume
+            $\dist{X}{\bin{n}{\frac{1}{2}}}$. We now show that $X$ is likely to be within
+            $t$ standard deviations of its expected value.
+
+            By definition of the Binomial distribution we know that there is a sequence of
+            independent $\bern{\frac{1}{2}}$ random varialbes $X_1, \dots, X_n$ such that
+            \begin{equation}
+                X = \sum_{i = 1}^{n} X_i
+            \end{equation}
+            For convenience we will define a new random variable $Y_i$ for each of the $X_i$'s
+            \begin{equation}
+                Y_i = -1 + 2X_i
+            \end{equation}
+            and we will define $Y$ as
+            \begin{equation}
+                Y = \sum_{i = 1}^{n} Y_i = -n + 2X
+            \end{equation}
+            We now rewrite the event $|X - \ex{X}| \ge t \sqrt{\var{X}}$ in terms of $Y$.
+            % TODO
+        \end{proof}
     \section{The Geometric Distribution}
         \begin{definition}
             Let $X$ be a random variable and let $p \in (0, 1]$. We say that $\dist{X}{\geo{p}}$
