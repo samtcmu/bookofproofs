@@ -3,7 +3,7 @@
 % date created: Tue Dec  2 21:04:54 EST 2008
 % description: The Number Theory chapter of The Book of Proofs.
 
-% last modified: Mon Apr 19 14:43:13 EDT 2010
+% last modified: Fri Jun  4 12:13:27 EDT 2010
 
 \chapter{Number Theory}
     \section{The Division Algorithm}
@@ -1379,20 +1379,136 @@
         % TODO
     \section{Continued Fractions}
         \begin{definition}
-            Let $r$ be a real number. We define the continued fractions representation of $r$ as
-            \[
-                r = \frac{q_0}{q_1 +
-                    \frac{1}{q_2 + 
-                        \frac{1}{q_3 + 
-                            \frac{1}{\ddots}
-                        }
-                    }
-                }
-            \]
-            such that $\forall i \in \set{N} \ q_i \in \set{Z}$. For simply we write that
-            $r = [q_0; q_1, q_2, \dots]$ to denote the above continued fractions representation
-            of $r$. We also call the $q_i$'s partial quotients of $[q_0; q_1, q_2, \dots]$.
+            Let \seq{q_t}{t \ge 0} be a sequence of real valued \emph{partial quotients}. We
+            define the valued of the \emph{generalized continued fraction} associated with this sequence,
+            denoted \cf{q_t}{t \ge 0}, as
+            \begin{equation}
+                \cf{q_t}{t \ge 0} = q_0 + \frac{1}{\cf{q_{t + 1}}{t \ge 0}}
+                                  = q_0 + \dfrac{1}{
+                                            q_1 + \dfrac{1}{
+                                                q_2 + \dfrac{1}{\ddots}
+                                            }
+                                          }
+            \end{equation}
+            When the sequence of partial quotients is finite, we define the valued of the \emph{
+            generalized continued fraction} associated with this sequence, denoted $\fcf{q_t}{t = 0}{n}$,
+            as
+            \begin{align}
+                \fcf{q_t}{t = 0}{0} &= q_0 \\
+                \fcf{q_t}{t = 0}{n} &= 1 + \frac{1}{\fcf{q_{t + 1}}{t = 0}{n - 1}}
+            \end{align}
+            For any non-negative integer $n$ we define \emph{the $n^{th}$ convergent of
+            \cf{q_t}{t \ge 0}} to be \fcf{q_t}{t = 0}{n}. If \seq{q_t}{t \ge 0} is an integer
+            sequence we will refer to \cf{q_t}{t \ge 0} as a \emph{continued fraction}.
+            \label{Gen. Cont. Frac.}
         \end{definition}
+        \begin{definition}
+            Let \seq{q_t}{t \ge 0} be a sequence of real valued partial quotients.
+            We will defined $P$ and $Q$ (the sequence of numerators and denominators) as
+            \begin{align*}
+                P_0 &= q_0 & Q_0 &= 1 \\
+                P_1 &= q_1q_0 + 1 & Q_1 &= q_1\\
+                P_n &= q_n P_{n - 1} + P_{n - 2}, \mbox{ for $n \ge 2$} &
+                Q_n &= q_n Q_{n - 1} + Q_{n - 2}, \mbox{ for $n \ge 2$}
+            \end{align*}
+            We define \seq{P_n / Q_n}{n \ge 0} to be the sequence of \cf{q_t}{t \ge 0}'s
+            convergents.
+            \label{Computing Convergents}
+        \end{definition}
+        \begin{theorem}(Computing Convergents)
+            $``$Let \cf{q_t}{t \ge 0} be a generalized continued fraction and let \seq{P_n / Q_n}{n \ge 0}
+            be defined as above. For all non-negative integers $n$, the $n^{th}$ convergent
+            of \cf{q_t}{t \ge 0} is $\frac{P_n}{Q_n}$.''
+        \end{theorem}
+        \begin{proof}
+            We proceed via induction on $n$.
+            \begin{itemize}
+                \item
+                    Base Cases: Let $n = 0$, then by definition of $P, Q$, and the value of
+                    a finite continued faction we have
+                    \[
+                        \frac{P_0}{Q_0} = \frac{q_0}{1} = q_0 = \fcf{q_t}{t = 0}{0}
+                    \]
+                    as required.
+
+                    Let $n = 1$, then again by definition of $P, Q$, and the value of a finite
+                    continued fraction we have
+                    \[
+                        \frac{P_1}{Q_1} = \frac{q_1q_0 + 1}{q_1} = q_0 + \frac{1}{q_1}
+                                        = q_0 + \frac{1}{\fcf{q_{t + 1}}{0}{0}}
+                                        = \fcf{q_t}{t = 0}{1}
+                    \]
+                    as required.
+                \item
+                    Induction Step: Let $n$ be a non-negative integer. Assume that
+                    $P_n / Q_n$ is the $n^{th}$ convergent of any generalized continued
+                    fraction \cf{q_t}{t \ge 0}, i.e.
+                    \begin{equation}
+                        \frac{P_n}{Q_n} = \fcf{q_t}{t = 0}{n}
+                    \end{equation}
+                    We would now like to show that $P_{n + 1} / Q_{n + 1}$ is the $(n + 1)^{th}$
+                    convergent of any generalized continued fraction. So let \cf{q_t}{t \ge 0}
+                    be a generalized continued fraction. We proceed by reducing the task of
+                    computing the $(n + 1)^{th}$ convergent of this generalized continued 
+                    fraction to the task computing the $n^{th}$ convergent another generalized
+                    continued fraction. We will define the sequence of partial quotients,
+                    \seq{r_t}{t \ge 0}, of this new generalized continued fraction as
+                    \begin{equation}
+                        r_t = \begin{cases}
+                            q_t & \mbox{if $0 \le t < n$,} \\
+                            q_t + \frac{1}{q_{t + 1}} & \mbox{if $t = n$,} \\
+                            0 & \mbox{otherwise}.
+                        \end{cases}
+                    \end{equation}
+                    By construction of \cf{r_t}{t \ge 0} we can see
+                    $\fcf{r_t}{t = 0}{j} = \fcf{q_t}{t = 0}{j}$ for $0 \le j < n$.
+                    Thus, if \fcf{r_t}{t = 0}{n} is not equal to \fcf{q_t}{t = 0}{n + 1}
+                    it is due to \fcf{r_{t + n}}{t = 0}{0} not being equal to \fcf{q_{t + n}}{t = 0}{1}.
+                    But as shown below these two quantities are equal.
+                    \begin{derivation}{\ = \ }
+                        \fcf{r_{t + n}}{t = 0}{0} & r_n & \just{By Definition \ref{Gen. Cont. Frac.}.}
+                                                  & q_n + \dfrac{1}{q_{n + 1}} & \just{By definition of \seq{r_t}{t \ge 0}.}
+                                                  & q_n + \dfrac{1}{\fcf{q_{t + n + 1}}{t = 0}{0}} & \just{By Definition \ref{Gen. Cont. Frac.}.}
+                                                  & \fcf{q_{t + n}}{t = 0}{1} & \just{By Definition \ref{Gen. Cont. Frac.}.}
+                    \end{derivation}
+                    Thus we can see that
+                    \begin{equation}
+                        \fcf{r_t}{t = 0}{n} = \fcf{q_t}{t = 0}{n + 1}
+                    \end{equation}
+                    We can now use the inductive hypothesis to compute the $n^{th}$ convergent
+                    of \cf{r_t}{t \ge 0}. Note that $P_0, P_1, \dots P_{n - 1}$ and
+                    $Q_0, Q_1, \dots, Q_{n - 1}$ are equal for \cf{q_t}{t \ge 0} and \cf{r_t}{t \ge 0}.
+                    \begin{derivation}{\ = \ }
+                        \fcf{r_t}{t = 0}{n} & \dfrac{P_n(r)}{Q_n(r)} \\
+                                            & \dfrac{r_n P_{n - 1}(r) + P_{n - 2}(r)}
+                                                   {r_n Q_{n - 1}(r) + Q_{n - 2}(r)}
+                                            & \just{By Definition \ref{Computing Convergents}.}
+                                            & \dfrac{\left(q_n + \dfrac{1}{q_{n + 1}}\right) P_{n - 1} + P_{n - 2}}
+                                                   {\left(q_n + \dfrac{1}{q_{n + 1}}\right) Q_{n - 1} + Q_{n - 2}}
+                                            & \just{By definition of $r_n$.}
+                                            & \dfrac{(q_n P_{n - 1} + P_{n - 2}) + \frac{1}{q_{n + 1}} P_{n - 1}}
+                                                    {(q_n Q_{n - 1} + Q_{n - 2}) + \frac{1}{q_{n + 1}} Q_{n - 1}} \\
+                                            & \dfrac{P_n + \frac{1}{q_{n + 1}}P_{n - 1}}
+                                                    {Q_n + \frac{1}{q_{n + 1}}Q_{n - 1}}
+                                            & \just{By Definition \ref{Computing Convergents}.}
+                                            & \dfrac{q_{n + 1}P_n + P_{n - 1}}
+                                                    {q_{n + 1}Q_n + Q_{n - 1}}
+                                            & \just{By multiplying by $\frac{q_{n + 1}}{q_{n + 1}}$.}
+                                            & \dfrac{P_{n + 1}}{Q_{n + 1}}
+                                            & \just{By Definition \ref{Computing Convergents}.}
+                    \end{derivation}
+                    Thus we can conclude that
+                    $\fcf{q_t}{t = 0}{n + 1} = \frac{P_{n + 1}}{Q_{n + 1}}$ as required.
+            \end{itemize}
+            Thus we can conclude that $\fcf{q_t}{t = 0}{n} = \frac{P_n}{Q_n}$
+            for all non-negative integers $n$. \QED
+        \end{proof}
+        \begin{lemma}
+            % TODO P(n - 1)Q(n) - P(n)Q(n - 1) = (-1)^n
+        \end{lemma}
+        \begin{proof}
+            % TODO
+        \end{proof}
         \begin{theorem}
             ``The continued fractions representation of any rational number has a finite number
               of partial quotients.''
@@ -1400,9 +1516,6 @@
         \begin{proof}
             % TODO
         \end{proof}
-        \begin{definition}
-            % Define convergents.
-        \end{definition}
         \begin{theorem}
             % Fast left to right generation of convergents.
         \end{theorem}
