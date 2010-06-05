@@ -3,7 +3,7 @@
 % date created: Fri Dec  5 16:07:32 EST 2008
 % description: The Combinatorics chapter of The Book of Proofs.
 
-% last modified: Sun Apr 18 10:53:19 EDT 2010
+% last modified: Sat Jun  5 15:49:49 EDT 2010
 
 \chapter{Combinatorics}
     \section{The Pigeonhole Principle}
@@ -139,7 +139,45 @@
             $``\forall n \in \set{N} \ \forall k \in [n] \ k \binom{n}{k} = n \binom{n - 1}{k - 1}$.''
         \end{theorem}
         \begin{proof}
-            % TODO
+            Let $n \in \set{N}$ and $k \in [n]$ be given. Let $S$ be defined as follows
+            \begin{equation}
+                S = \Set{(c, C) \ \mid \ \subs{C}{[n]}, |C| = k \mbox{, and } c \in C}
+            \end{equation}
+            We will refer to $C$ as the committee and $c$ as the chairperson.
+            We now show that $k \binom{n}{k} = n \binom{n - 1}{k - 1}$ by counting $S$ in
+            two ways.
+            \begin{itemize}
+                \item
+                    We first count $S$ by picking the committee and then out of the people
+                    in the committee picking the chairperson. So to make an element of $S$
+                    we can follow this simple two step process:
+                    \begin{enumerate}
+                        \item
+                            Pick $C$ to be $k$ element subset of $[n]$ to be the committee.
+                        \item
+                            Pick $c \in C$ to be the chairperson.
+                    \end{enumerate}
+                    There are $\binom{n}{k}$ to do the first step. Since $C$ is a $k$
+                    element set there are $k$ ways to do the second step. Thus by the
+                    rule of product we can conclude that $|S| = k \binom{n}{k}$.
+                \item
+                    We now count $S$ by first picking the chairperson and then from the
+                    remaining $n - 1$ people picking $k - 1$ to fill out the committee. 
+                    We can make an element of $S$ by following this simple two step process:
+                    \begin{enumerate}
+                        \item
+                            Pick $c \in [n]$ to be the chairperson.
+                        \item
+                            Pick $\subs{A}{\setsub{[n]}{\Set{c}}}$ and let $C = \union{A}{\Set{c}}$
+                            be the committee.
+                    \end{enumerate}
+                        There are clearly $n$ ways to do the first step. Since $c$ is no
+                        longer eligible to be in $A$ in the second step there are $\binom{n - 1}{k - 1}$
+                        ways to do the second step. Thus by the rule of product we can conclude
+                        that $|S| = n \binom{n - 1}{k - 1}$.
+            \end{itemize}
+            Thus we can conclude that $k \binom{n}{k} = n \binom{n - 1}{k - 1}$
+            as required. \QED
         \end{proof}
     \section{Sterling Numbers}
         \begin{definition}
