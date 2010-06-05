@@ -3,7 +3,7 @@
 % date created: Tue Dec  2 21:04:54 EST 2008
 % description: The Number Theory chapter of The Book of Proofs.
 
-% last modified: Fri Jun  4 12:13:27 EDT 2010
+% last modified: Sat Jun  5 11:09:04 EDT 2010
 
 \chapter{Number Theory}
     \section{The Division Algorithm}
@@ -1465,7 +1465,7 @@
                     Thus, if \fcf{r_t}{t = 0}{n} is not equal to \fcf{q_t}{t = 0}{n + 1}
                     it is due to \fcf{r_{t + n}}{t = 0}{0} not being equal to \fcf{q_{t + n}}{t = 0}{1}.
                     But as shown below these two quantities are equal.
-                    \begin{derivation}{\ = \ }
+                    \begin{derivation}{=}
                         \fcf{r_{t + n}}{t = 0}{0} & r_n & \just{By Definition \ref{Gen. Cont. Frac.}.}
                                                   & q_n + \dfrac{1}{q_{n + 1}} & \just{By definition of \seq{r_t}{t \ge 0}.}
                                                   & q_n + \dfrac{1}{\fcf{q_{t + n + 1}}{t = 0}{0}} & \just{By Definition \ref{Gen. Cont. Frac.}.}
@@ -1478,7 +1478,7 @@
                     We can now use the inductive hypothesis to compute the $n^{th}$ convergent
                     of \cf{r_t}{t \ge 0}. Note that $P_0, P_1, \dots P_{n - 1}$ and
                     $Q_0, Q_1, \dots, Q_{n - 1}$ are equal for \cf{q_t}{t \ge 0} and \cf{r_t}{t \ge 0}.
-                    \begin{derivation}{\ = \ }
+                    \begin{derivation}{=}
                         \fcf{r_t}{t = 0}{n} & \dfrac{P_n(r)}{Q_n(r)} \\
                                             & \dfrac{r_n P_{n - 1}(r) + P_{n - 2}(r)}
                                                    {r_n Q_{n - 1}(r) + Q_{n - 2}(r)}
@@ -1504,10 +1504,39 @@
             for all non-negative integers $n$. \QED
         \end{proof}
         \begin{lemma}
-            % TODO P(n - 1)Q(n) - P(n)Q(n - 1) = (-1)^n
+            $``$Let \cf{q_t}{t \ge 0} be a general continued fraction. For all positive integers
+            $n$ we have $P_{n - 1}Q_{n} - P_{n}Q_{n - 1} = (-1)^{n}$.''
         \end{lemma}
         \begin{proof}
-            % TODO
+            We proceed via induction on $n$.
+            \begin{itemize}
+                \item
+                    Base Case: If $n = 1$, then we do the following computation
+                    \begin{derivation}{=}
+                        P_0Q_1 - P_1Q_0 & q_0q_1 - (q_1q_0 + 1)(1) \\
+                                        & -1 \\
+                                        & (-1)^1
+                    \end{derivation}
+                    Thus $P_0Q_1 - P_1Q_0 = (-1)^1$ as required.
+                \item
+                    Induction Step: Let $n$ be a positive integer; assume that
+                    \begin{equation}
+                        P_{n - 1}Q_{n} - P_{n}Q_{n - 1} = (-1)^{n} 
+                    \end{equation}
+                    We now compute $P_{n}Q_{n + 1} - P_{n + 1}Q_{n}$ as follows
+                    \begin{derivation}{=}
+                        P_{n}Q_{n + 1} - P_{n + 1}Q_{n} & P_n (q_{n + 1}Q_n + Q_{n - 1}) - (q_{n + 1}P_n + P_{n - 1})Q_n & 
+                        \just{By Definition \ref{Computing Convergents}.}
+                                                        & P_nQ_{n - 1} - P_{n - 1}Q_n \\
+                                                        & -1 (P_{n - 1}Q_n - P_nQ_{n - 1}) \\
+                                                        & -1 (-1)^n & \just{By inductive hypothesis.}
+                                                        & (-1)^{n + 1}
+                    \end{derivation}
+                    Thus we can conclude that $P_{n}Q_{n + 1} - P_{n + 1}Q_{n} = (-1)^{n + 1}$
+                    as required.
+            \end{itemize}
+            Thus $P_{n - 1}Q_{n} - P_{n}Q_{n - 1} = (-1)^{n}$ for any positive
+            integer $n$. \QED
         \end{proof}
         \begin{theorem}
             ``The continued fractions representation of any rational number has a finite number
@@ -1516,9 +1545,6 @@
         \begin{proof}
             % TODO
         \end{proof}
-        \begin{theorem}
-            % Fast left to right generation of convergents.
-        \end{theorem}
     \section{Unique Base $q$ Representation}
         \begin{definition}
             Let $q \in \set{N}$ and $n \in \set{Z}$. We define $d_k\cdots d_1$ to be a base
