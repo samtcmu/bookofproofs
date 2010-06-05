@@ -3,7 +3,7 @@
 % date created: Tue Dec  2 21:04:54 EST 2008
 % description: The Number Theory chapter of The Book of Proofs.
 
-% last modified: Sat Jun  5 11:09:04 EDT 2010
+% last modified: Sat Jun  5 15:02:16 EDT 2010
 
 \chapter{Number Theory}
     \section{The Division Algorithm}
@@ -328,6 +328,7 @@
         \begin{corollary}
             $``\forall a, b, n \in \set{Z} \ \exists x, y \in \set{Z}$ such that
             $ax + by = n$ if and only if $\divides{\gcd{a}{b}}{n}$.''
+            \label{ax + by = n <==> gcd(a, b) | n}
         \end{corollary}
     \section{The Fundamental Theorem of Arithmetic}
         \begin{lemma}
@@ -1503,10 +1504,11 @@
             Thus we can conclude that $\fcf{q_t}{t = 0}{n} = \frac{P_n}{Q_n}$
             for all non-negative integers $n$. \QED
         \end{proof}
-        \begin{lemma}
+        \begin{theorem}
             $``$Let \cf{q_t}{t \ge 0} be a general continued fraction. For all positive integers
             $n$ we have $P_{n - 1}Q_{n} - P_{n}Q_{n - 1} = (-1)^{n}$.''
-        \end{lemma}
+            \label{Cont. Frac. Lowest. Terms.}
+        \end{theorem}
         \begin{proof}
             We proceed via induction on $n$.
             \begin{itemize}
@@ -1537,6 +1539,36 @@
             \end{itemize}
             Thus $P_{n - 1}Q_{n} - P_{n}Q_{n - 1} = (-1)^{n}$ for any positive
             integer $n$. \QED
+        \end{proof}
+        \begin{corollary}
+            $``$Let \cf{q_t}{t \ge 0} be a continued fraction (i.e.
+            \seq{q_t}{t \ge 0} is a sequence of integers). The $n^{th}$
+            convergent of \cf{q_t}{t \ge 0}, $P_n / Q_n$, is rational;
+            futhermore, $\gcd{P_n}{Q_n} = 1$, so $P_n / Q_n$ is in lowest
+            terms.''
+        \end{corollary}
+        \begin{proof}
+            It is clear to see that both $P_n$ and $Q_n$ are integers when
+            \seq{q_t}{t \ge 0} is an integer sequence. Thus the $n^{th}$
+            convergent of \cf{q_t}{t \ge 0} is clearly rational as it is equal
+            to $P_n / Q_n$. Finally by theorem \ref{Cont. Frac. Lowest. Terms.},
+            for any positive integer $n$ we have
+            \begin{equation}
+                \label{Cont. Frac. GCD Eq 1}
+                P_{n - 1} Q_n - P_n Q_{n - 1} = (-1)^n
+            \end{equation}
+            By Corollary \ref{ax + by = n <==> gcd(a, b) | n} it suffices to find
+            an integer combination of $P_n$ and $Q_n$ equal to 1 to show that
+            $\gcd{P_n}{Q_n} = 1$. If $n$ is even then
+            \begin{equation}
+                P_n (-Q_{n - 1}) + Q_n (P_{n - 1}) = 1
+            \end{equation}
+            and if $n$ is odd then
+            \begin{equation}
+                P_{n} (Q_{n - 1}) + Q_n(-P_{n - 1}) = 1
+            \end{equation}
+            So we can conclude that $\gcd{P_n}{Q_n} = 1$ and $P_n / Q_n$ is in
+            lowest terms. \QED
         \end{proof}
         \begin{theorem}
             ``The continued fractions representation of any rational number has a finite number
