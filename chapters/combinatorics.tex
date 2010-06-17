@@ -3,7 +3,7 @@
 % date created: Fri Dec  5 16:07:32 EST 2008
 % description: The Combinatorics chapter of The Book of Proofs.
 
-% last modified: Sat Jun  5 15:49:49 EDT 2010
+% last modified: Thu Jun 17 16:09:16 EDT 2010
 
 \chapter{Combinatorics}
     \section{The Pigeonhole Principle}
@@ -12,7 +12,7 @@
         \begin{proof}
             % TODO
         \end{proof}
-    \section{Binomial Theorem}
+    \section{Binomial Coefficients}
         \begin{definition}
             Let $n \in \set{N}$ and $k \in \set{Z}$ such that $0 \le k \le n$.
             We define $\binom{n}{k}$, read $n$ choose $k$, to be the number of
@@ -134,8 +134,8 @@
             Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \unionzero{\set{N}}$
             as required. \QED
         \end{proof}
-    \section{Chairperson Identity}
-        \begin{theorem}
+    
+        \begin{theorem}[Chairperson Identity]
             $``\forall n \in \set{N} \ \forall k \in [n] \ k \binom{n}{k} = n \binom{n - 1}{k - 1}$.''
         \end{theorem}
         \begin{proof}
@@ -190,13 +190,48 @@
             % TODO
         \end{proof}
         \begin{definition}
-            % Define Sterling Numbers of the Second Kind.
+            Let $n \in \set{N}$ and $k \in \set{Z}$ such that $0 \le k \le n$. We define
+            \npartk{n}{k}, read $n$ part $k$, to be the number of ways to partition
+            an $n$ element set into $k$ parts. These numbers are called the Sterling Numbers
+            of the Second Kind.
         \end{definition}
         \begin{theorem}
             ``$\forall n \in \set{N} \ \forall k \in [n] \ \npartk{n}{k} = k \npartk{n - 1}{k} + \npartk{n - 1}{k - 1}$.''
         \end{theorem}
         \begin{proof}
-            % TODO
+            Let $n \in \set{N}$ and $k \in [n]$ be given.
+            We proceed via counting the set of all partitions of $[n]$ with $k$ parts
+            in two ways. We define this set as follows
+            \[
+                S = \Set{\subs{\Set{P_1, P_2, \dots, P_k}}{\setsub{\power{[n]}}{\Set{}}} \ \mid \ \dunion_{i = 1}^{n} P_i = [n]}
+            \]
+            \begin{itemize}
+                \item
+                    We can clearly see that $S$ has \npartk{n}{k} elements by definition of
+                    the Sterling Number of the Second Kind.
+                \item
+                    Now to count $S$ we partition it based on whether or not 1 is in
+                    it's own part.
+                    \begin{itemize}
+                        \item 
+                            We know there are $\npartk{n - 1}{k - 1}$ partitions
+                            where 1 is in its own part since after putting 1 in its own part we need
+                            to make $k - 1$ more parts out of the remaining $n - 1$ elements.
+                        \item
+                            If 1 is not in its own part then it is in some other part. We
+                            know there are exactly $k \npartk{n - 1}{k}$ partitions of this
+                            kind because any element of this kind is produced by the following
+                            two step process. First make partition the set $\Set{2, 3, \dots, n}$
+                            into $k$ parts. Then pick which of these $k$ parts 1 will be put into.
+                            The first step has $\npartk{n - 1}{k}$ options, while the second step
+                            has $k$ options. Thus by the rule of product there are $k \npartk{n - 1}{k}$
+                            such partitions.
+                    \end{itemize}
+                    Since this property partitions $S$ we can conclude that     
+                    $|S| = k \npartk{n - 1}{k} + \npartk{n - 1}{k - 1}$ via the rule of sum.
+            \end{itemize}
+            Thus we can conclude that $\npartk{n}{k} = k \npartk{n - 1}{k} + \npartk{n - 1}{k - 1}$
+            as required. \QED
         \end{proof}
     \section{Cantor-Schroeder-Bernstein Theorem}
         \begin{definition}
