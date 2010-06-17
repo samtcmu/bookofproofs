@@ -20,7 +20,7 @@
             is called a binomial coefficient.
         \end{definition}
         \begin{lemma}
-            $``\forall n \in \set{N} \ \forall k \in \union{[n]}{\Set{0}} \ 
+            $``\forall n \in \set{N} \ \forall k \in \union{[n]}{\Set{0}} \
             \binom{n}{k} = \binom{n - 1}{k} + \binom{n - 1}{k - 1}.$''
             \label{rec binom lemma}
         \end{lemma}
@@ -61,7 +61,7 @@
                 (a + b)^n = \underbrace{(a + b)(a + b) \cdots (a + b)}_{\mbox{$n$ terms}}
             \]
             To construct a term in the closed form of $(a + b)^n$ we must first choose the power
-            of $a$'s in the term, this value ranges from 0 to $n$. Assume we choose to have 
+            of $a$'s in the term, this value ranges from 0 to $n$. Assume we choose to have
             $i \in \union{[n]}{\Set{0}}$ $a$'s; this
             implies that we have $n - i$ $b$'s in the term. So now we just have to go through each
             of the $n$ binomial terms and choose if we will take an $a$ or $b$ from it. Thus we
@@ -79,49 +79,49 @@
                 \item
                     Base Case: Let $x, y \in \set{R}$ be given. We can clearly see that
                     \[
-                        (x + y)^0 = 1 = \binom{0}{0} x^0 y^{0 - 0} 
+                        (x + y)^0 = 1 = \binom{0}{0} x^0 y^{0 - 0}
                                   = \sum_{k = 0}^{0} \binom{0}{k} x^k y^{n - K}
                     \]
                     as required. Thus $\inductive{P}{0}$ is true.
                 \item
-                    Induction Step: Let $n \in \unionzero{\set{N}}$ and $x, y \in \set{R}$ 
+                    Induction Step: Let $n \in \unionzero{\set{N}}$ and $x, y \in \set{R}$
                     be given; assume $\inductive{P}{n}$ is true. We will now simply
                     compute $(x + y)^{n + 1}$ to establish that $\inductive{P}{n + 1}$ is
                     true.
                     \[
                         (x + y)^{n + 1} = (x + y)(x + y)^n
                     \]
-                    By the inductive hypothesis we can know that 
-                    $(x + y)^n = \sum_{k = 0}^n \binom{n}{k} x^k y^{n - k}$. Thus 
+                    By the inductive hypothesis we can know that
+                    $(x + y)^n = \sum_{k = 0}^n \binom{n}{k} x^k y^{n - k}$. Thus
                     substituting this gives us the following.
                     \begin{derivation}{=}
                         (x + y)^{n + 1} & (x + y)\dsum_{k = 0}^n \dbinom{n}{k} x^k y^{n - k} \\
-                                        & \dsum_{k = 0}^n \dbinom{n}{k} x^{k + 1} y^{n - k} + 
-                                          \dsum_{k = 0}^n \dbinom{n}{k} x^k y^{n - k + 1} 
+                                        & \dsum_{k = 0}^n \dbinom{n}{k} x^{k + 1} y^{n - k} +
+                                          \dsum_{k = 0}^n \dbinom{n}{k} x^k y^{n - k + 1}
                     \end{derivation}
                     We now take the last term out of the first summation and first term
                     out of the second summation.
                     \[
-                        \dsum_{k = 0}^{n - 1} \dbinom{n}{k} x^{k + 1} y^{n - k} + \dbinom{n}{n} x^{n + 1}y^0 + 
+                        \dsum_{k = 0}^{n - 1} \dbinom{n}{k} x^{k + 1} y^{n - k} + \dbinom{n}{n} x^{n + 1}y^0 +
                         \dbinom{n}{0} x^0y^{n + 1} + \dsum_{k = 1}^{n} \dbinom{n}{k}x^k y^{n - k + 1}
                     \]
                     We now note that $\binom{n}{n} = \binom{n}{0} = \binom{n + 1}{n + 1} = \binom{n + 1}{0} = 1$
                     and then re-index the first summation as follows.
                     \[
-                        \dsum_{k = 1}^{n} \dbinom{n}{k - 1} x^{k} y^{n - (k + 1)} + \dbinom{n + 1}{n + 1} x^{n + 1}y^0 + 
+                        \dsum_{k = 1}^{n} \dbinom{n}{k - 1} x^{k} y^{n - (k + 1)} + \dbinom{n + 1}{n + 1} x^{n + 1}y^0 +
                         \dbinom{n + 1}{0} x^0y^{n + 1} + \dsum_{k = 1}^{n} \dbinom{n}{k}x^k y^{n - k + 1}
                     \]
                     We can now combine the two summations
                     \[
-                        \binom{n + 1}{0} x^0y^{n + 1} + 
-                        \sum_{k = 1}^{n} \left(\binom{n}{k} + \binom{n}{k - 1}\right) x^{k} y^{(n + 1) - k)} + 
-                        \binom{n + 1}{n + 1} x^{n + 1}y^0 
+                        \binom{n + 1}{0} x^0y^{n + 1} +
+                        \sum_{k = 1}^{n} \left(\binom{n}{k} + \binom{n}{k - 1}\right) x^{k} y^{(n + 1) - k)} +
+                        \binom{n + 1}{n + 1} x^{n + 1}y^0
                     \]
                     We can now invoke lemma \ref{rec binom lemma} to simply $\binom{n}{k} + \binom{n}{k - 1}$
                     to $\binom{n + 1}{k}$.
                     \[
-                        \binom{n + 1}{0} x^0y^{n + 1} + 
-                        \sum_{k = 1}^{n} \binom{n + 1}{k}x^{k} y^{(n + 1) - k)} + 
+                        \binom{n + 1}{0} x^0y^{n + 1} +
+                        \sum_{k = 1}^{n} \binom{n + 1}{k}x^{k} y^{(n + 1) - k)} +
                         \binom{n + 1}{n + 1} x^{n + 1}y^0
                     \]
                     We now bring the two non-summation terms into the summation and conclude
@@ -134,7 +134,6 @@
             Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \unionzero{\set{N}}$
             as required. \QED
         \end{proof}
-    
         \begin{theorem}[Chairperson Identity]
             $``\forall n \in \set{N} \ \forall k \in [n] \ k \binom{n}{k} = n \binom{n - 1}{k - 1}$.''
         \end{theorem}
@@ -162,7 +161,7 @@
                     rule of product we can conclude that $|S| = k \binom{n}{k}$.
                 \item
                     We now count $S$ by first picking the chairperson and then from the
-                    remaining $n - 1$ people picking $k - 1$ to fill out the committee. 
+                    remaining $n - 1$ people picking $k - 1$ to fill out the committee.
                     We can make an element of $S$ by following this simple two step process:
                     \begin{enumerate}
                         \item
@@ -213,7 +212,7 @@
                     Now to count $S$ we partition it based on whether or not 1 is in
                     it's own part.
                     \begin{itemize}
-                        \item 
+                        \item
                             We know there are $\npartk{n - 1}{k - 1}$ partitions
                             where 1 is in its own part since after putting 1 in its own part we need
                             to make $k - 1$ more parts out of the remaining $n - 1$ elements.
@@ -227,7 +226,7 @@
                             has $k$ options. Thus by the rule of product there are $k \npartk{n - 1}{k}$
                             such partitions.
                     \end{itemize}
-                    Since this property partitions $S$ we can conclude that     
+                    Since this property partitions $S$ we can conclude that
                     $|S| = k \npartk{n - 1}{k} + \npartk{n - 1}{k - 1}$ via the rule of sum.
             \end{itemize}
             Thus we can conclude that $\npartk{n}{k} = k \npartk{n - 1}{k} + \npartk{n - 1}{k - 1}$
@@ -280,7 +279,7 @@
                     If $i \not\in f(i)$, then by definition of $S$ we know that $i \in S$; thus $f(i) \neq S$.
             \end{itemize}
             In either case we can clearly see that $f(i) \neq S$. Thus we can conclude that
-            $f$ is not a surjection (since it doesn't map anything to $S$), which is of course 
+            $f$ is not a surjection (since it doesn't map anything to $S$), which is of course
             a contradiction. Thus $\power{\set{N}}$ is uncountably infinite. \QED
 
             % To show that $\set{N}$ and $[0, 1)$ do not have the same size it suffices
@@ -309,15 +308,15 @@
             % We now construct $q \in [0, 1)$ as follows.
             % \begin{equation}
             %     q = \sum_{i = 1}^{\infty} B_i \cdot 10^{-i} = 0.B_1B_2B_3B_4\cdots \mbox{, where }
-            %     B_{i} = \left\{\begin{array}{cl} 
-            %                 1 & \mbox{, if $A_{i, i} \neq 1$} \\ 
+            %     B_{i} = \left\{\begin{array}{cl}
+            %                 1 & \mbox{, if $A_{i, i} \neq 1$} \\
             %                 2 & \mbox{, otherwise}
             %             \end{array}\right.
             % \end{equation}
             % Since we know that every decimal expansion corresponds to a real number, we know that
             % $q \in [0, 1)$. Thus we should be able to find $j \in \set{N}$ such that
-            % $f(j) = q$, but such a $j$ cannot exist because we know that $q$ will differ from $f(j)$ 
-            % in the $j^{th}$ decimal place $\forall j \in \set{N}$ by construction of $q$. 
+            % $f(j) = q$, but such a $j$ cannot exist because we know that $q$ will differ from $f(j)$
+            % in the $j^{th}$ decimal place $\forall j \in \set{N}$ by construction of $q$.
             % Thus $f$ cannot be surjective since $q$ is a real number between 0 and 1 that is not
             % in the image of $f$. Thus $f$ is not a bijection, which is of course a contradiction.
             % \QED
