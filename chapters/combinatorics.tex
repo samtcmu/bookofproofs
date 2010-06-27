@@ -3,7 +3,7 @@
 % date created: Fri Dec  5 16:07:32 EST 2008
 % description: The Combinatorics chapter of The Book of Proofs.
 
-% last modified: Thu Jun 17 16:09:16 EDT 2010
+% last modified: Sat Jun 26 21:57:38 EDT 2010
 
 \chapter{Combinatorics}
     \section{The Pigeonhole Principle}
@@ -180,13 +180,66 @@
         \end{proof}
     \section{Sterling Numbers}
         \begin{definition}
-            % Define Sterling Numbers of the First Kind.
+            Let $n \in \set{N}$ and $k \in \set{Z}$ such that $0 \le k \le n$. We define
+            \npermk{n}{k}, read $n$ perm $k$, to be the number of ways to partitions
+            an $n$-element set into $k$ cycles. Note that the cycle are treated as circular
+            lists so the order of elements in each of the cycles is important. These numbers are
+            called the Sterling Numbers of the First Kind.
         \end{definition}
         \begin{theorem}
             ``$\forall n \in \set{N} \ \forall k \in [n] \ \npermk{n}{k} = (n - 1) \npermk{n - 1}{k} + \npermk{n - 1}{k - 1}$.''
         \end{theorem}
         \begin{proof}
-            % TODO
+            Let $n \in \set{N}$ and $k \in [n]$ be given. We proceed via counting the set of all
+            partitions of $[n]$ into $k$ cycles in two ways. We define this set as follows
+            \[
+                S = \Set{\Set{C_1, C_2, \dots, C_k} \ \mid \
+                        \begin{array}{l}
+                            \subs{\Set{P_1, P_2, \dots, P_k}}{\setsub{\power{[n]}}{\Set{}}}, \\
+                            \forall i \in [k] \ C_i \mbox{ is a permutation of } P_i, \mbox{ and } \\
+                            \dunion_{i = 1}^{n} P_i = [n]
+                        \end{array}
+                }
+            \]
+            \begin{itemize}
+                \item
+                    We can clearly see that $S$ has \npermk{n}{k} elements by definition
+                    of the Sterling Numbers of the First Kind.
+                \item
+                    To count $S$ we partition it based on whether or not 1 is in it's
+                    own cycle.
+                    \begin{itemize}
+                        \item
+                            Since $1$ is in it's own cycle we now have to make $k - 1$
+                            cycles out of $n - 1$ elements. There are \npermk{n - 1}{k - 1}
+                            ways to do this by definition of the Sterling Numbers of
+                            the Second Kind.
+                        \item
+                            If 1 is not in its own cycle then it must be in some other cycle.
+                            We can make any element of $S$ where 1 is not in its own cycle
+                            using the following 3 step process.
+                            \begin{enumerate}
+                                \item
+                                    First take $\setsub{[n]}{\Set{1}}$ and partition it
+                                    into $k$ cycles.
+                                \item
+                                    Pick one of these $k$ cycles to have 1 in it.
+                                \item
+                                    Now place $1$ among the elements in the chosen cycle.
+                            \end{enumerate}
+                            There are clear \npermk{n - 1}{k} ways to do step 1. There
+                            are $n - 1$ ways to do steps 2 and 3. We can see this by noting
+                            that this is equivalent to choosing an element of \Set{2, 3, \dots, n}
+                            to have 1 come before it. We can now invoke the rule of product
+                            to conclude that there are $(n - 1) \npermk{n - 1}{k}$ such partitions
+                            of $[n]$ into cycles.
+                    \end{itemize}
+                    We can now invoke the rule of sum to conclude that  
+                    $|S| = (n - 1) \npermk{n - 1}{k} + \npermk{n - 1}{k - 1}$
+                    as required.
+            \end{itemize}
+            Thus we can conclude that $\npermk{n}{k} = (n - 1) \npermk{n - 1}{k} + \npermk{n - 1}{k - 1}$
+            as required. \QED
         \end{proof}
         \begin{definition}
             Let $n \in \set{N}$ and $k \in \set{Z}$ such that $0 \le k \le n$. We define
@@ -207,7 +260,7 @@
             \begin{itemize}
                 \item
                     We can clearly see that $S$ has \npartk{n}{k} elements by definition of
-                    the Sterling Number of the Second Kind.
+                    the Sterling Numbers of the Second Kind.
                 \item
                     Now to count $S$ we partition it based on whether or not 1 is in
                     it's own part.
