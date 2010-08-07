@@ -3,7 +3,7 @@
 % date created: Fri Dec  5 16:07:32 EST 2008
 % description: The Combinatorics chapter of The Book of Proofs.
 
-% last modified: Sat Jun 26 21:57:38 EDT 2010
+% last modified: Fri Aug  6 21:32:48 PDT 2010
 
 \chapter{Combinatorics}
     \section{The Pigeonhole Principle}
@@ -133,6 +133,95 @@
             \end{itemize}
             Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \unionzero{\set{N}}$
             as required. \QED
+        \end{proof}
+        \begin{theorem}
+            $``$Let $n$ and $k$ be positive integers. There are $\binom{n - 1}{k - 1}$ distinct
+            solutions to the equation $x_1 + x_2 + \cdots + x_k = n$ when the $x_i$'s are restricted
+            to being positive integers.''
+            \label{Pirates and Gold 1}
+        \end{theorem}
+        \begin{proof}
+            Let $n$ and $k$ be positive integers. Now interpret the equation
+            \begin{equation}
+                \label{Pirates and Gold Eqation}
+                x_1 + x_2 + \cdots + x_k = n
+            \end{equation}
+            as placing $n$ indistiguishable balls into $k$ distinguishable bins
+            (bins 1, 2, \dots, $k$). Now arbitrarily number the balls from $1$ to $n$ and
+            then place them in order on a line. Place a barrier between any two
+            consequitive balls; also place a barrier to the left of the first ball and
+            to the right of the last ball. We now number these barriers from $0$ to $n$, where
+            the barrier to the right of ball $i$ is barrier $i$ and barrier 0 is the
+            one to the left of ball $0$. This can be visualized in Figure \ref{Balls in a Row}.
+            \begin{figure}[H]
+                \centering
+                \[
+                    \mid_{0} \ball_1 \mid_1 \ball_2 \mid_2 \cdots \mid_{n - 1} \ball_n \mid_{n}
+                \]
+                \caption{This image represents the $n$ balls and the $n + 1$ barriers. Ball $i$
+                         is represeted as $\ball_i$ and barrier $i$ is represented as $\mid_i$.}
+                \label{Balls in a Row}
+            \end{figure}
+            Now to generate an assignment to the $x_i$'s we're simply going to pick $k - 1$
+            of the $n - 1$ eligible barriers; say the indices of these barriers are
+            $b_1, b_2, \dots, b_{k - 1}$. We will put all of the balls between barrier
+            $b_{i - 1}$ and barrier $b_i$ into bin $i$. Barriers 0 and $n$ are not eligible to be
+            chosen because if we pick these barriers we will lose a region and we need to define
+            $k$ regions as there are $k$ bins. For convenience sake we will define $b_0 = 0$ and
+            $b_k = n$. Now we can define our $x_i$'s (the number of balls in bin $i$) in terms
+            of our $b_i$'s as follows:
+            \begin{equation}
+                x_i = b_i - b_{i - 1} 
+            \end{equation}
+            Each of the $x_i$'s is always positive as required. Every valid solution can be
+            generated in this way. So all we have to do now is count how many ways we can pick
+            $b_1, b_2, \dots, b_{k - 1}$. Well we have $n - 1$ possible barriers to pick from
+            (barriers 1 through $n - 1$) and we have to pick $k - 1$ of them to define $k$ regions,
+            i.e. we are picking $k - 1$ elements from a $n - 1$ element set. Thus there are exactly
+            $\binom{n - 1}{k - 1}$ ways to pick the barriers, and thus exactly $\binom{n - 1}{k - 1}$
+            distinct solutions to equation (\ref{Pirates and Gold Eqation}) as required. \QED
+        \end{proof}
+        \begin{corollary}[Pirates and Gold]
+            $``$Let $n$ and $k$ be positive integers. There are $\binom{n + k - 1}{k - 1}$ distinct
+            solutions to the equation $x_1 + x_2 + \cdots + x_k = n$ when the $x_i$'s are restricted
+            to being non-negative integers.''
+            \label{Pirates and Gold}
+        \end{corollary}
+        \begin{note}
+            Corollary \ref{Pirates and Gold} is called Pirates and Gold because it represents
+            the number of ways to distribute $n$ indistinguishable bars of gold to $k$
+            distinguishable pirates.
+        \end{note}
+        \begin{proof}
+            The only way in which this is different from Theorem \ref{Pirates and Gold 1}
+            is that the $x_i$'s are now allowed to equal 0. To get around this we can
+            guarantee each of the bins at least 1 ball and then remove 1 ball from each bin
+            after we've distributed the balls to the bins. In particular define $y_i$ for
+            $i = 1, 2, \dots, k$ as follows
+            \begin{equation}
+                y_i = x_i + 1
+            \end{equation}
+            Each solution the equation
+            \begin{equation}
+                x_1 + x_2 + \cdots + x_k = n
+                \label{Pirates and Gold equation 2}
+            \end{equation}
+            is now mapped to a solution to the equation
+            \begin{equation}
+                y_1 + y_2 + \cdots + y_k = n + k
+                \label{Pirates and Gold equation 1}
+            \end{equation}
+            Since the $x_i \ge 0$ we know that $y_i = x_i + 1 \ge 1$. Thus we can use Theorem
+            \ref{Pirates and Gold 1} to conclude that there are exactly $\binom{n + k - 1}{k - 1}$
+            distinct solutions to equation (\ref{Pirates and Gold equation 1}). Since each solution to equation
+            (\ref{Pirates and Gold equation 1}) can be mapped to a solution to equation
+            (\ref{Pirates and Gold equation 2}), by taking
+            \begin{equation}
+                x_i = y_i - 1
+            \end{equation}
+            we can conclude that there are $\binom{n + k - 1}{k - 1}$ distinct solutions
+            to equation (\ref{Pirates and Gold equation 2}) when the $x_i$'s all non-negative
+            integers. \QED
         \end{proof}
         \begin{theorem}[Chairperson Identity]
             $``\forall n \in \set{N} \ \forall k \in [n] \ k \binom{n}{k} = n \binom{n - 1}{k - 1}$.''
@@ -389,13 +478,6 @@
         %     is larger than $\set{N}$ in some sense, we can conclude that $\set{N}$
         %     and $\set{R}$ do not have the same cardinality. \QED
         % \end{proof}
-    \section{Pirates and Gold}
-        \begin{theorem}
-            % TODO
-        \end{theorem}
-        \begin{proof}
-            % TODO
-        \end{proof}
     \section{Inclusion Exclusion Theorem}
         \begin{theorem}
             % TODO
