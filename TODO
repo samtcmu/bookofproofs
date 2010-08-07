@@ -3,7 +3,7 @@ title: TODO
 date created: Sat Dec 13 12:04:47 EST 2008
 description: List of things to do for The Book of Proofs.
 
-last modified: Sat Jun 26 21:57:38 EDT 2010
+last modified: Fri Aug  6 21:34:40 PDT 2010
 
   X 1. Figure out how to use BibTex.
     2. Number Theory Chapter
@@ -26,7 +26,7 @@ last modified: Sat Jun 26 21:57:38 EDT 2010
         j. State the Euclidean Algorithm and the Extended Euclidean Algorithm.
         k. Prove Lame's Theorem on the runtime of the Euclidean Algorithm.
         l. Finish the section on Mobius Inversion.
-        m. Prove that r/p has a period of p - 1 in base b, when b bis a
+        m. Prove that r/p has a period of p - 1 in base b, when b is a
            generator of the multiplicative group modulo p.
     3. Discrete Probability
       X a. Finish the proof for var[pareto[l]] = l.
@@ -43,7 +43,7 @@ last modified: Sat Jun 26 21:57:38 EDT 2010
       X a. Reprove that linear recurrences have rational generating functions.
         b. Prove the Inclusion Exclusion Theorem.
         c. Prove the Pigeon Hole Principle.
-        d. Prove the Priate and Gold equality.
+      X d. Prove the Priates and Gold.
       X e. Prove the Chairperson Identity.
       X f. Prove the Sterling Number recurrences.
           X 1. First Kind.
