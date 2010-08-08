@@ -307,7 +307,7 @@
             \]
             as required. \QED
         \end{proof}
-    \section{Baye's Rule}
+    \section{Bayes' Rule}
         \begin{theorem}
             $``\forall \subs{P}{\power{\Omega}} \forall \subs{A}{\Omega} \ \forall E \in P$
             if $P$ is a probabilistic partition and $\pr{A} \neq 0$, then 
@@ -386,7 +386,7 @@
             \[
                 Y(l) = c \cdot X(l)
             \]
-            We now compte the expected value of $Y$ as follows
+            We now compute the expected value of $Y$ as follows
             \begin{derivation}{=}
                 \ex{Y} & \dsum_{l \in \Omega} Y(l) \pr{l} & \just{By definition of expected value.}
                        & \dsum_{l \in \Omega} c X(l) \pr{l} & \just{By definition of $Y$.}
@@ -466,7 +466,7 @@
                     We will now compute $\ex{(X + Y)^2}$.
                     \begin{derivation}{=}
                         \ex{(X + Y)^2} & \ex{X^2 + 2XY + Y^2} \\
-                                       & \ex{X^2} + 2\ex{XY} + \ex{Y^2} & \just{By Linearity of Exectation.}
+                                       & \ex{X^2} + 2\ex{XY} + \ex{Y^2} & \just{By Linearity of Expectation.}
                                        & \ex{X^2} + 2\ex{X}\ex{Y} + \ex{Y^2} & \just{By $\ind{X}{Y}$.}
                     \end{derivation}
             \end{itemize}
@@ -586,7 +586,7 @@
             $t$ standard deviations of its expected value.
 
             By definition of the Binomial distribution we know that there is a sequence of
-            independent $\bern{\frac{1}{2}}$ random varialbes $X_1, \dots, X_n$ such that
+            independent $\bern{\frac{1}{2}}$ random variables $X_1, \dots, X_n$ such that
             \begin{equation}
                 X = \sum_{i = 1}^{n} X_i
             \end{equation}
@@ -892,7 +892,7 @@
                                                    \dfrac{e^{-\l_2} \ \l_2^{n - i}}{(n - i)!} \\
                                & e^{-(\l_1 + \l_2)}\dsum_{i = 0}^{n} \dfrac{\l_1^i}{i!} \cdot \dfrac{\l_2^{n - i}}{(n - i)!}
             \end{derivation}
-            We can now multiply the lefthand side of the inequality by $1$ in the form
+            We can now multiply the left-hand side of the inequality by $1$ in the form
             of $\frac{n!}{n!}$ as follows
             \begin{derivation}{=}
                 \pr{X + Y = n} & \dsum_{i = 0}^{n} \dfrac{e^{-\l_1} \ \l_1^i}{i!} \cdot

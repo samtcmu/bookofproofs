@@ -652,10 +652,10 @@
             \]
             We can clearly see that for all $2 \le i \le (n + 1)$ that $(n + 1)! + i$
             is not prime because we can factor $i$ out of the sum. Thus we have a sequence of $n$
-            consequtive natural numbers that are composite, we can choose $k \in \set{N}$ such
+            consecutive natural numbers that are composite, we can choose $k \in \set{N}$ such
             that $p_k$ is the largest prime smaller than $(n + 1)! + 1$ and $p_{k + 1}$ is the
             smallest prime larger than $(n + 1)! + (n + 1)$. We know such a $k$ exists since there
-            are infintely many primes (theorem \ref{Infinitely Many Primes}). Thus we have found
+            are infinitely many primes (theorem \ref{Infinitely Many Primes}). Thus we have found
             $k \in \set{N}$ such that $p_{k + 1} - p_k \ge n$. Thus there are arbitrarily large
             prime gaps as required. \QED
         \end{proof}
@@ -904,7 +904,7 @@
                 \item
                     We first show that if $p$ is prime, then $\forall x \in \set{Z} \
                     (x + a)^p \equiv x^p + a \mod p$. So assume that $p$ is prime and let
-                    $x \in \set{Z}$ be given. We now compute $(x + a)^p$ by invoking the 
+                    $x \in \set{Z}$ be given. We now compute $(x + a)^p$ by invoking
                     the Binomial Theorem (theorem \ref{Binomial Theorem}) as follows.
                     \begin{derivation}{\equiv}
                         (x + a)^p & \dsum_{k = 0}^{p} \binom{p}{k} x^k a^{p - k} \mod p \\
@@ -1149,8 +1149,8 @@
         \end{proof}
     \section{The RSA Cryptosystem}
         \begin{definition}
-            The \emph{RSA Cryptosystem} is a protocol which allows an entity to recieve
-            encrypted messages from another entity. Say Bob would like to be able to recieve
+            The \emph{RSA Cryptosystem} is a protocol which allows an entity to receive
+            encrypted messages from another entity. Say Bob would like to be able to receive
             a message from anyone else in the world. Bob can follow the following protocol
             to allow others to send him messages.
             \begin{itemize}
@@ -1172,7 +1172,7 @@
                             key is $(n, e)$. Bob must keep his private key secret, but 
                             can publish his private key to the rest of the world.
                     \end{enumerate}
-                    Now Bob is ready to recieve messages from anyone else in the world.
+                    Now Bob is ready to receive messages from anyone else in the world.
                 \item
                     Now if Alice wants to securely send Bob a message she simply follows 
                     the following steps.
@@ -1198,7 +1198,7 @@
                     \end{enumerate}
                     Using this method Alice can send any message she wants to Bob.
                 \item
-                    Once Bob recieves Alice's message over some sort of network connection
+                    Once Bob receives Alice's message over some sort of network connection
                     he can decrypt her message by following these steps.
                     \begin{enumerate}
                         \item
@@ -1220,14 +1220,14 @@
                             where $k = \ceil{\frac{\abs{m}}{\ceil{\lg n}}}$ is the number of message blocks
                             and $|$ denote concatenation.
                     \end{enumerate}
-                    Bob has now successfully recieved Alice's message.
+                    Bob has now successfully received Alice's message.
             \end{itemize}
             \begin{claim}
                 $``$If Alice and Bob follow the protocol outlined above then Bob
-                will always successfully recieve Alice's message.''
+                will always successfully receive Alice's message.''
             \end{claim}
             \begin{proof}
-                Assume that Bob want to recieve a message from Alice, so he generates a
+                Assume that Bob want to receive a message from Alice, so he generates a
                 public-private key pair $(n, e)$ and $(p, q, d)$ such that
                 \begin{align}
                     p, q & \in \set{P} \\
@@ -1237,15 +1237,15 @@
                     ed & \equiv 1 \mod \eulerphi{n}
                 \end{align}
                 Now assume that Alice sends Bob a message, $m$, using the RSA protocol. To show
-                that Bob will always recieve her message unaltered it suffices to show that
-                Bob will recieve any block of size $k = \ceil{\frac{\abs{m}}{\ceil{\lg n}}}$.
+                that Bob will always receive her message unaltered it suffices to show that
+                Bob will receive any block of size $k = \ceil{\frac{\abs{m}}{\ceil{\lg n}}}$.
 
-                Let $i \in [k]$ be given. We now want to show that block $m_i$ of Alices message
-                will always be recieved by Bob. If Alice is following the protocol then she will send
+                Let $i \in [k]$ be given. We now want to show that block $m_i$ of Alice's message
+                will always be received by Bob. If Alice is following the protocol then she will send
                 \begin{equation}
                     c_i = E_{n, e}(m_i) = m_i^e \mod n
                 \end{equation}
-                to Bob. Now when Bob recieves the cipher text block $c_i$ from Alice, then if
+                to Bob. Now when Bob receives the cipher text block $c_i$ from Alice, then if
                 he is following the protocol he will decrypt it as follows:
                 \begin{equation}
                     \label{rsa decrypt}
@@ -1264,7 +1264,7 @@
                 from Modus Ponens.
                 \begin{itemize}
                     \item
-                        Let $P \in \set{P}$ be an aribtrary prime number. We now show that
+                        Let $P \in \set{P}$ be an arbitrary prime number. We now show that
                         $D_{n, d}(c_i) \equiv m_i \mod P$. There are two cases: either $P$ is
                         a divisor of $m_i$ or not.
                         \begin{itemize}
@@ -1347,7 +1347,7 @@
             $\sum_{i = 0}^{k} (-1)^{i} \cdot n_i$.''
         \end{theorem}
         \begin{proof}
-            Let $b, n \in \set{N}$ be given. Consider the base $b$ represenation of $n$
+            Let $b, n \in \set{N}$ be given. Consider the base $b$ representation of $n$
             \[
                 n = \sum_{i = 0}^{k} n_i \cdot b^i
             \]
@@ -1544,7 +1544,7 @@
             $``$Let \cf{q_t}{t \ge 0} be a continued fraction (i.e.
             \seq{q_t}{t \ge 0} is a sequence of integers). The $n^{th}$
             convergent of \cf{q_t}{t \ge 0}, $P_n / Q_n$, is rational;
-            futhermore, $\gcd{P_n}{Q_n} = 1$, so $P_n / Q_n$ is in lowest
+            furthermore, $\gcd{P_n}{Q_n} = 1$, so $P_n / Q_n$ is in lowest
             terms.''
         \end{corollary}
         \begin{proof}
@@ -1594,7 +1594,7 @@
             $d_k \cdots d_1$ is a base $q$ representation of $n$.
         \end{definition}
         \begin{theorem}
-            $``\forall q \in \set{N} \ \forall n \in \set{Z} \ n$ has a unique base $q$ represenation.''
+            $``\forall q \in \set{N} \ \forall n \in \set{Z} \ n$ has a unique base $q$ representation.''
         \end{theorem}
         \begin{proof}
             Let $n \in \set{Z}$ and $q \in \set{N}$ be given. If $n = 0$ we know that
