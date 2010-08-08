@@ -3,7 +3,7 @@
 % date created: Tue Dec  2 21:04:54 EST 2008
 % description: The Number Theory chapter of The Book of Proofs.
 
-% last modified: Sat Jun  5 15:02:16 EDT 2010
+% last modified: Sat Aug  7 22:45:28 PDT 2010
 
 \chapter{Number Theory}
     \section{The Division Algorithm}
@@ -1646,6 +1646,91 @@
             by the previous Lemma we can conclude that $b$ must also be even. This of course implies
             that the $\gcd{a}{b} \ge 2 > 1$, thus $\dfrac{a}{b}$ was not a lowest terms representation
             of $\sqrt{2}$. This is of course a contradiction. \QED
+        \end{proof}
+        \begin{definition}
+            Let $n$ be a positive integer. We say that $n$ is \emph{square-free} if and only if
+            $\forall p \in \set{P} \ \ndivides{p^2}{n}$.
+        \end{definition}
+        \begin{lemma}
+            $``$Let $n$ be a square-free integer greater than 1. $\forall a \in \set{N}$
+            if $a^2$ is divisible by $n$, then $a$ is divisible by $n$.''
+            \label{Square root of n irrational proof lemma}
+        \end{lemma}
+        \begin{proof}
+            We proceed via contradiction. So let $n$ be a square-free integer greater than 1.
+            Now let $a \in \set{N}$ be given such that $a^2$ is divisible by $n$, but
+            $a$ is not divisible by $n$. Now consider the \emph{unique} prime factorizations
+            of $a$ and $n$. Since $a$ is not divisible by $n$, we know that there is a prime
+            number, $p$, that is a factor of $n$ but not a factor of $a$. This comes from the fact
+            the $n$ is square-free otherwise the problem could be not having enough copies of a
+            particular prime, as is the case for $n = 12$ and $a = 6$. In order for $a^2$
+            to be divisible by $n$ it has to have a factor of $p$. This is impossible though
+            because the only primes in the prime factorization of $a^2$ are those that are
+            in the prime factorization of $a$. Thus $a^2$ is not divisible by $n$. This is
+            of course a contradiction. \QED
+        \end{proof}
+        \begin{theorem}
+            $``$Let $n$ be an integer greater than 1. If $n$ is square-free, then $\sqrt{n} \not\in \set{Q}$.''
+            \label{Square Root of Square Free Irrational}
+        \end{theorem}
+        \begin{proof}
+            As with the square root of 2, we proceed via contradiction. So assume that $n$
+            is a square-free positive integer greater than 1 and that $\sqrt{n}$ is rational.
+            In particular choose integers $a$ and $b$ such that
+            \begin{align}
+                \label{Square-root irrational proof eq 1}
+                \sqrt{n} &= \frac{a}{b} \\
+                \gcd{a}{b} &= 1
+                \label{Square-root irrational proof eq 2}
+            \end{align}
+            This simply requires $\frac{a}{b}$ to be in lowest terms. We will now contradict
+            that $a$ and $b$ are relatively prime. First we square both sides of equation
+            (\ref{Square-root irrational proof eq 1}) and deduce
+            \[
+                \sqrt{n}^2 = \left( \frac{a}{b}\right)^2 \then
+                n = \frac{a^2}{b^2} \then
+                a^2 = nb^2
+            \]
+            Thus we can see that $a^2$ is divisible by $n$. Now by Lemma
+            \ref{Square root of n irrational proof lemma} we can conclude that $a$ is
+            also divisible by $n$. Thus there must by an integer $c$ such that
+            $a = nc$. We now plug back and continue our deduction
+            \[
+                a^2 = nb^2 \then
+                (nc)^2 = nb^2 \then
+                n^2c^2 = nb^2 \then
+                b^2 = nc^2
+            \]
+            Thus we can now see that $b^2$ is also divisible by $n$. Again by Lemma
+            \ref{Square root of n irrational proof lemma} we can conclude that $b$ too
+            is divisible by $n$. In particular we can see that $\gcd{a}{b} \ge n > 1$.
+            This is of course contradicts
+            equation (\ref{Square-root irrational proof eq 2}).
+            Thus $\sqrt{n}$ is not rational. \QED
+        \end{proof}
+        \begin{corollary}
+            $``$Let $n$ be a positive integer. If $n$ is not a perfect square, then
+            $\sqrt{n} \not\in \set{Q}$.''
+        \end{corollary}
+        \begin{proof}
+            Let $n$ be a positive integer that is not a perfect square. We proceed by taking
+            the ``square part'' out of $n$ as follows. Let $s$ be the largest positive integer
+            such that $n$ is not divisible by $s^2$, this is the ``square part'' of $n$. We
+            now note that for any integer $a \ge 1$ if $n$ is divisible by $a^2$, then
+            $s$ is divisible by $a$. Otherwise $s$ can be increased to $sa$; but we chose $s$
+            to be maximal. We now rewrite $n$ using $s$ and $f$ (the square-free part of $n$)
+            \begin{equation}
+                n = s^2 f
+            \end{equation}
+            We now note that $f > 1$ since $n$ is not a perfect square. Now take the square
+            root of the previous equation
+            \begin{equation}
+                \sqrt{n} = s \sqrt{f}
+            \end{equation}
+            Since $f$ was chosen to be square-free, $\sqrt{f}$ is not rational by
+            Theorem \ref{Square Root of Square Free Irrational}. Since the irrational real numbers
+            are closed under multiplication by a rational we can conclude that $n = s \sqrt{f}$
+            is not rational. \QED
         \end{proof}
     \section{$e$ is Irrational}
         \begin{definition}
