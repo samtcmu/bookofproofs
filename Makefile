@@ -3,7 +3,7 @@
 # date created: Sat Nov 22 10:19:19 EST 2008
 # description: Handles the compilation of The Book of Proofs.
 
-# last modified: Fri Apr 16 17:11:11 EDT 2010
+# last modified: Mon Aug  9 00:10:05 PDT 2010
 
 # LaTeX compilation macros.
 LATEX = pdflatex
@@ -42,7 +42,7 @@ www: $(TITLE).pdf
 	scp $(WWW)/projects/$(TITLE).pdf $(ANDREW):www/projects
 	scp $(WWW)/projects/$(TITLE).pdf $(ATEMI):public_html/projects
 
-all: $(TITLE).pdf www andrew backup
+all: $(TITLE).pdf www backup
 
 backup: clean
 	if [ -s $(BACKUP) ]; then cp -r ~/private/math $(BACKUP)/documents; else printf "########## ERROR: $(BACKUP) not connected!!\n"; fi
