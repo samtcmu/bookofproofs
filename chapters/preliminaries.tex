@@ -62,7 +62,7 @@
             $``$The function $f(x) = x(1 - x)$ is maximized when $x = 1 - x$.''
         \end{corollary}
         \begin{proof}
-            Let $x \in \set{R}$ be given. By theorem \ref{AGM Inequality 1} we can conclude
+            Let $x \in \set{R}$ be given. By \TheoremRef{AGM Inequality 1} we can conclude
             \[
                 x(1 - x) \le \left(\frac{x + 2}{2}\right)^2
             \]
@@ -78,7 +78,7 @@
             furthermore equality holds only when $x = y$.''
         \end{theorem}
         \begin{proof}
-            Let $x, y \ge 0$ be given. By theorem \ref{AGM Inequality 1} we can conclude
+            Let $x, y \ge 0$ be given. By \TheoremRef{AGM Inequality 1} we can conclude
             \[
                 xy \le \left(\frac{x + y}{2}\right)^2
             \]
@@ -95,12 +95,12 @@
                 \label{AGM 2}
                 \frac{2xy}{x + y} \le \sqrt{xy}
             \end{equation}
-            Combining equations (\ref{AGM 1}) and (\ref{AGM 2}) we can conclude that
+            Combining \equationRef{AGM 1} and \equationRef{AGM 2} we can conclude that
             \[
                 \frac{2xy}{x + y} \le \sqrt{xy} \le \frac{x + y}{2}
             \]
             Finally we note that the equalities in this equation hold only when $x = y$
-            since they were derived from theorem \ref{AGM Inequality 1}. \QED
+            since they were derived from \TheoremRef{AGM Inequality 1}. \QED
         \end{proof}
     \section{The Principle of Mathematical Induction}
         \begin{theorem}[The Principle of Mathematical Induction]
@@ -204,7 +204,7 @@
             \[
                 \sum_{i = 0}^{\infty} a \cdot \rho^i = a \sum_{i = 0}^{\infty} \rho^i
             \]
-            We can now apply Theorem \ref{Close Form of Geometric Series} to conclude
+            We can now apply \TheoremRef{Close Form of Geometric Series} to conclude
             that
             \[
                 \sum_{i = 0}^{\infty} a \cdot \rho^i = a \frac{1}{1 - \rho} = \frac{a}{1 - \rho}

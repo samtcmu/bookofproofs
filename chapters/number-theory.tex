@@ -102,7 +102,7 @@
         % TODO State the Euclidean Algorithm and give C or ML code that implements
         %      both the Euclidean and the Extended Euclidean Algorithm.
         \begin{algorithm}
-            Theorem \ref{EA Basis} gives us a tool for designing an algorithm for computing the greatest
+            \TheoremRef{EA Basis} gives us a tool for designing an algorithm for computing the greatest
             common divisor of two integers. This algorithm is generally credited to Euclid and is thus called
             the Euclidean Algorithm.
             \begin{figure}[H]
@@ -189,7 +189,7 @@
         \end{lemma}
         \begin{proof}
             Let $a, b \in \set{Z}$ be given such that $\gcd{a}{b} = 1$. 
-            We can now invoke theorem \ref{lineardiophantinegcd}
+            We can now invoke \TheoremRef{lineardiophantinegcd}
             to conclude that $\exists x_0, y_0 \in \set{Z}$ such that $ax_0 + by_0 = \gcd{a}{b} = 1$.
             We now define $T$ as follows
             \[
@@ -221,20 +221,20 @@
                         \label{LDE All Solutions equation 2}
                     \end{equation}
                     Since $\divides{a}{a(x - x_0)}$ we can conclude that $\divides{a}{b(y_0 - y)}$.
-                    Now since $a$ and $b$ are relatively prime  we can invoke lemma \ref{FTA lemma 2}
+                    Now since $a$ and $b$ are relatively prime  we can invoke \LemmaRef{FTA lemma 2}
                     to conclude that $\divides{a}{(y_0 - y)}$, i.e. $\dfrac{y_0 - y}{a} \in \set{Z}$. 
-                    We can now choose $k = \dfrac{y_0 - y}{a}$ and then rearrange equation 
-                    (\ref{LDE All Solutions equation 1}) as follows
+                    We can now choose $k = \dfrac{y_0 - y}{a}$ and then rearrange
+                    \equationRef{LDE All Solutions equation 1} as follows
                     \[
                         x = x_0 + b\left(\frac{y_0 - y}{a}\right) = x_0 + bk
                     \]
-                    To find a similar form for $y$ we can re-arrange (\ref{LDE All Solutions equation 1})
-                    as follows
+                    To find a similar form for $y$ we can re-arrange
+                    \equationRef{LDE All Solutions equation 1} as follows
                     \begin{equation}
                         y = y_0 + a\left(\frac{x_0 - x}{b}\right)
                         \label{LDE All Solutions equation 3}
                     \end{equation}
-                    We can now divide both sides of equation (\ref{LDE All Solutions equation 2}) by
+                    We can now divide both sides of \equationRef{LDE All Solutions equation 2} by
                     $ab$ to conclude that
                     \[
                         \frac{x - x_0}{b} = \frac{y_0 - y}{a} = k
@@ -244,8 +244,8 @@
                         \frac{x_0 - x}{b} = -k 
                         \label{LDE All Solutions equation 4}
                     \end{equation}
-                    Thus we can substitute equation (\ref{LDE All Solutions equation 4}) into
-                    equation (\ref{LDE All Solutions equation 3}) to conclude that
+                    Thus we can substitute \equationRef{LDE All Solutions equation 4} into
+                    \equationRef{LDE All Solutions equation 3} to conclude that
                     \[
                         y = y_0 - ak
                     \]
@@ -261,7 +261,7 @@
             k \in \set{Z}}$.''
         \end{theorem}
         \begin{proof}
-            Let $a, b \in \set{Z}$ be given. We can now invoke theorem \ref{lineardiophantinegcd}
+            Let $a, b \in \set{Z}$ be given. We can now invoke \TheoremRef{lineardiophantinegcd}
             to conclude that $\exists x_0, y_0 \in \set{Z}$ such that $ax_0 + by_0 = \gcd{a}{b}$.
             We now define $T$ as follows
             \[
@@ -269,7 +269,7 @@
                          \mid k \in \set{Z}}
             \]
             We now let $a' = \dfrac{a}{\gcd{a}{b}}$ and $b' = \dfrac{b}{\gcd{a}{b}}$. Since
-            $\gcd{a'}{b'} = 1$ we can invoke lemma \ref{Linear Diophantine Equations All Solutions Lemma} 
+            $\gcd{a'}{b'} = 1$ we can invoke \LemmaRef{Linear Diophantine Equations All Solutions Lemma} 
             to conclude that $S_{a', b'} = T$. We now finish off the proof by showing that $S_{a, b} = S_{a', b'}$
             as follows.
             \begin{derivation}{\iff}
@@ -306,7 +306,7 @@
                 \item
                     We first want to show $\subs{\nZ{n}}{(a, b)}$, so let $d \in \nZ{n}$ be
                     given. By definition of $\nZ{n}$ we know $\exists k \in \set{Z}$ such
-                    that $d = nk$. By theorem \ref{lineardiophantinegcd} we know $\exists
+                    that $d = nk$. By \TheoremRef{lineardiophantinegcd} we know $\exists
                     x, y \in \set{Z}$ such that $ax + by = n$. We can simply multiply that
                     equation by $k$ and find that $a(xk) + b(yk) = nk = d$. Thus we can choose
                     $x' = xk$ and $y' = yk$ to find a linear combination of $a$ and $b$ equal to
@@ -351,11 +351,11 @@
         \end{lemma}
         \begin{proof}
             Let $a, b, q \in \set{Z}$ be given such that $\gcd{a}{b} = 1$ and $\divides{a}{qb}$.
-            By corollary \ref{diophantine inverse} $\exists x, y \in \set{Z}$ such that
+            By \CorollaryRef{diophantine inverse} $\exists x, y \in \set{Z}$ such that
             $ax + by = 1$. If we multiply this equation by $q$ we can conclude that
             $qax + qby = q$. We now note that $\divides{a}{qax}$ since $\frac{qax}{a} = qx \in \set{Z}$
             and $\divides{a}{qby}$ since $\divides{a}{qb}$ by construction. Thus by
-            lemma \ref{FTA lemma 1} we can conclude that $\divides{a}{qax + qby}$, which of course
+            \LemmaRef{FTA lemma 1} we can conclude that $\divides{a}{qax + qby}$, which of course
             implies that $\divides{a}{q}$ as required. \QED
         \end{proof}
         \begin{lemma}
@@ -385,7 +385,7 @@
                         \item
                             If $\ndivides{p}{a_{k + 1}}$ we know that $\gcd{p}{a_{k + 1}} = 1$
                             since $p$ is prime. Since we know that $\divides{p}{a_{k + 1} \prod_{i = 1}^{k} a_i}$
-                            we can invoke lemma \ref{FTA lemma 2} to conclude that $\divides{p}{\prod_{i = 1}^k a_i}$.
+                            we can invoke \LemmaRef{FTA lemma 2} to conclude that $\divides{p}{\prod_{i = 1}^k a_i}$.
                             We can now invoke the $\inductive{P}{k}$ to conclude that $\exists i \in [k]$
                             such that $\divides{p}{a_i}$.
                     \end{itemize}
@@ -494,11 +494,11 @@
                             Since $n \ge 1$ we know $n + 1 \ge 2$; thus we can conclude that neither
                             $k$ or $l$ are zero since $n + 1 \neq 1$ and the product of zero primes
                             is defined to be 1. Now, since $\divides{p_1}{n + 1}$ we can conclude
-                            that $\divides{p_1}{\prod_{i = 1}^{l} q_i}$. We can now invoke lemma
-                            \ref{FTA Lemma 3} to conclude $\exists i \in [l]$ such that $\divides{p_1}{q_i}$.
+                            that $\divides{p_1}{\prod_{i = 1}^{l} q_i}$. We can now invoke
+                            \LemmaRef{FTA Lemma 3} to conclude $\exists i \in [l]$ such that $\divides{p_1}{q_i}$.
                             Since $q_i$ is prime its only divisors are $1$ and $q_i$. Since $p_1$
                             is also prime we know that $p_1 \neq 1$; thus $p_1 = q_i$.
-                            We can now divide equation (\ref{FTA equation 1}) by $p_1$ and then
+                            We can now divide \equationRef{FTA equation 1} by $p_1$ and then
                             invoke $\inductive{P}{\frac{n + 1}{p_1}}$ to conclude that $\frac{n + 1}{p_1}$
                             has a unique prime factorization. Thus
                             we can conclude that $k = l$ and each of the $p_j$'s in
@@ -589,9 +589,9 @@
                 \bar{a}b \equiv \bar{a}\bar{b} \mod n
                 \label{Modular Arithmetic equation 2}
             \end{equation}
-            By lemma \ref{Congruence Equivalence Relation} we know that congruence modulo $n$
-            is transitive. Thus we can invoke transitivity of congruence on equations 
-            (\ref{Modular Arithmetic equation 1}) and (\ref{Modular Arithmetic equation 2})
+            By \LemmaRef{Congruence Equivalence Relation} we know that congruence modulo $n$
+            is transitive. Thus we can invoke transitivity of congruence on
+            \equationRef{Modular Arithmetic equation 1} and \equationRef{Modular Arithmetic equation 2}
             so conclude that
             \[
                 ab \equiv \bar{a}\bar{b} \mod n
@@ -655,7 +655,7 @@
             consecutive natural numbers that are composite, we can choose $k \in \set{N}$ such
             that $p_k$ is the largest prime smaller than $(n + 1)! + 1$ and $p_{k + 1}$ is the
             smallest prime larger than $(n + 1)! + (n + 1)$. We know such a $k$ exists since there
-            are infinitely many primes (theorem \ref{Infinitely Many Primes}). Thus we have found
+            are infinitely many primes (\TheoremRef{Infinitely Many Primes}. Thus we have found
             $k \in \set{N}$ such that $p_{k + 1} - p_k \ge n$. Thus there are arbitrarily large
             prime gaps as required. \QED
         \end{proof}
@@ -670,7 +670,7 @@
             $\divides{b}{n}$. By definition of divisibility $\frac{n}{a}, \frac{n}{b} \in \set{Z}$.
             We now let $c = \frac{n}{a}$ and $d = \frac{n}{b}$, i.e. $n = ac = bd$. Since $\divides{a}{n}$
             we know that $\divides{a}{bd}$. Since $\gcd{a}{b} = 1$ we know that $\divides{a}{d}$ by 
-            lemma \ref{FTA lemma 2}. Thus by definition of divisibility $\frac{d}{a} = \frac{n}{ab} \in \set{Z}$.
+            \LemmaRef{FTA lemma 2}. Thus by definition of divisibility $\frac{d}{a} = \frac{n}{ab} \in \set{Z}$.
             This of course implies that $\divides{ab}{n}$ as required. \QED
         \end{proof}
         \begin{corollary}
@@ -688,7 +688,7 @@
             \end{array}\]
             \begin{itemize}
                 \item
-                    Base Case: If $k = 2$ we know $\inductive{P}{2}$ is true by lemma \ref{CRT uniquness lemma}.
+                    Base Case: If $k = 2$ we know $\inductive{P}{2}$ is true by \LemmaRef{CRT uniquness lemma}.
                 \item
                     Induction Step: Let $k \in \set{N}$ be given such that $k \ge 2$ and assume
                     $\inductive{P}{k}$ is true. Let $a_1, \dots, a_k, a_{k + 1}, n \in \set{Z}$ be
@@ -726,16 +726,16 @@
             \end{figure}
             We now let $N = \prod_{i = 1}^{k} n_i$ and $N_i = \frac{N}{n_i}$ for each $i \in [k]$. 
             Let $i \in [k]$ be given. We must have $\gcd{N_i}{n_i} = 1$ since $n_i$ is relatively
-            prime to every term in the product that represents $N_i$. Thus by corollary 
-            \ref{diophantine inverse} $\exists y_i, z_i \in \set{Z}$ such that
+            prime to every term in the product that represents $N_i$. Thus by
+            \CorollaryRef{diophantine inverse} $\exists y_i, z_i \in \set{Z}$ such that
             $N_iy_i + n_iz_i = 1$. We can now take this equation modulo $n_i$ and 
             find that $N_iy_i \equiv 1 \mod n_i$. We are now ready to define the solution, $x_0$,
-            to the system of congruences in Figure \ref{CRT congruences}.
+            to the system of congruences in \FigureRef{CRT congruences}.
             \begin{equation}
                 x_0 = \sum_{i = 1}^{k} a_iN_iy_i
                 \label{CRT solution}
             \end{equation}
-            To see that equation (\ref{CRT solution}) solves the system of congruences we proceed
+            To see that \equationRef{CRT solution} solves the system of congruences we proceed
             as follows. Let $i \in [k]$ be given. We now note that $\forall j \in [k]$ if
             $j \neq i$ then $N_j \equiv 0 \mod n_i$ since there is a factor of $n_i$ in the product
             that defines $N_j$. Thus all but the $i^{th}$ term of the sum will be congruent to $0
@@ -746,11 +746,11 @@
             We now note that $N_iy_i \equiv 1 \mod n_i$ by
             construction of $y_i$. Thus $x_0 \equiv a_i \mod n_i$ as required. Thus we can
             clearly see that $x_0$ is a solution to the system of congruences
-            in Figure \ref{CRT congruences}; furthermore we can also see that
+            in \FigureRef{CRT congruences}; furthermore we can also see that
             $x = x_0 + Nk$ is also a solution for all $k \in \set{Z}$ since $N \equiv 0 \mod n_i$
             for all $i \in [k]$.
             In other words $x \equiv x_0 \mod N$ is a solution to the system of
-            congruences in Figure \ref{CRT congruences}.
+            congruences in \FigureRef{CRT congruences}.
 
             We now proceed via contradiction to show that $x \equiv x_0 \mod N$ is the only solution.
             Assume $\exists y \in \set{Z}$ such that $y \not\equiv x_0 \mod N$ and 
@@ -759,15 +759,15 @@
             is a solution we know that $\forall i \in [k] \ x_0 \equiv a_i \mod n_i$.
             This implies that $\forall i \in [k] \ x_0 \equiv y \mod n_i$. By definition
             of congruence we can conclude that $\forall i \in [k] \ \divides{n_i}{(x_0 - y)}$.
-            Since the $n_i$'s are pairwise relatively prime we can invoke corollary
-            \ref{CRT uniquness corollary} to conclude that
+            Since the $n_i$'s are pairwise relatively prime we can invoke
+            \CorollaryRef{CRT uniquness corollary} to conclude that
             $\divides{\left(\prod_{i = 1}^{k} n_i\right)}{(x_0 - y)}$.
             In other words $\divides{N}{(x_0 - y)}$ since $N = \prod_{i = 1}^{k} n_i$.
             Now by definition of congruence we can conclude that $x_0 \equiv y \mod N$.
             This is of course a contradiction.
 
             Thus $x \equiv x_0 \mod n$ is the only solution to
-            the system of congruences in Figure \ref{CRT congruences}. \QED
+            the system of congruences in \FigureRef{CRT congruences}. \QED
         \end{proof}
      \section{Fermat's Little Theorem}
         \begin{lemma}
@@ -811,7 +811,7 @@
                     \[
                        (k + 1)^p - (k + 1) \equiv \left(\dbinom{p}{0} k^0 + \sum_{i = 1}^{p - 1} \dbinom{p}{i}k^i + \dbinom{p}{p}k^p\right) - (k + 1) \mod p
                     \]
-                    We now note by lemma \ref{prime binomials} each term $\sum_{i = 1}^{p - 1} \binom{p}{i}k^i$ 
+                    We now note by \LemmaRef{prime binomials} each term $\sum_{i = 1}^{p - 1} \binom{p}{i}k^i$ 
                     is 0 modulo $p$ since each of the binomial coefficients are 0 modulo $p$. Thus
                     we can now conclude the following
                     \[
@@ -865,7 +865,7 @@
                 (p - 1)! \ x \equiv 1 \mod p
             \]
             In other words $x$ is the inverse of $(p - 1)!$ modulo $p$.
-            We can now multiply equation (\ref{fermateq1}) by $x$
+            We can now multiply \equationRef{fermateq1} by $x$
             \begin{derivation}{\equiv}
                 a^{p - 1} (p - 1)! \ x & (p - 1)! \ x \mod p \\
                 a^{p - 1} \cdot 1 & 1 \mod p \\
@@ -875,7 +875,7 @@
         \end{proof}
         \begin{proof}[Alternate Proof]
             Let $a, p \in \set{Z}$ be given such that $p$ is prime and $\ndivides{p}{a}$.
-            We proceed by invoking lemma \ref{fermat lemma} to conclude
+            We proceed by invoking \LemmaRef{fermat lemma} to conclude
             \[
                 a^p - a \equiv 0 \mod p
             \]
@@ -885,13 +885,13 @@
                 \label{fermat equation}
             \end{equation}
             Since $\ndivides{p}{a}$ and $p$ is prime we can conclude that $\gcd{a}{p} = 1$,
-            thus by theorem \ref{lineardiophantinegcd} $\exists x, y \in \set{Z}$ such that
+            thus by \TheoremRef{lineardiophantinegcd} $\exists x, y \in \set{Z}$ such that
             $ax + py = 1$. Taking this equation modulo $p$ gives us the following
             \[
                 ax \equiv 1 \mod p
             \]
             In other words $x$ is the inverse of $a$ modulo $p$. We can now multiply
-            equation \ref{fermat equation} by $x$ and conclude $a^{p - 1} \equiv 1 \mod p$
+            \equationRef{fermat equation} by $x$ and conclude $a^{p - 1} \equiv 1 \mod p$
             as required. \QED
         \end{proof}
         \begin{theorem}[Generalization to Polynomials]
@@ -905,13 +905,13 @@
                     We first show that if $p$ is prime, then $\forall x \in \set{Z} \
                     (x + a)^p \equiv x^p + a \mod p$. So assume that $p$ is prime and let
                     $x \in \set{Z}$ be given. We now compute $(x + a)^p$ by invoking
-                    the Binomial Theorem (theorem \ref{Binomial Theorem}) as follows.
+                    the Binomial Theorem (\TheoremRef{Binomial Theorem} as follows.
                     \begin{derivation}{\equiv}
                         (x + a)^p & \dsum_{k = 0}^{p} \binom{p}{k} x^k a^{p - k} \mod p \\
                                   & a^p + \left( \dsum_{k = 1}^{p - 1} \binom{p}{k} x^k a^{p - k} \right) 
                                     + x^p \mod p
                     \end{derivation}
-                    Since $p \in \set{P}$ we can invoke lemma \ref{prime binomials} to conclude that
+                    Since $p \in \set{P}$ we can invoke \LemmaRef{prime binomials} to conclude that
                     if $1 \le k < p$ then $\binom{p}{k} \equiv 0 \mod p$, thus we can conclude the following.
                     \begin{derivation}{\equiv}
                         (x + a)^p & a^p + \left( \dsum_{k = 1}^{p - 1} (0) x^k a^{p - k} \right) 
@@ -919,7 +919,7 @@
                                   & a^p + x^p \mod p \\
                                   & x^p + a^p \mod p
                     \end{derivation}
-                    We can now invoke Fermat's Little Theorem (theorem \ref{Fermat's Little Theorem})
+                    We can now invoke Fermat's Little Theorem (\TheoremRef{Fermat's Little Theorem}
                     to conclude that $a^p \equiv a \cdot a^{p - 1} \equiv a \mod p$. Thus we can
                     conclude that 
                     \[
@@ -1008,7 +1008,7 @@
             \[
                 i^2 \equiv 1 \mod p \iff \divides{p}{(i - 1)(i + 1)}
             \]
-            We can now invoke lemma \ref{FTA Lemma 3} to conclude $p$ must divide at least one
+            We can now invoke \LemmaRef{FTA Lemma 3} to conclude $p$ must divide at least one
             of $i + 1$ and $i - 1$. Also if $p$ divides one of $i + 1$ and $i - 1$ then we also know
             that $p$ divides their product, thus 
             \[
@@ -1051,9 +1051,9 @@
             \begin{itemize}
                 \item
                     Let $p \in \set{N}$ be given such that $p$ is prime. 
-                    We first note that by Lemma \ref{Wilson's Theorem Lemma 1} $1$ and $p - 1$ are the
+                    We first note that by \LemmaRef{Wilson's Theorem Lemma 1} $1$ and $p - 1$ are the
                     only elements of $\Zmult{p}$ that are their own inverse modulo $p$. Now consider
-                    all the other elements of $\Zmult{p}$. By Lemma \ref{Wilson's Theorem Lemma 2} we know
+                    all the other elements of $\Zmult{p}$. By \LemmaRef{Wilson's Theorem Lemma 2} we know
                     that each of these elements has a unique inverse modulo $p$. This along with the fact
                     that the inverse relation is symmetric tells us the inverse equivalence relation
                     partitions $\setsub{\Zmult{p}}{\Set{1, p - 1}}$ into parts of size 2. Now consider
@@ -1252,7 +1252,7 @@
                     D_{n, d}(c_i) = c_i^d \mod n
                 \end{equation}
                 We now note that since $c_i$ and $m_i^e$ are congruent modulo $n$ that we 
-                can substitute $m_i^e$ for $c_i$ is equation ($\ref{rsa decrypt}$).
+                can substitute $m_i^e$ for $c_i$ is \equationRef{rsa decrypt}.
                 \begin{equation}
                     \label{rsa decrypt 2}
                     D_{n, d}(c_i) = (m_i^e)^d \mod n = m_i^{ed} \mod n
@@ -1271,7 +1271,7 @@
                             \item
                                 Assume $P$ is a divisor of $m_i$.
                                 \begin{derivation}{\equiv}
-                                    D_{n, d}(c_i) & m_i^{ed} \mod P & \just{By equation $\ref{rsa decrypt 2}$.}
+                                    D_{n, d}(c_i) & m_i^{ed} \mod P & \just{By \equationRef{rsa decrypt 2}.}
                                                   & 0^{ed} \mod P & \just{Since $\divides{P}{m_i}$.}
                                                   & 0 \mod P & \\
                                                   & m \mod P & \just{Since $\divides{P}{m_i}$.}
@@ -1281,10 +1281,10 @@
                                 is relatively prime to $m_i$ since $P$ is prime.
                                 \begin{derivation}{\equiv}
                                     D_{n, d}(c_i) & m_i^{eq} \mod P \\
-                                                  & m_i^{k \eulerphi{n} + 1} \mod P & \just{By equation $\ref{ed requirement}$.}
+                                                  & m_i^{k \eulerphi{n} + 1} \mod P & \just{By \equationRef{ed requirement}.}
                                                   & m_i \cdot m_i^{k(p - 1)(q - 1)} \mod P & \just{Since $\eulerphi{n} = (p - 1)(q - 1)$.}
                                                   & m_i \cdot \left(m_i^{p - 1}\right)^{k(q - 1)} \mod P \\
-                                                  & m_i \cdot 1^{k(q - 1) + 1} \mod P & \just{By Theorem $\ref{Fermat's Little Theorem}$.}
+                                                  & m_i \cdot 1^{k(q - 1) + 1} \mod P & \just{By \TheoremRef{Fermat's Little Theorem}.}
                                                   & m_i \cdot 1 \mod P \\
                                                   & m_i \mod P 
                                 \end{derivation}
@@ -1302,8 +1302,8 @@
                             u &\equiv m_i \mod p \\
                             u &\equiv m_i \mod q \\
                         \end{align*}
-                        Since $p$ and $q$ are trivially relatively prime we know by Theorem
-                        \ref{Chinese Remainder Theorem} That there is a unique $u$ modulo
+                        Since $p$ and $q$ are trivially relatively prime we know by
+                        \TheoremRef{Chinese Remainder Theorem} That there is a unique $u$ modulo
                         $pq$ that satisfies our system of congruences. Furthermore, the proof
                         of the Chinese Remainder Theorem tells us that this $u$ is congruent to
                         \[
@@ -1467,10 +1467,10 @@
                     it is due to \fcf{r_{t + n}}{t = 0}{0} not being equal to \fcf{q_{t + n}}{t = 0}{1}.
                     But as shown below these two quantities are equal.
                     \begin{derivation}{=}
-                        \fcf{r_{t + n}}{t = 0}{0} & r_n & \just{By Definition \ref{Gen. Cont. Frac.}.}
+                        \fcf{r_{t + n}}{t = 0}{0} & r_n & \just{By \DefinitionRef{Gen. Cont. Frac.}.}
                                                   & q_n + \dfrac{1}{q_{n + 1}} & \just{By definition of \seq{r_t}{t \ge 0}.}
-                                                  & q_n + \dfrac{1}{\fcf{q_{t + n + 1}}{t = 0}{0}} & \just{By Definition \ref{Gen. Cont. Frac.}.}
-                                                  & \fcf{q_{t + n}}{t = 0}{1} & \just{By Definition \ref{Gen. Cont. Frac.}.}
+                                                  & q_n + \dfrac{1}{\fcf{q_{t + n + 1}}{t = 0}{0}} & \just{By \DefinitionRef{Gen. Cont. Frac.}.}
+                                                  & \fcf{q_{t + n}}{t = 0}{1} & \just{By \DefinitionRef{Gen. Cont. Frac.}.}
                     \end{derivation}
                     Thus we can see that
                     \begin{equation}
@@ -1483,7 +1483,7 @@
                         \fcf{r_t}{t = 0}{n} & \dfrac{P_n(r)}{Q_n(r)} \\
                                             & \dfrac{r_n P_{n - 1}(r) + P_{n - 2}(r)}
                                                    {r_n Q_{n - 1}(r) + Q_{n - 2}(r)}
-                                            & \just{By Definition \ref{Computing Convergents}.}
+                                            & \just{By \DefinitionRef{Computing Convergents}.}
                                             & \dfrac{\left(q_n + \dfrac{1}{q_{n + 1}}\right) P_{n - 1} + P_{n - 2}}
                                                    {\left(q_n + \dfrac{1}{q_{n + 1}}\right) Q_{n - 1} + Q_{n - 2}}
                                             & \just{By definition of $r_n$.}
@@ -1491,12 +1491,12 @@
                                                     {(q_n Q_{n - 1} + Q_{n - 2}) + \frac{1}{q_{n + 1}} Q_{n - 1}} \\
                                             & \dfrac{P_n + \frac{1}{q_{n + 1}}P_{n - 1}}
                                                     {Q_n + \frac{1}{q_{n + 1}}Q_{n - 1}}
-                                            & \just{By Definition \ref{Computing Convergents}.}
+                                            & \just{By \DefinitionRef{Computing Convergents}.}
                                             & \dfrac{q_{n + 1}P_n + P_{n - 1}}
                                                     {q_{n + 1}Q_n + Q_{n - 1}}
                                             & \just{By multiplying by $\frac{q_{n + 1}}{q_{n + 1}}$.}
                                             & \dfrac{P_{n + 1}}{Q_{n + 1}}
-                                            & \just{By Definition \ref{Computing Convergents}.}
+                                            & \just{By \DefinitionRef{Computing Convergents}.}
                     \end{derivation}
                     Thus we can conclude that
                     $\fcf{q_t}{t = 0}{n + 1} = \frac{P_{n + 1}}{Q_{n + 1}}$ as required.
@@ -1528,7 +1528,7 @@
                     We now compute $P_{n}Q_{n + 1} - P_{n + 1}Q_{n}$ as follows
                     \begin{derivation}{=}
                         P_{n}Q_{n + 1} - P_{n + 1}Q_{n} & P_n (q_{n + 1}Q_n + Q_{n - 1}) - (q_{n + 1}P_n + P_{n - 1})Q_n & 
-                        \just{By Definition \ref{Computing Convergents}.}
+                        \just{By \DefinitionRef{Computing Convergents}.}
                                                         & P_nQ_{n - 1} - P_{n - 1}Q_n \\
                                                         & -1 (P_{n - 1}Q_n - P_nQ_{n - 1}) \\
                                                         & -1 (-1)^n & \just{By inductive hypothesis.}
@@ -1551,13 +1551,13 @@
             It is clear to see that both $P_n$ and $Q_n$ are integers when
             \seq{q_t}{t \ge 0} is an integer sequence. Thus the $n^{th}$
             convergent of \cf{q_t}{t \ge 0} is clearly rational as it is equal
-            to $P_n / Q_n$. Finally by theorem \ref{Cont. Frac. Lowest. Terms.},
+            to $P_n / Q_n$. Finally by \TheoremRef{Cont. Frac. Lowest. Terms.},
             for any positive integer $n$ we have
             \begin{equation}
                 \label{Cont. Frac. GCD Eq 1}
                 P_{n - 1} Q_n - P_n Q_{n - 1} = (-1)^n
             \end{equation}
-            By Corollary \ref{ax + by = n <==> gcd(a, b) | n} it suffices to find
+            By \CorollaryRef{ax + by = n <==> gcd(a, b) | n} it suffices to find
             an integer combination of $P_n$ and $Q_n$ equal to 1 to show that
             $\gcd{P_n}{Q_n} = 1$. If $n$ is even then
             \begin{equation}
@@ -1684,15 +1684,15 @@
                 \label{Square-root irrational proof eq 2}
             \end{align}
             This simply requires $\frac{a}{b}$ to be in lowest terms. We will now contradict
-            that $a$ and $b$ are relatively prime. First we square both sides of equation
-            (\ref{Square-root irrational proof eq 1}) and deduce
+            that $a$ and $b$ are relatively prime. First we square both sides of
+            \equationRef{Square-root irrational proof eq 1} and deduce
             \[
                 \sqrt{n}^2 = \left( \frac{a}{b}\right)^2 \then
                 n = \frac{a^2}{b^2} \then
                 a^2 = nb^2
             \]
-            Thus we can see that $a^2$ is divisible by $n$. Now by Lemma
-            \ref{Square root of n irrational proof lemma} we can conclude that $a$ is
+            Thus we can see that $a^2$ is divisible by $n$. Now by
+            \LemmaRef{Square root of n irrational proof lemma} we can conclude that $a$ is
             also divisible by $n$. Thus there must by an integer $c$ such that
             $a = nc$. We now plug back and continue our deduction
             \[
@@ -1701,11 +1701,11 @@
                 n^2c^2 = nb^2 \then
                 b^2 = nc^2
             \]
-            Thus we can now see that $b^2$ is also divisible by $n$. Again by Lemma
-            \ref{Square root of n irrational proof lemma} we can conclude that $b$ too
+            Thus we can now see that $b^2$ is also divisible by $n$. Again by
+            \LemmaRef{Square root of n irrational proof lemma} we can conclude that $b$ too
             is divisible by $n$. In particular we can see that $\gcd{a}{b} \ge n > 1$.
             This is of course contradicts
-            equation (\ref{Square-root irrational proof eq 2}).
+            \equationRef{Square-root irrational proof eq 2}.
             Thus $\sqrt{n}$ is not rational. \QED
         \end{proof}
         \begin{corollary}
@@ -1728,7 +1728,7 @@
                 \sqrt{n} = s \sqrt{f}
             \end{equation}
             Since $f$ was chosen to be square-free, $\sqrt{f}$ is not rational by
-            Theorem \ref{Square Root of Square Free Irrational}. Since the irrational real numbers
+            \TheoremRef{Square Root of Square Free Irrational}. Since the irrational real numbers
             are closed under multiplication by a rational we can conclude that $n = s \sqrt{f}$
             is not rational. \QED
         \end{proof}
@@ -1764,12 +1764,12 @@
                 \frac{(n + 1)!}{k!} = \left(\prod_{j = n + 2}^{k} j\right)^{-1}
             \end{equation}
             since we can cancel out a factor of $(n + 1)!$ from both the numerator and
-            denominator. We now want to upper bound equation
-            (\ref{sum term equation}). We do this by making each term of the product
-            smaller; thus making the reciprocal of the product larger.
+            denominator. We now want to upper bound \equatoinRef{sum term equation}.
+            We do this by making each term of the product smaller; thus making the
+            reciprocal of the product larger.
             \begin{align*}
                 \frac{(n + 1)!}{k!} &= \left(\prod_{j = n + 2}^{k} j \right)^{-1}
-                                    & \just{By equation (\ref{sum term equation}).}
+                                    & \just{By \equationRef{sum term equation}.}
                                     &< \left(\prod_{j = n + 2}^{k} (n + 1) \right)^{-1}\\
             \end{align*}
             Thus we can now conclude that
@@ -1781,7 +1781,7 @@
             \begin{align*}
                 e - S_n &= \frac{1}{(n + 1)!} \sum_{k = n + 1}^{\infty} \frac{(n + 1)!}{k!} \\
                         &< \frac{1}{(n + 1)!} \sum_{k = n + 1}^{\infty} \frac{1}{(n + 1)^{k - (n + 1)}}
-                        & \just{By equation $(\ref{sum term equation 2})$.}
+                        & \just{By \equationRref{sum term equation 2}.}
                         &= \frac{1}{(n + 1)!} \sum_{k = 0}^{\infty} \frac{1}{(n + 1)^{k}}
                         & \just{By re-indexing the sum.}
                         &= \frac{1}{(n + 1)!} \frac{1}{1 - \frac{1}{n + 1}}
@@ -1803,7 +1803,7 @@
             We proceed via contradiction, so assume that $e \in \set{Q}$. In other
             words assume there are $a, b \in \set{N}$ such that $b \neq 0$ and $e = \dfrac{a}{b}$.
             Now choose $n \in \set{N}$ such that $n > b$, in particular note that $n > b \ge 1$.
-            We can now invoke Lemma \ref{e is Irrational Lemma} to conclude that
+            We can now invoke \LemmaRef{e is Irrational Lemma} to conclude that
             \begin{equation*}
                 0 < n! (e - S_n) < \frac{1}{n}
             \end{equation*}

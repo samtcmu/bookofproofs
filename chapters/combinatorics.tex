@@ -117,7 +117,7 @@
                         \sum_{k = 1}^{n} \left(\binom{n}{k} + \binom{n}{k - 1}\right) x^{k} y^{(n + 1) - k)} +
                         \binom{n + 1}{n + 1} x^{n + 1}y^0
                     \]
-                    We can now invoke lemma \ref{rec binom lemma} to simply $\binom{n}{k} + \binom{n}{k - 1}$
+                    We can now invoke \LemmaRef{rec binom lemma} to simply $\binom{n}{k} + \binom{n}{k - 1}$
                     to $\binom{n + 1}{k}$.
                     \[
                         \binom{n + 1}{0} x^0y^{n + 1} +
@@ -152,7 +152,7 @@
             consecutive balls; also place a barrier to the left of the first ball and
             to the right of the last ball. We now number these barriers from $0$ to $n$, where
             the barrier to the right of ball $i$ is barrier $i$ and barrier 0 is the
-            one to the left of ball $0$. This can be visualized in Figure \ref{Balls in a Row}.
+            one to the left of ball $0$. This can be visualized in \FigureRef{Balls in a Row}.
             \begin{figure}[H]
                 \centering
                 \[
@@ -179,7 +179,7 @@
             (barriers 1 through $n - 1$) and we have to pick $k - 1$ of them to define $k$ regions,
             i.e. we are picking $k - 1$ elements from a $n - 1$ element set. Thus there are exactly
             $\binom{n - 1}{k - 1}$ ways to pick the barriers, and thus exactly $\binom{n - 1}{k - 1}$
-            distinct solutions to equation (\ref{Pirates and Gold Eqation}) as required. \QED
+            distinct solutions to \equationRef{Pirates and Gold Eqation} as required. \QED
         \end{proof}
         \begin{corollary}[Pirates and Gold]
             $``$Let $n$ and $k$ be positive integers. There are $\binom{n + k - 1}{k - 1}$ distinct
@@ -188,12 +188,12 @@
             \label{Pirates and Gold}
         \end{corollary}
         \begin{note}
-            Corollary \ref{Pirates and Gold} is called Pirates and Gold because it represents
+            \CorollaryRef{Pirates and Gold} is called Pirates and Gold because it represents
             the number of ways to distribute $n$ indistinguishable bars of gold to $k$
             distinguishable pirates.
         \end{note}
         \begin{proof}
-            The only way in which this is different from Theorem \ref{Pirates and Gold 1}
+            The only way in which this is different from \TheoremRef{Pirates and Gold 1}
             is that the $x_i$'s are now allowed to equal 0. To get around this we can
             guarantee each of the bins at least 1 ball and then remove 1 ball from each bin
             after we've distributed the balls to the bins. In particular define $y_i$ for
@@ -211,16 +211,16 @@
                 y_1 + y_2 + \cdots + y_k = n + k
                 \label{Pirates and Gold equation 1}
             \end{equation}
-            Since the $x_i \ge 0$ we know that $y_i = x_i + 1 \ge 1$. Thus we can use Theorem
-            \ref{Pirates and Gold 1} to conclude that there are exactly $\binom{n + k - 1}{k - 1}$
-            distinct solutions to equation (\ref{Pirates and Gold equation 1}). Since each solution to equation
-            (\ref{Pirates and Gold equation 1}) can be mapped to a solution to equation
-            (\ref{Pirates and Gold equation 2}), by taking
+            Since the $x_i \ge 0$ we know that $y_i = x_i + 1 \ge 1$. Thus we can use
+            \TheoremRef{Pirates and Gold 1} to conclude that there are exactly $\binom{n + k - 1}{k - 1}$
+            distinct solutions to \equationRef{Pirates and Gold equation 1}. Since each solution to
+            \equationRef{Pirates and Gold equation 1} can be mapped to a solution to
+            \equationRef{Pirates and Gold equation 2}, by taking
             \begin{equation}
                 x_i = y_i - 1
             \end{equation}
             we can conclude that there are $\binom{n + k - 1}{k - 1}$ distinct solutions
-            to equation (\ref{Pirates and Gold equation 2}) when the $x_i$'s all non-negative
+            to \equationRef{Pirates and Gold equation 2} when the $x_i$'s all non-negative
             integers. \QED
         \end{proof}
         \begin{theorem}[Chairperson Identity]
@@ -434,7 +434,7 @@
             % $f : \set{N} \rightarrow [0, 1)$ such that $f$ is a bijection. We now look at
             % the decimal expansion of $f(i)$ for each $i \in \set{N}$ and define
             % $A_{i, j}$ to be $j^{th}$ digit in the decimal expansion of $f(i)$. Thus we can
-            % represent $f$ in tabular form as shown in Figure \ref{ftable}.
+            % represent $f$ in tabular form as shown in \FigureRef{ftable}.
             % \begin{figure}[H]
             %     \centering
             %     $\begin{array}{c@{\ \mapsto \ }c@{\ . \ }ccccc}
@@ -473,7 +473,7 @@
         %     $``\set{N}$ and $\set{R}$ do not have the same cardinality.''
         % \end{corollary}
         % \begin{proof}
-        %     By theorem \ref{diagonalization} we know that $\set{N}$ and $[0, 1)$ do not
+        %     By \TheoremRef{diagonalization} we know that $\set{N}$ and $[0, 1)$ do not
         %     have the same cardinality. Since $\subs{[0, 1)}{\set{R}}$ and we know that $[0, 1)$
         %     is larger than $\set{N}$ in some sense, we can conclude that $\set{N}$
         %     and $\set{R}$ do not have the same cardinality. \QED

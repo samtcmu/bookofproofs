@@ -61,7 +61,7 @@
                 \condpr{A}{E} = \frac{\pr{\intersect{A}{E}}}{\pr{E}}
                 \label{Conditional Probability Lemma equation 1}
             \end{equation}
-            We can now multiply both sides of equation (\ref{Conditional Probability Lemma equation 1})
+            We can now multiply both sides of \equationRef{Conditional Probability Lemma equation 1}
             by $\pr{E}$ to conclude that $\pr{\intersect{A}{E}} = \condpr{A}{E} \pr{E}$ as
             required. \QED
         \end{proof}
@@ -116,13 +116,13 @@
                 \pr{B} = \pr{\setsub{B}{A}} + \pr{\intersect{A}{B}}
                 \label{Pr union equation 2}
             \end{equation}
-            We now subtract $\pr{\intersect{A}{B}}$ from both sides of equation (\ref{Pr union equation 2})
+            We now subtract $\pr{\intersect{A}{B}}$ from both sides of \equationRef{Pr union equation 2}
             to conclude that
             \begin{equation}
                 \pr{\setsub{B}{A}} = \pr{B} -  \pr{\intersect{A}{B}}
                 \label{Pr union equation 3}
             \end{equation}
-            We can now substitute equation (\ref{Pr union equation 3}) into equation (\ref{Pr union equation 1})
+            We can now substitute \equationRef{Pr union equation 3} into \equationRef{Pr union equation 1}
             to conclude that
             \[
                 \pr{\union{A}{B}} = \pr{A} + \pr{B} - \pr{\intersect{A}{B}}
@@ -134,7 +134,7 @@
             \label{Union Bound n = 2}
         \end{corollary}
         \begin{proof}
-            Let $\subs{A, B}{\Omega}$ be events. By theorem \ref{Pr union Theorem}
+            Let $\subs{A, B}{\Omega}$ be events. By \TheoremRef{Pr union Theorem}
             we know that 
             \begin{equation}
                 \pr{\union{A}{B}} = \pr{A} + \pr{B} - \pr{\intersect{A}{B}}
@@ -144,7 +144,7 @@
             \[
                 0 \le \pr{\intersect{A}{B}} \le 1
             \]
-            Thus equation (\ref{Union Bound Corollary 1}) is maximized when $\pr{\intersect{A}{B}} = 0$, i.e.
+            Thus \equationRef{Union Bound Corollary 1} is maximized when $\pr{\intersect{A}{B}} = 0$, i.e.
             \[
                 \pr{\union{A}{B}} = \pr{A} + \pr{B} - \pr{\intersect{A}{B}} \le \pr{A} + \pr{B} - 0
             \]
@@ -174,7 +174,7 @@
                     \begin{itemize}
                         \item
                             If $k = 1$ then we know that $\pr{\union{A_1}{A_2}} \le \pr{A_1} + \pr{A_2}$
-                            by corollary \ref{Union Bound n = 2}.
+                            by \CorollaryRef{Union Bound n = 2}.
                         \item
                             If $k \ge 2$ then we proceed by first break the event $\dunion_{i = 1}^{k + 1} A_i$
                             into two parts as follows.
@@ -182,7 +182,7 @@
                                 \pr{\dunion_{i = 1}^{k + 1} A_i} = 
                                 \pr{\union{\left(\dunion_{i = 1}^{k} A_i\right)}{A_{k + 1}}}
                             \]
-                            We can now invoke $\inductive{P}{2}$ (or corollary \ref{Union Bound n = 2}) to
+                            We can now invoke $\inductive{P}{2}$ (or \CorollaryRef{Union Bound n = 2} to
                             conclude that.
                             \[
                                 \pr{\dunion_{i = 1}^{k + 1} A_i} \le
@@ -276,9 +276,9 @@
             \[
                 P'' = \dunion_{E \in P'} \{\intersect{A}{E}\}
             \]
-            and invoke lemma \ref{LTP Partition Lemma} to conclude that $P''$ partitions $A$.
+            and invoke \LemmaRef{LTP Partition Lemma} to conclude that $P''$ partitions $A$.
             Now since $P''$ partitions $A$ we can invoke part 3 of the Axioms of Probability
-            (axiom \ref{Axioms of Probability}) to conclude that
+            (\AxiomRef{Axioms of Probability} to conclude that
 
             \[
                 \pr{A} = \pr{\dunion_{E \in P'} \intersect{A}{E}} = \sum_{E \in P'} \pr{\intersect{A}{E}}
@@ -287,7 +287,7 @@
             \[
                 \pr{A} = \left(\sum_{E \in P} \pr{\intersect{A}{E}}\right) + \pr{\intersect{A}{\left(\setsub{\Omega}{\Union_{E \in P} E}\right)}}
             \]
-            Now since we know that $\pr{\setsub{\Omega}{\Union_{E \in P} E}} = 0$ by lemma \ref{Complement Lemma}
+            Now since we know that $\pr{\setsub{\Omega}{\Union_{E \in P} E}} = 0$ by \LemmaRef{Complement Lemma}
             we can conclude that $\pr{\intersect{A}{\left(\setsub{\Omega}{\Union_{E \in P} E}\right)}} = 0$. Thus
             we can see that
             \begin{equation}
@@ -295,12 +295,12 @@
                 \label{LTP equation 1}
             \end{equation}
             We now note that $\forall E \in P$ we know that $\pr{E} \neq 0$ since $E$ comes
-            from a probabilistic partitions; thus we can invoke lemma \ref{Conditional Probability Lemma}
+            from a probabilistic partitions; thus we can invoke \LemmaRef{Conditional Probability Lemma}
             to conclude that
             \[
                 \pr{\intersect{A}{E}} = \condpr{A}{E} \pr{E}
             \]
-            We can now substitute this into equation (\ref{LTP equation 1})
+            We can now substitute this into \equationRef{LTP equation 1}
             to conclude that 
             \[
                 \pr{A} = \sum_{E \in P} \condpr{A}{E} \pr{E}
@@ -326,19 +326,19 @@
                 \label{Baye's Rule equation 1}
             \end{equation}
             Since $E$ come from a probabilistic partition we know that $\pr{E} \neq 0$.
-            Thus we can now invoke lemma \ref{Conditional Probability Lemma} to conclude that
+            Thus we can now invoke \LemmaRef{Conditional Probability Lemma} to conclude that
             \begin{equation}
                 \pr{\intersect{E}{A}} = \pr{\intersect{A}{E}} = \condpr{A}{E} \pr{E}
                 \label{Baye's Rule equation 3}
             \end{equation}
             Since $\sum_{F \in P} \pr{F} = 1$ we use the Law of Total Probability
-            (lemma \ref{The Law of Total Probability}) to conclude that
+            (\LemmaRef{The Law of Total Probability} to conclude that
             \begin{equation}
                 \pr{A} = \sum_{F \in P} \condpr{A}{F} \pr{F}
                 \label{Baye's Rule equation 4}
             \end{equation}
-            We can now substitute equations (\ref{Baye's Rule equation 3})
-            and $(\ref{Baye's Rule equation 4})$ into equation (\ref{Baye's Rule equation 1})
+            We can now substitute \equationRef{Baye's Rule equation 3}
+            and \equationRef{Baye's Rule equation 4}) into \equationRef{Baye's Rule equation 1}
             to conclude that
             \[
                 \condpr{E}{A} = \frac{\condpr{A}{E} \pr{E}}{\dsum_{F \in P} \condpr{A}{F} \pr{F}}
@@ -486,12 +486,12 @@
         \end{theorem}
         \begin{proof}
             Let $X: \Omega \rightarrow \set{R}$ be a random variable and let $n \in \set{N}$ be given.
-            We now simply proceed to calculate $\var{nX}$ using theorem \ref{varformula}.
+            We now simply proceed to calculate $\var{nX}$ using \TheoremRef{varformula}.
             \begin{derivation}{=}
-                \var{nX} & \ex{n^2 X^2} - \ex{nX}^2 & \just{By theorem \ref{varformula}.}
-                         & n^2 \ex{X^2} - (n \ex{X})^2 & \just{By linearity of expectation (theorem \ref{Linearity of Expectation}).}
+                \var{nX} & \ex{n^2 X^2} - \ex{nX}^2 & \just{By \TheoremRef{varformula}.}
+                         & n^2 \ex{X^2} - (n \ex{X})^2 & \just{By linearity of expectation (\TheoremRef{Linearity of Expectation}.}
                          & n^2(\ex{X^2} - \ex{X}^2)  \\
-                         & n^2 \var{X} & \just{By theorem \ref{varformula}}
+                         & n^2 \var{X} & \just{By \TheoremRef{varformula}}
             \end{derivation}
             Thus we can conclude that $\var{nX} = n^2\var{X}$ as required. \QED
         \end{proof}
@@ -564,14 +564,14 @@
             \begin{derivation}{=}
                 \ex{X} & \ex{\sum_{i = 1}^{n} X_i} & \just{By definition of $\dist{X}{\bin{n}{p}}$.}
                        & \sum_{i = 1}^{n} \ex{X_i} & \just{By Linearity of Expectation.}
-                       & \sum_{i = 1}^{n} p & \just{By $\ex{X_i} = p$ as shown in theorem \ref{bern}.}
+                       & \sum_{i = 1}^{n} p & \just{By $\ex{X_i} = p$ as shown in \TheoremRef{bern}.}
                        & np
             \end{derivation}
             Similarly we compute the $\var{X}$ below.
             \begin{derivation}{=}
                 \var{X} & \var{\sum_{i = 1}^{n} X_i} & \just{By definition of $\dist{X}{\bin{n}{p}}$.}
                         & \sum_{i = 1}^n \var{X_i} & \just{By the $X_i$'s being independent and linearity of variance.}
-                        & \sum_{i = 1}^n p(1 - p) & \just{By $\var{X_i} = p(1 - p)$ as shown in theorem \ref{bern}.}
+                        & \sum_{i = 1}^n p(1 - p) & \just{By $\var{X_i} = p(1 - p)$ as shown in \TheoremRef{bern}.}
                         & np(1 - p)
             \end{derivation}
             Thus can see that $\ex{X} = np$ and $\var{X} = np(1 - p)$ as required. \QED
@@ -662,7 +662,7 @@
         \end{theorem}
         \begin{proof}
             Let $p \in (0, 1]$ and $\dist{X}{\geo{p}}$. We will proceed by computing
-            $\var{X}$ using theorem \ref{varformula}, i.e. we will compute $\ex{X^2}$ and
+            $\var{X}$ using \TheoremRef{varformula}, i.e. we will compute $\ex{X^2}$ and
             then compute the variance using the following formula.
             \[
                 \var{X} = \ex{X^2} - \ex{X}^2
@@ -711,9 +711,9 @@
             \end{equation}
             We can now compute $\var{X}$ as follows.
             \begin{derivation}{=}
-                \var{X} & \ex{X^2} - \ex{X}^2 & \just{By theorem \ref{varformula}.}
+                \var{X} & \ex{X^2} - \ex{X}^2 & \just{By \TheoremRef{varformula}.}
                         & \dfrac{2 - p}{p^2} - \dfrac{1}{p^2} 
-                        & \just{By $\ex{X} = \frac{1}{p}$ and equation \ref{geoxsquared}.}
+                        & \just{By $\ex{X} = \frac{1}{p}$ and \equationRef{geoxsquared}.}
                         & \dfrac{1 - p}{p^2}
             \end{derivation}
             Thus we can conclude that $\var{X} = \frac{1 - p}{p^2}$ as required. \QED
@@ -729,7 +729,7 @@
             \begin{derivation}{=}
                 \pr{X > t} & 1 - \pr{X \le t} & \just{By one of the axioms of probability.}
                            & 1 - \dsum_{i = 1}^{t} \pr{X = i} \\
-                           & 1 - \dsum_{i = 1}^{t} (1 - p)^{i - 1}p & \just{By $\dist{X}{\geo{p}}$ and theorem \ref{geopmf}.}
+                           & 1 - \dsum_{i = 1}^{t} (1 - p)^{i - 1}p & \just{By $\dist{X}{\geo{p}}$ and \TheoremRef{geopmf}.}
                            & 1 - p\dsum_{i = 0}^{t - 1} (1 - p)^i & \just{By re-indexing the sum.}
             \end{derivation}
             We now notice that the summation into the formula above is a finite geometric series.
@@ -750,7 +750,7 @@
         \begin{proof}
             Let $p \in (0 , 1], \dist{X}{\geo{p}}$ and $s, t \in \set{N}$ be given. We will now
             proceed by calculating $\condpr{X = s + t}{X > s}$ using the definition of
-            conditional probability and lemma \ref{memorylesslemma}. We first invoke the definition
+            conditional probability and \LemmaRef{memorylesslemma}. We first invoke the definition
             of condition probability as follows.
             \[
                 \condpr{X = s + t}{X > s} = \dfrac{\pr{\union{(X = s + t)}{(X > s)}}}{\pr{X > s}}
@@ -760,9 +760,9 @@
             \begin{derivation}{=}
                 \condpr{X = s + t}{X > s} & \dfrac{\pr{X = s + t}}{\pr{X > s}} \\
                                           & \dfrac{(1 - p)^{s + t - 1}p}{(1 - p)^s}
-                                          & \just{By theorem \ref{geopmf} and lemma \ref{memorylesslemma}.}
+                                          & \just{By \TheoremRef{geopmf} and \LemmaRef{memorylesslemma}.}
                                           & (1 - p)^{t - 1}p \\
-                                          & \pr{X = t} & \just{By theorem \ref{geopmf}.}
+                                          & \pr{X = t} & \just{By \TheoremRef{geopmf}.}
             \end{derivation}
             Thus $\condpr{X = s + t}{X > s} = \pr{X = t}$ as required. \QED
         \end{proof}
@@ -778,7 +778,7 @@
                 \condex{X}{X > s} & \dsum_{n = 1}^{\infty} (s + n) \condpr{X = s + n}{X > s} 
                                   & \just{By definition of conditional expectation.}
                                   & \dsum_{n = 1}^{\infty} (s + n) \pr{X = n}
-                                  & \just{By theorem \ref{memorylessness}.}
+                                  & \just{By \TheoremRef{memorylessness}.}
                                   & \dsum_{n = 1}^{\infty} s \pr{X = n} + \dsum_{n = 1}^{\infty} n \pr{X = n}
                                   & \just{By linearity of summation over addition.}
                                   & s \dsum_{n = 1}^{\infty} \pr{X = n} + \ex{X}
@@ -833,7 +833,7 @@
         \begin{proof}
             Let $\l \in \unionzero{\set{R}^+}$ and $\dist{X}{\poisson{\l}}$ be given. We proceed
             by computing $\var{X} = \ex{X^2} - \ex{X}^2$. Since we know $\ex{X} = \l$, by 
-            theorem \ref{Expected Value Poisson}, all we need to do is compute $\ex{X^2}$. Thus
+            \TheoremRef{Expected Value Poisson}, all we need to do is compute $\ex{X^2}$. Thus
             we proceed by calculating $\ex{X^2}$ as follows.
             \begin{derivation}{=}
                 \ex{X^2} & \dsum_{i = 0}^{\infty} i^2 \cdot \pr{X = i} & \just{By definition of expected value.}
@@ -901,7 +901,7 @@
             \end{derivation}
             We now note that $\frac{n!}{i! (n - i)!} = \binom{n}{k}$ and that
             $\sum_{i = 0}^{n} \binom{n}{i} \l_1^{i} \l_2^{n - i} = (\l_1 + \l_2)^n$
-            by the Binomial Theorem (theorem \ref{Binomial Theorem}).
+            by the Binomial Theorem (\TheoremRef{Binomial Theorem}.
             \begin{derivation}{=}
                 \pr{X + Y = n} & \dsum_{i = 0}^{n} \dfrac{e^{-\l_1} \ \l_1^i}{i!} \cdot
                 \pr{X + Y = n} & \dfrac{e^{-(\l_1 + \l_2)}}{n!} \dsum_{i = 0}^{n} \binom{n}{i} \l_1^i \l_2^{n - i}\\
@@ -949,7 +949,7 @@
             \]
             We now note that by construction of $Y$ we know that $Y \le X$, in other words
             $\forall l \in \Omega \ Y(l) \le X(l)$ since $X(l) \ge 0$. Now we can invoke
-            lemma \ref{Markov lemma 1} to conclude that $\ex{Y} \le \ex{X}$. We can now
+            \LemmaRef{Markov lemma 1} to conclude that $\ex{Y} \le \ex{X}$. We can now
             compute $\ex{Y}$ as follows.
             \begin{derivation}{=}
                 \ex{Y} & 0 \cdot \pr{Y = 0} + t \cdot \pr{Y = t} & \just{By definition of $\ex{Y}$.}
@@ -961,7 +961,7 @@
                 t \cdot \pr{X \ge t} \le \ex{X}
                 \label{Markov equation 1}
             \end{equation}
-            Since $t \neq 0$ we can divide equation (\ref{Markov equation 1}) by $t$ and
+            Since $t \neq 0$ we can divide \equationRef{Markov equation 1} by $t$ and
             conclude that 
             \[
                \pr{X \ge t} \le \frac{\ex{X}}{t}
@@ -986,7 +986,7 @@
             \]
             Since $u > t$ we know that $u - t > 0$ which implies that
             $u - t \in \set{R}^{+}$. We can now invoke Markov's Inequality
-            (theorem \ref{Markov's Inequality}) as follows
+            (\TheoremRef{Markov's Inequality} as follows
             \begin{equation}
                 \pr{Y \ge u - t} \le \frac{\ex{Y}}{u - t}
                 \label{Markov corollary equation}
@@ -997,8 +997,8 @@
                        & \ex{u} - \ex{X} & \just{By Linearity of Expectation.}
                        & u - \ex{X}
             \end{derivation}
-            Thus by substituting our expression for $\ex{Y}$ into equation
-            (\ref{Markov corollary equation}) we can conclude that
+            Thus by substituting our expression for $\ex{Y}$ into
+            \equationRef{Markov corollary equation} we can conclude that
             \[
                 \pr{Y \ge u - t} \le \frac{u - \ex{X}}{u - t}
             \]
@@ -1028,7 +1028,7 @@
                        & \var{X} & \just{By definition of variance.}
             \end{derivation}
             Now we note that since $t > 0$ we also know that $t^2$ is greater than zero.
-            Thus we can now invoke Markov's Inequality (theorem \ref{Markov's Inequality}) as follows.
+            Thus we can now invoke Markov's Inequality (\TheoremRef{Markov's Inequality} as follows.
             \[
                 \pr{Y \ge t^2} \le \frac{\ex{Y}}{t^2} = \frac{\var{X}}{t^2}
             \]
@@ -1046,7 +1046,7 @@
         \begin{proof}
             Let $X : \Omega \rightarrow \set{R}$ be a random variable and let $t \in \set{R}^+$
             be given. We now simply proceed by applying Chebyshev's Inequality
-            (theorem \ref{Chebyshev's Inequality}) as follows.
+            (\TheoremRef{Chebyshev's Inequality} as follows.
             \[
                 \pr{|X - \ex{X}| \ge t \sqrt{\var{X}}} \le \frac{\var{X}}{(t \sqrt{\var{X}})^2} 
                                                        = \frac{\var{X}}{t^2\var{X}} = \frac{1}{t^2}

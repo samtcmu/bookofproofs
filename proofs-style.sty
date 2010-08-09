@@ -4,7 +4,7 @@
 % description: Contains all styles that I typically use for number theory.
 %              Continued from the 21-127 style file.
 
-% last modified: Fri Aug  6 18:55:16 PDT 2010
+% last modified: Sun Aug  8 12:38:10 PDT 2010
 
 \ProvidesPackage{proofs-style}
 
@@ -21,7 +21,7 @@
 % note: hyperref should always be the last package include.
 \usepackage[pdftex, colorlinks=true, linkcolor=blue, bookmarksnumbered=true, urlcolor=blue]{hyperref}
 
-% Remane the title of the Bibliography Chapter to References.
+% Rename the title of the Bibliography Chapter to References.
 \renewcommand{\bibname}{References}
 
 % Theorem definitions.
@@ -139,4 +139,14 @@
 \newcommand{\dlim}{\e{\displaystyle\lim}}
 \newcommand{\dunion}{\e{\displaystyle\bigcup}}
 \newcommand{\dint}{\e{\displaystyle\int}}
+
+% Reference commands.
+\newcommand{\equationRef}[1]{equation (\ref{#1})}
+\newcommand{\EquationRef}[1]{Equation (\ref{#1})}
+\newcommand{\TheoremRef}[1]{Theorem \ref{#1}}
+\newcommand{\LemmaRef}[1]{Lemma \ref{#1}}
+\newcommand{\CorollaryRef}[1]{Corollary \ref{#1}}
+\newcommand{\FigureRef}[1]{Figure \ref{#1}}
+\newcommand{\DefinitionRef}[1]{Definition \ref{#1}}
+\newcommand{\AxiomRef}[1]{Axiom \ref{#1}}
 
