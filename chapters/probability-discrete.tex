@@ -182,7 +182,7 @@
                                 \pr{\dunion_{i = 1}^{k + 1} A_i} = 
                                 \pr{\union{\left(\dunion_{i = 1}^{k} A_i\right)}{A_{k + 1}}}
                             \]
-                            We can now invoke $\inductive{P}{2}$ (or \CorollaryRef{Union Bound n = 2} to
+                            We can now invoke $\inductive{P}{2}$ (or \CorollaryRef{Union Bound n = 2}) to
                             conclude that.
                             \[
                                 \pr{\dunion_{i = 1}^{k + 1} A_i} \le
@@ -278,7 +278,7 @@
             \]
             and invoke \LemmaRef{LTP Partition Lemma} to conclude that $P''$ partitions $A$.
             Now since $P''$ partitions $A$ we can invoke part 3 of the Axioms of Probability
-            (\AxiomRef{Axioms of Probability} to conclude that
+            (\AxiomRef{Axioms of Probability}) to conclude that
 
             \[
                 \pr{A} = \pr{\dunion_{E \in P'} \intersect{A}{E}} = \sum_{E \in P'} \pr{\intersect{A}{E}}
@@ -332,13 +332,13 @@
                 \label{Baye's Rule equation 3}
             \end{equation}
             Since $\sum_{F \in P} \pr{F} = 1$ we use the Law of Total Probability
-            (\LemmaRef{The Law of Total Probability} to conclude that
+            (\LemmaRef{The Law of Total Probability}) to conclude that
             \begin{equation}
                 \pr{A} = \sum_{F \in P} \condpr{A}{F} \pr{F}
                 \label{Baye's Rule equation 4}
             \end{equation}
             We can now substitute \equationRef{Baye's Rule equation 3}
-            and \equationRef{Baye's Rule equation 4}) into \equationRef{Baye's Rule equation 1}
+            and \equationRef{Baye's Rule equation 4} into \equationRef{Baye's Rule equation 1}
             to conclude that
             \[
                 \condpr{E}{A} = \frac{\condpr{A}{E} \pr{E}}{\dsum_{F \in P} \condpr{A}{F} \pr{F}}
@@ -489,7 +489,7 @@
             We now simply proceed to calculate $\var{nX}$ using \TheoremRef{varformula}.
             \begin{derivation}{=}
                 \var{nX} & \ex{n^2 X^2} - \ex{nX}^2 & \just{By \TheoremRef{varformula}.}
-                         & n^2 \ex{X^2} - (n \ex{X})^2 & \just{By linearity of expectation (\TheoremRef{Linearity of Expectation}.}
+                         & n^2 \ex{X^2} - (n \ex{X})^2 & \just{By linearity of expectation.}
                          & n^2(\ex{X^2} - \ex{X}^2)  \\
                          & n^2 \var{X} & \just{By \TheoremRef{varformula}}
             \end{derivation}
@@ -901,7 +901,7 @@
             \end{derivation}
             We now note that $\frac{n!}{i! (n - i)!} = \binom{n}{k}$ and that
             $\sum_{i = 0}^{n} \binom{n}{i} \l_1^{i} \l_2^{n - i} = (\l_1 + \l_2)^n$
-            by the Binomial Theorem (\TheoremRef{Binomial Theorem}.
+            by the Binomial Theorem (\TheoremRef{Binomial Theorem}).
             \begin{derivation}{=}
                 \pr{X + Y = n} & \dsum_{i = 0}^{n} \dfrac{e^{-\l_1} \ \l_1^i}{i!} \cdot
                 \pr{X + Y = n} & \dfrac{e^{-(\l_1 + \l_2)}}{n!} \dsum_{i = 0}^{n} \binom{n}{i} \l_1^i \l_2^{n - i}\\
@@ -986,7 +986,7 @@
             \]
             Since $u > t$ we know that $u - t > 0$ which implies that
             $u - t \in \set{R}^{+}$. We can now invoke Markov's Inequality
-            (\TheoremRef{Markov's Inequality} as follows
+            (\TheoremRef{Markov's Inequality}) as follows
             \begin{equation}
                 \pr{Y \ge u - t} \le \frac{\ex{Y}}{u - t}
                 \label{Markov corollary equation}
@@ -1028,7 +1028,8 @@
                        & \var{X} & \just{By definition of variance.}
             \end{derivation}
             Now we note that since $t > 0$ we also know that $t^2$ is greater than zero.
-            Thus we can now invoke Markov's Inequality (\TheoremRef{Markov's Inequality} as follows.
+            Thus we can now invoke Markov's Inequality (\TheoremRef{Markov's Inequality})
+            as follows.
             \[
                 \pr{Y \ge t^2} \le \frac{\ex{Y}}{t^2} = \frac{\var{X}}{t^2}
             \]
@@ -1046,7 +1047,7 @@
         \begin{proof}
             Let $X : \Omega \rightarrow \set{R}$ be a random variable and let $t \in \set{R}^+$
             be given. We now simply proceed by applying Chebyshev's Inequality
-            (\TheoremRef{Chebyshev's Inequality} as follows.
+            (\TheoremRef{Chebyshev's Inequality}) as follows.
             \[
                 \pr{|X - \ex{X}| \ge t \sqrt{\var{X}}} \le \frac{\var{X}}{(t \sqrt{\var{X}})^2} 
                                                        = \frac{\var{X}}{t^2\var{X}} = \frac{1}{t^2}

@@ -655,7 +655,7 @@
             consecutive natural numbers that are composite, we can choose $k \in \set{N}$ such
             that $p_k$ is the largest prime smaller than $(n + 1)! + 1$ and $p_{k + 1}$ is the
             smallest prime larger than $(n + 1)! + (n + 1)$. We know such a $k$ exists since there
-            are infinitely many primes (\TheoremRef{Infinitely Many Primes}. Thus we have found
+            are infinitely many primes (\TheoremRef{Infinitely Many Primes}). Thus we have found
             $k \in \set{N}$ such that $p_{k + 1} - p_k \ge n$. Thus there are arbitrarily large
             prime gaps as required. \QED
         \end{proof}
@@ -905,7 +905,7 @@
                     We first show that if $p$ is prime, then $\forall x \in \set{Z} \
                     (x + a)^p \equiv x^p + a \mod p$. So assume that $p$ is prime and let
                     $x \in \set{Z}$ be given. We now compute $(x + a)^p$ by invoking
-                    the Binomial Theorem (\TheoremRef{Binomial Theorem} as follows.
+                    the Binomial Theorem (\TheoremRef{Binomial Theorem}) as follows.
                     \begin{derivation}{\equiv}
                         (x + a)^p & \dsum_{k = 0}^{p} \binom{p}{k} x^k a^{p - k} \mod p \\
                                   & a^p + \left( \dsum_{k = 1}^{p - 1} \binom{p}{k} x^k a^{p - k} \right) 
@@ -919,7 +919,7 @@
                                   & a^p + x^p \mod p \\
                                   & x^p + a^p \mod p
                     \end{derivation}
-                    We can now invoke Fermat's Little Theorem (\TheoremRef{Fermat's Little Theorem}
+                    We can now invoke Fermat's Little Theorem (\TheoremRef{Fermat's Little Theorem})
                     to conclude that $a^p \equiv a \cdot a^{p - 1} \equiv a \mod p$. Thus we can
                     conclude that 
                     \[

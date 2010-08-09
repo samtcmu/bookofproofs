@@ -141,12 +141,13 @@
 \newcommand{\dint}{\e{\displaystyle\int}}
 
 % Reference commands.
-\newcommand{\equationRef}[1]{equation (\ref{#1})}
+\newcommand{\highlightedRef}[2]{\hyperref[#2]{#1~\ref*{#2}}}
+\newcommand{\equationRef}[1]{\hyperref[#1]{equation~(\ref*{#1})}}
 \newcommand{\EquationRef}[1]{Equation (\ref{#1})}
-\newcommand{\TheoremRef}[1]{Theorem \ref{#1}}
-\newcommand{\LemmaRef}[1]{Lemma \ref{#1}}
-\newcommand{\CorollaryRef}[1]{Corollary \ref{#1}}
-\newcommand{\FigureRef}[1]{Figure \ref{#1}}
-\newcommand{\DefinitionRef}[1]{Definition \ref{#1}}
-\newcommand{\AxiomRef}[1]{Axiom \ref{#1}}
+\newcommand{\TheoremRef}[1]{\highlightedRef{Theorem}{#1}}
+\newcommand{\LemmaRef}[1]{\highlightedRef{Lemma}{#1}}
+\newcommand{\CorollaryRef}[1]{\highlightedRef{Corollary}{#1}}
+\newcommand{\FigureRef}[1]{\highlightedRef{Figure}{#1}}
+\newcommand{\DefinitionRef}[1]{\highlightedRef{Definition}{#1}}
+\newcommand{\AxiomRef}[1]{\highlightedRef{Axiom}{#1}}
 
