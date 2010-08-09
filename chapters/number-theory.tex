@@ -1764,7 +1764,7 @@
                 \frac{(n + 1)!}{k!} = \left(\prod_{j = n + 2}^{k} j\right)^{-1}
             \end{equation}
             since we can cancel out a factor of $(n + 1)!$ from both the numerator and
-            denominator. We now want to upper bound \equatoinRef{sum term equation}.
+            denominator. We now want to upper bound \equationRef{sum term equation}.
             We do this by making each term of the product smaller; thus making the
             reciprocal of the product larger.
             \begin{align*}
@@ -1781,7 +1781,7 @@
             \begin{align*}
                 e - S_n &= \frac{1}{(n + 1)!} \sum_{k = n + 1}^{\infty} \frac{(n + 1)!}{k!} \\
                         &< \frac{1}{(n + 1)!} \sum_{k = n + 1}^{\infty} \frac{1}{(n + 1)^{k - (n + 1)}}
-                        & \just{By \equationRref{sum term equation 2}.}
+                        & \just{By \equationRef{sum term equation 2}.}
                         &= \frac{1}{(n + 1)!} \sum_{k = 0}^{\infty} \frac{1}{(n + 1)^{k}}
                         & \just{By re-indexing the sum.}
                         &= \frac{1}{(n + 1)!} \frac{1}{1 - \frac{1}{n + 1}}
