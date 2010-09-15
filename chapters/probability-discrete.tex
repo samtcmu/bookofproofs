@@ -743,7 +743,7 @@
             Thus we have shown that $\pr{X > t} = (1 - p)^t$ as required.~\QED
         \end{proof}
         \begin{theorem}[Memorylessness]
-            $``\forall p \in (0, 1]$ if $\dist{X}{\geo{p}}$ then $\forall s, t \in \set{N} \ \
+            $``\forall p \in (0, 1]$ if $\dist{X}{\geo{p}}$ then $\forall s, t~\in~\set{N} \\
             \condpr{X = s + t}{X > s} = \pr{X = t}.$''
             \label{memorylessness}
         \end{theorem}
@@ -768,7 +768,7 @@
         \end{proof}
         \begin{corollary}
             $``\forall p \in (0, 1]$ if $\dist{X}{\geo{p}}$ then $\forall s \in \set{N} \ \ 
-            \condex{X}{X > s} = s + \ex{X}$.''
+            \condex{X}{X > s}~=~s~+~\ex{X}$.''
             \label{memorylessness expectation}
         \end{corollary}
         \begin{proof}
@@ -792,10 +792,10 @@
             Let $\l \in \unionzero{\set{R}^{+}}$ and let $X$ be a random variable.
             We say $\dist{X}{\poisson{\l}}$ if and only if
             \begin{equation}
-                \pr{X = n} = \left\{\begin{array}{ll}
-                    \dfrac{e^{-\l} \l^{n}}{n!} & \mbox{, if } n \in \unionzero{\set{N}} \\
-                    0 & \mbox{, otherwise}
-                \end{array}\right.
+                \pr{X = n} = \begin{cases}
+                    \dfrac{e^{-\l} \l^{n}}{n!}, & \mbox{if $n \in \unionzero{\set{N}}$;} \\
+                    0, & \mbox{otherwise.}
+                \end{cases}
             \end{equation}
             In this instance we define a
             random variable using its probability mass function.

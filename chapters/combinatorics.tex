@@ -521,10 +521,10 @@
                     \end{array}\]
                     We can now define $b_n$ for $0 \le n \le k - 1$ as follows:
                     \begin{equation}
-                        b_n = \left\{\begin{array}{ll}
-                                  a_0 & \mbox{, if $n = 0$} \\
-                                  a_n - \dsum_{i = k - n}^{k - 1} c_i a_{n - (k - j)} & \mbox{, otherwise}
-                              \end{array}\right.
+                        b_n = \begin{cases}
+                            a_0, & \mbox{if $n = 0$;} \\
+                            a_n - \dsum_{i = k - n}^{k - 1} c_i a_{n - (k - j)}, & \mbox{otherwise.}
+                        \end{cases}
                     \end{equation}
                     We can now write $A(x)$ is the following convenient form
                     \begin{equation}
