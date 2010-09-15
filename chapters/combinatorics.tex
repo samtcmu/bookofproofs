@@ -49,7 +49,7 @@
                     be in $A$. Since we know $S_1$ and $S_2$ partition $S$ we can now conclude
                     via the rule of sum that $|S| = |S_1| + |S_2| = \binom{n - 1}{k - 1} + \binom{n - 1}{k}.$
             \end{itemize}
-            Thus we can conclude that $\binom{n}{k} = \binom{n - 1}{k} + \binom{n - 1}{k - 1}$. \QED
+            Thus we can conclude that $\binom{n}{k} = \binom{n - 1}{k} + \binom{n - 1}{k - 1}$.~\QED
         \end{proof}
         \begin{theorem}[Binomial Theorem]
             $``\forall n \in \set{N} \ \forall a, b \in \set{R} \ (a + b)^2 = \dsum_{i = 0}^{n} \binom{n}{i}a^ib^{n - i}.$''
@@ -67,7 +67,7 @@
             of the $n$ binomial terms and choose if we will take an $a$ or $b$ from it. Thus we
             are going through the $n$ terms and choosing $i$ of them to take an $a$ from; so there
             are $\binom{n}{i}$ different ways to choose $i$ $a$'s from the $n$ terms. Thus we can
-            conclude that $(a + b)^n = \sum_{i = 0}^{n} \binom{n}{i} a^ib^{n - i}$. \QED
+            conclude that $(a + b)^n = \sum_{i = 0}^{n} \binom{n}{i} a^ib^{n - i}$.~\QED
         \end{proof}
         \begin{proof}[Alternate Proof]
             We may also proceed by induction on $n$ to prove $\inductive{P}{n}$ for all
@@ -132,7 +132,7 @@
                     Thus $\inductive{P}{k + 1}$ is true as required.
             \end{itemize}
             Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \unionzero{\set{N}}$
-            as required. \QED
+            as required.~\QED
         \end{proof}
         \begin{theorem}
             $``$Let $n$ and $k$ be positive integers. There are $\binom{n - 1}{k - 1}$ distinct
@@ -179,7 +179,7 @@
             (barriers 1 through $n - 1$) and we have to pick $k - 1$ of them to define $k$ regions,
             i.e. we are picking $k - 1$ elements from a $n - 1$ element set. Thus there are exactly
             $\binom{n - 1}{k - 1}$ ways to pick the barriers, and thus exactly $\binom{n - 1}{k - 1}$
-            distinct solutions to \equationRef{Pirates and Gold Eqation} as required. \QED
+            distinct solutions to \equationRef{Pirates and Gold Eqation} as required.~\QED
         \end{proof}
         \begin{corollary}[Pirates and Gold]
             $``$Let $n$ and $k$ be positive integers. There are $\binom{n + k - 1}{k - 1}$ distinct
@@ -221,7 +221,7 @@
             \end{equation}
             we can conclude that there are $\binom{n + k - 1}{k - 1}$ distinct solutions
             to \equationRef{Pirates and Gold equation 2} when the $x_i$'s all non-negative
-            integers. \QED
+            integers.~\QED
         \end{proof}
         \begin{theorem}[Chairperson Identity]
             $``\forall n \in \set{N} \ \forall k \in [n] \ k \binom{n}{k} = n \binom{n - 1}{k - 1}$.''
@@ -265,7 +265,7 @@
                         that $|S| = n \binom{n - 1}{k - 1}$.
             \end{itemize}
             Thus we can conclude that $k \binom{n}{k} = n \binom{n - 1}{k - 1}$
-            as required. \QED
+            as required.~\QED
         \end{proof}
     \section{Sterling Numbers}
         \begin{definition}
@@ -328,7 +328,7 @@
                     as required.
             \end{itemize}
             Thus we can conclude that $\npermk{n}{k} = (n - 1) \npermk{n - 1}{k} + \npermk{n - 1}{k - 1}$
-            as required. \QED
+            as required.~\QED
         \end{proof}
         \begin{definition}
             Let $n \in \set{N}$ and $k \in \set{Z}$ such that $0 \le k \le n$. We define
@@ -372,7 +372,7 @@
                     $|S| = k \npartk{n - 1}{k} + \npartk{n - 1}{k - 1}$ via the rule of sum.
             \end{itemize}
             Thus we can conclude that $\npartk{n}{k} = k \npartk{n - 1}{k} + \npartk{n - 1}{k - 1}$
-            as required. \QED
+            as required.~\QED
         \end{proof}
     \section{Cantor-Schroeder-Bernstein Theorem}
         \begin{definition}
@@ -422,7 +422,7 @@
             \end{itemize}
             In either case we can clearly see that $f(i) \neq S$. Thus we can conclude that
             $f$ is not a surjection (since it doesn't map anything to $S$), which is of course
-            a contradiction. Thus $\power{\set{N}}$ is uncountably infinite. \QED
+            a contradiction. Thus $\power{\set{N}}$ is uncountably infinite.~\QED
 
             % To show that $\set{N}$ and $[0, 1)$ do not have the same size it suffices
             % to show that there cannot be bijection from $\set{N}$ to $[0, 1)$. Thus we
@@ -461,7 +461,7 @@
             % in the $j^{th}$ decimal place $\forall j \in \set{N}$ by construction of $q$.
             % Thus $f$ cannot be surjective since $q$ is a real number between 0 and 1 that is not
             % in the image of $f$. Thus $f$ is not a bijection, which is of course a contradiction.
-            % \QED
+            %~\QED
         \end{proof}
         \begin{corollary}
             % TODO
@@ -476,7 +476,7 @@
         %     By \TheoremRef{diagonalization} we know that $\set{N}$ and $[0, 1)$ do not
         %     have the same cardinality. Since $\subs{[0, 1)}{\set{R}}$ and we know that $[0, 1)$
         %     is larger than $\set{N}$ in some sense, we can conclude that $\set{N}$
-        %     and $\set{R}$ do not have the same cardinality. \QED
+        %     and $\set{R}$ do not have the same cardinality.~\QED
         % \end{proof}
     \section{Inclusion Exclusion Theorem}
         \begin{theorem}
@@ -578,6 +578,6 @@
                     linear recurrences.
             \end{itemize}
             Thus we can conclude that the generating function of a sequence is
-            rational if and only if the sequence is linear recurrent. \QED
+            rational if and only if the sequence is linear recurrent.~\QED
         \end{proof}
 

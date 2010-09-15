@@ -3,7 +3,7 @@
 % date created: Tue Dec  2 21:04:54 EST 2008
 % description: The Number Theory chapter of The Book of Proofs.
 
-% last modified: Sat Aug  7 22:45:28 PDT 2010
+% last modified: Tue Sep 14 15:17:47 PDT 2010
 
 \chapter{Number Theory}
     \section{The Division Algorithm}
@@ -53,7 +53,7 @@
                     Thus the representation is unique.
             \end{itemize}
             Thus we can conclude that $n = bq + r, 0 \le r < b$, and 
-            that such $q$ and $r$ are unique. \QED
+            that such $q$ and $r$ are unique.~\QED
         \end{proof}
     \section{The Euclidean Algorithm}
         \begin{definition}
@@ -97,7 +97,7 @@
                     Thus we can conclude that $d$ divides $b$. Since we know $d$ divides both $a$
                     and $b$ we can conclude that $d \in W$ by definition of $W$.
             \end{itemize}
-            Thus we can conclude that $W = V$ and $\gcd{a}{b} = \gcd{a}{b - a}$. \QED
+            Thus we can conclude that $W = V$ and $\gcd{a}{b} = \gcd{a}{b - a}$.~\QED
         \end{proof}
         % TODO State the Euclidean Algorithm and give C or ML code that implements
         %      both the Euclidean and the Extended Euclidean Algorithm.
@@ -164,7 +164,7 @@
                     Thus in either case we have found $x, y \in \set{Z}$ such that $ax + by = \gcd{a}{b}$.
             \end{itemize}
             Finally by the principle of mathematical induction we can conclude that $\inductive{P}{n}$ is
-            true for all $n \in \set{N}$. \QED
+            true for all $n \in \set{N}$.~\QED
         \end{proof}
         % TODO State that we can find the x and y via the Euclidean Algorithm.
         %      In other words state the extended Euclidean Algorithm.
@@ -252,7 +252,7 @@
                     Thus we have shown that $(x, y) = (x_0 + bk, y_0 - ak)$ when $k = \dfrac{y_0 - y}{a}$,
                     i.e. $(x, y) \in T$ as required.
             \end{itemize} 
-           Thus we can conclude that $S_{a, b} = T$ as required. \QED
+           Thus we can conclude that $S_{a, b} = T$ as required.~\QED
         \end{proof}
         \begin{theorem}[All Solutions]
             $``\forall a, b \in \set{Z}$ if $\exists x_0, y_0 \in \set{Z}$ such that
@@ -281,7 +281,7 @@
                                     & (x, y) \in S_{a', b'} & \just{By definition of $S_{a', b'}$.}
             \end{derivation}
             Thus we can conclude that $S_{a, b} = S_{a', b'} = T$, which by transitivity of equality
-            tells us that $S_{a, b} = T$ as required. \QED
+            tells us that $S_{a, b} = T$ as required.~\QED
         \end{proof}
         \begin{definition}
             Let $a, b \in \set{Z}$ and $n \in \set{N}$, we define the following
@@ -323,7 +323,7 @@
                     Thus we have factored $d$ into $nl$ where $l = jx + ky$. Thus we can conclude
                     that $d \in \nZ{n}$.
             \end{itemize}
-            Thus we can conclude that $(a, b) = \nZ{n}$. \QED
+            Thus we can conclude that $(a, b) = \nZ{n}$.~\QED
         \end{proof}
         \begin{corollary}
             $``\forall a, b, n \in \set{Z} \ \exists x, y \in \set{Z}$ such that
@@ -342,7 +342,7 @@
             Now since $\set{Z}$ is closed under addition we can conclude that 
             $\frac{n}{a} + \frac{m}{a} = \frac{n + m}{a} \in \set{Z}$. Thus by definition of
             divisibility we can conclude that $\divides{a}{(n + m)}$ as required.
-            \QED
+           ~\QED
         \end{proof}
         \begin{lemma}
             $``\forall a, b, q \in \set{Z}$ if $\gcd{a}{b} = 1$ and $\divides{a}{qb}$ then
@@ -356,7 +356,7 @@
             $qax + qby = q$. We now note that $\divides{a}{qax}$ since $\frac{qax}{a} = qx \in \set{Z}$
             and $\divides{a}{qby}$ since $\divides{a}{qb}$ by construction. Thus by
             \LemmaRef{FTA lemma 1} we can conclude that $\divides{a}{qax + qby}$, which of course
-            implies that $\divides{a}{q}$ as required. \QED
+            implies that $\divides{a}{q}$ as required.~\QED
         \end{proof}
         \begin{lemma}
             $``\forall n \in \set{N} \ \forall p \in \set{P} \ \forall a_1, \dots, a_n \in \set{Z}$
@@ -393,7 +393,7 @@
                     Thus $\inductive{P}{k + 1}$ is true as required.
             \end{itemize}
             Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \set{N}$
-            as required. \QED
+            as required.~\QED
         \end{proof}
         \begin{definition}
             Let $n \in \setsub{\set{Z}}{\Set{0}}$. We say $p_1 \cdots p_k$ is a
@@ -452,7 +452,7 @@
                                     \]
                                     We can now invoke $\inductive{P}{r}$ and $\inductive{P}{s}$ to find
                                     $k_1, k_2 \in \unionzero{\set{N}}$ and
-                                    $r_1, \dots, r_{k_1}, s_1, \dots, s_{k_2} \in \set{P}$ such that
+                                    $r_1$,~\dots,~$r_{k_1}$, $s_1$,~\dots,~$s_{k_2} \in \set{P}$ such that
                                     \[
                                         r = r_1 \cdots r_{k_1} \mbox{ and } s = s_1 \cdots s_{k_2}
                                     \]
@@ -510,7 +510,7 @@
                     as required.
             \end{enumerate}
             Thus we can conclude that each non-zero integer has a unique prime
-            factorization as required. \QED
+            factorization as required.~\QED
         \end{proof}
    \section{Modular Arithmetic}
         \begin{definition}
@@ -552,7 +552,7 @@
                     This of course implies that $\divides{n}{a - c}, a \equiv c \mod n$, and
                     $a \sim c$ as required.
             \end{itemize}
-            Thus congruence modulo $n$ is an equivalence relation. \QED
+            Thus congruence modulo $n$ is an equivalence relation.~\QED
         \end{proof}
         \begin{lemma}
             $``\forall n \in \set{N} \ \forall a, b, \bar{a}, \bar{b} \in \set{Z}$
@@ -596,7 +596,7 @@
             \[
                 ab \equiv \bar{a}\bar{b} \mod n
             \]
-            as required. \QED
+            as required.~\QED
         \end{proof}
     \section{Infinitely Many Primes}
         \begin{definition}
@@ -633,7 +633,7 @@
                     Thus $r \in \set{P}$ and $|\set{P}| = n + 1$.
             \end{itemize}
             In either case we are forced to conclude that $|\set{P}| = n + 1$, which is of course
-            a contradiction. \QED
+            a contradiction.~\QED
         \end{proof}
     \section{The Sequence of Prime Numbers}
         \begin{definition}
@@ -657,7 +657,7 @@
             smallest prime larger than $(n + 1)! + (n + 1)$. We know such a $k$ exists since there
             are infinitely many primes (\TheoremRef{Infinitely Many Primes}). Thus we have found
             $k \in \set{N}$ such that $p_{k + 1} - p_k \ge n$. Thus there are arbitrarily large
-            prime gaps as required. \QED
+            prime gaps as required.~\QED
         \end{proof}
     \section{Chinese Remainder Theorem}
         \begin{lemma}
@@ -671,7 +671,7 @@
             We now let $c = \frac{n}{a}$ and $d = \frac{n}{b}$, i.e. $n = ac = bd$. Since $\divides{a}{n}$
             we know that $\divides{a}{bd}$. Since $\gcd{a}{b} = 1$ we know that $\divides{a}{d}$ by 
             \LemmaRef{FTA lemma 2}. Thus by definition of divisibility $\frac{d}{a} = \frac{n}{ab} \in \set{Z}$.
-            This of course implies that $\divides{ab}{n}$ as required. \QED
+            This of course implies that $\divides{ab}{n}$ as required.~\QED
         \end{proof}
         \begin{corollary}
             $\forall k \in \setsub{\set{N}}{\Set{1}} \ \forall a_1, \dots, a_k, n \in \set{Z}$ if
@@ -699,7 +699,7 @@
                     $\divides{ma_{k + 1}}{n}$. In other words $\divides{\prod_{i = 1}^{k + 1} a_i}{n}$;
                     thus $\inductive{P}{k + 1}$ is true as required.
             \end{itemize}
-            Thus we can conclude that $\inductive{P}{k}$ is true for all $k \ge 2$ as required. \QED
+            Thus we can conclude that $\inductive{P}{k}$ is true for all $k \ge 2$ as required.~\QED
         \end{proof}
         \begin{theorem}
             $``\forall k \in \set{N} \ \forall a_1, \dots, a_k \in \set{Z} \
@@ -767,7 +767,7 @@
             This is of course a contradiction.
 
             Thus $x \equiv x_0 \mod n$ is the only solution to
-            the system of congruences in \FigureRef{CRT congruences}. \QED
+            the system of congruences in \FigureRef{CRT congruences}.~\QED
         \end{proof}
      \section{Fermat's Little Theorem}
         \begin{lemma}
@@ -783,7 +783,7 @@
             $\gcd{k!(p - k)!}{p} = 1$. Thus we can conclude that $k!(p - k)!$
             must divide $(p - 1)!$. Thus $\frac{\binom{p}{k}}{p} = \frac{(p - 1)!}{k!(p - k)!}
             \in \set{Z}$ and $p$ divides $\binom{p}{k}$. This of course implies that
-            $\binom{p}{k} \equiv 0 \mod p$. \QED
+            $\binom{p}{k} \equiv 0 \mod p$.~\QED
         \end{proof}
         \begin{lemma}
             $``\forall p \in \set{N}$ if $p$ is prime then 
@@ -821,7 +821,7 @@
                     thus we can conclude that that $(k + 1)^p - (k + 1) \equiv 0 \mod p$
                     as required.
             \end{itemize}
-            Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \set{N}$. \QED
+            Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \set{N}$.~\QED
         \end{proof}
         \begin{theorem}[Fermat's Little Theorem]
             $``\forall a, p \in \set{Z}$ if $p$ is prime and $\ndivides{p}{a}$, then
@@ -871,7 +871,7 @@
                 a^{p - 1} \cdot 1 & 1 \mod p \\
                 a^{p - 1} & 1 \mod p
             \end{derivation}
-            Thus we can conclude that $a^{p - 1} \equiv 1 \mod p$ as required. \QED
+            Thus we can conclude that $a^{p - 1} \equiv 1 \mod p$ as required.~\QED
         \end{proof}
         \begin{proof}[Alternate Proof]
             Let $a, p \in \set{Z}$ be given such that $p$ is prime and $\ndivides{p}{a}$.
@@ -892,7 +892,7 @@
             \]
             In other words $x$ is the inverse of $a$ modulo $p$. We can now multiply
             \equationRef{fermat equation} by $x$ and conclude $a^{p - 1} \equiv 1 \mod p$
-            as required. \QED
+            as required.~\QED
         \end{proof}
         \begin{theorem}[Generalization to Polynomials]
             $``\forall a, p \in \set{Z}$ if $\ndivides{p}{a}$ then
@@ -930,7 +930,7 @@
                     We now show that if $(x + a)^p \equiv x^p + a \mod p$ then $p$ is prime.
                     % TODO
             \end{itemize}
-            Thus we can conclude that $p \in \set{P}$ if and only if $(x + a)^n \equiv x^n + a \mod p$. \QED
+            Thus we can conclude that $p \in \set{P}$ if and only if $(x + a)^n \equiv x^n + a \mod p$.~\QED
         \end{proof}
     \section{Euler's Theorem}
         \begin{definition}
@@ -982,13 +982,13 @@
             \]
             Since $\Zmult{n}$ is a group we can multiply both sides of the above equation
             by the inverse of $\left(\prod_{b \in \Zmult{n}} b\right)$ as conclude that $a^{\eulerphi{n}} = 1$.
-            Thus we can conclude that $a^{\eulerphi{n}} \equiv 1 \mod n$ as desired. \QED
+            Thus we can conclude that $a^{\eulerphi{n}} \equiv 1 \mod n$ as desired.~\QED
         \end{proof}
         \begin{proof}[Alternate Proof (Manuel Blum)]
             % TODO Write the proof that uses group theory and considers the subgroup of Z*_n that
             %      is generated by a. This group has order(a, n) many elements and this number
             %      divides phi(n) by Lagrange Theorem. Thus if a^order(a, n) mod n = 1 then so
-            %      does a^phi(n) = 1. QED
+            %      does a^phi(n) = 1.~QED
         \end{proof}
     \section{Wilson's Theorem}
         \begin{lemma}
@@ -1019,7 +1019,7 @@
                 i^2 \equiv 1 \mod p & (i - 1 \equiv 0 \mod p) \mbox{ or } (i + 1 \equiv 0 \mod p) \\
                                     & (i \equiv 1 \mod p) \mbox{ or } (i \equiv -1 \mod p)
             \end{derivation}
-            Thus $i$ is either $1$ or $-1$ modulo $p$ as required. \QED
+            Thus $i$ is either $1$ or $-1$ modulo $p$ as required.~\QED
         \end{proof}
         \begin{lemma}[Uniqueness of Inverse]
             $``\forall p \in \set{P} \ \forall n \in \Zmult{p} \ n$ has a unique inverse in $\Zmult{p}$.''
@@ -1038,7 +1038,7 @@
                   & 1 \cdot y \mod p & \just{Since $x$ is the inverse of $n$.}
                   & y \mod p
             \end{derivation}
-            Thus we can conclude that $n$ has a unique inverse modulo $p$. \QED
+            Thus we can conclude that $n$ has a unique inverse modulo $p$.~\QED
         \end{proof}
         \begin{theorem}[Wilson's Theorem]
             ``$\forall p \in \set{N} \ \ p$ is prime if and only if $(p - 1)! \equiv -1 \mod p.$''
@@ -1092,7 +1092,7 @@
                     Thus we can conclude that if $p$ is not prime then $(p - 1)! \not\equiv -1 \mod p$
                     as required.
             \end{itemize}
-            Thus we can conclude that $p$ is prime if and only if $(p - 1)! \equiv -1 \mod p$. \QED
+            Thus we can conclude that $p$ is prime if and only if $(p - 1)! \equiv -1 \mod p$.~\QED
         \end{proof}
     \section{M\"obius Inversion}
         \begin{definition}
@@ -1130,7 +1130,7 @@
             \[
                 n = \sum_{\divides{d}{n}} \eulerphi{d}
             \]
-            as required. \QED
+            as required.~\QED
         \end{proof}
         \begin{definition}
             % TODO Define the Mobius Function.
@@ -1314,10 +1314,10 @@
                         \[
                             m_ipx + m_iqy = m_i(px + qy) = m_i
                         \]
-                        Now we can finally conclude that $u \equiv m_i \mod pq$ as required. \QED
+                        Now we can finally conclude that $u \equiv m_i \mod pq$ as required.~\QED
                 \end{itemize}
                 Thus by Modus Ponens we can conclude that $D_{n, d}(c_i) = m_i$, i.e. Bob successfully
-                received Alice's message. \QED
+                received Alice's message.~\QED
             \end{proof}
         \end{definition}
     \section{Common Divisibility Rules}
@@ -1339,7 +1339,7 @@
             Thus we have shown the $n$ and the sum of the digits in the base 10 representation of
             $n$ are in the same equivalence class modulo 3. Thus we can conclude that $n$
             is divisible by 3 if and only if the sum of the digits in the base 10 representation of $n$
-            is divisible by 3. \QED
+            is divisible by 3.~\QED
         \end{proof}
         \begin{theorem}
             $``$Let $b, n \in \set{N}$ and let $n = \sum_{i = 0}^{k} n_i \cdot b^i$ be the base
@@ -1359,7 +1359,7 @@
             \]
             Since congruence modulo $b + 1$ is an equivalence relation we can conclude that
             $n \equiv 0 \mod (b + 1)$ if and only if $\dsum_{i = 0}^{k} b_i \cdot (-1)^i \equiv 0 \mod (b + 1)$.
-            But this just means that $(b + 1)$ divides ${\dsum_{i = 0}^{k} b_i \cdot (-1)^i}$. \QED
+            But this just means that $(b + 1)$ divides ${\dsum_{i = 0}^{k} b_i \cdot (-1)^i}$.~\QED
         \end{proof}
         \begin{corollary}
             $``$An integer is divisible by 11 if and only if the alternating sum of the digits
@@ -1502,7 +1502,7 @@
                     $\fcf{q_t}{t = 0}{n + 1} = \frac{P_{n + 1}}{Q_{n + 1}}$ as required.
             \end{itemize}
             Thus we can conclude that $\fcf{q_t}{t = 0}{n} = \frac{P_n}{Q_n}$
-            for all non-negative integers $n$. \QED
+            for all non-negative integers $n$.~\QED
         \end{proof}
         \begin{theorem}
             $``$Let \cf{q_t}{t \ge 0} be a general continued fraction. For all positive integers
@@ -1538,7 +1538,7 @@
                     as required.
             \end{itemize}
             Thus $P_{n - 1}Q_{n} - P_{n}Q_{n - 1} = (-1)^{n}$ for any positive
-            integer $n$. \QED
+            integer $n$.~\QED
         \end{proof}
         \begin{corollary}
             $``$Let \cf{q_t}{t \ge 0} be a continued fraction (i.e.
@@ -1568,7 +1568,7 @@
                 P_{n} (Q_{n - 1}) + Q_n(-P_{n - 1}) = 1
             \end{equation}
             So we can conclude that $\gcd{P_n}{Q_n} = 1$ and $P_n / Q_n$ is in
-            lowest terms. \QED
+            lowest terms.~\QED
         \end{proof}
         \begin{theorem}
             ``The continued fractions representation of any rational number has a finite number
@@ -1606,7 +1606,7 @@
                 \item
                 \item
             \end{itemize}
-            Thus we can conclude that $n$ has a unique base $q$ representation. \QED
+            Thus we can conclude that $n$ has a unique base $q$ representation.~\QED
         \end{proof}
     \section{$\sqrt{2}$ is Irrational}
         \begin{lemma}
@@ -1622,7 +1622,7 @@
                     If $a$ is odd we can see that $a \equiv 1 \mod 2$. This implies that
                     $a^2 \equiv 1^2 \equiv 1 \mod 2$. Thus we can see that $a^2 \equiv a \mod 2$.
             \end{itemize}
-            Thus we can see that $a^2 \equiv a \mod 2.$. \QED
+            Thus we can see that $a^2 \equiv a \mod 2.$.~\QED
         \end{proof}
         \begin{theorem}
             $``\sqrt{2} \not\in \set{Q}.$''
@@ -1645,7 +1645,7 @@
             Since we know that $b^2 = 2c^2$ we can conclude that $b^2$ must also be even. Again
             by the previous Lemma we can conclude that $b$ must also be even. This of course implies
             that the $\gcd{a}{b} \ge 2 > 1$, thus $\dfrac{a}{b}$ was not a lowest terms representation
-            of $\sqrt{2}$. This is of course a contradiction. \QED
+            of $\sqrt{2}$. This is of course a contradiction.~\QED
         \end{proof}
         \begin{definition}
             Let $n$ be a positive integer. We say that $n$ is \emph{square-free} if and only if
@@ -1667,7 +1667,7 @@
             to be divisible by $n$ it has to have a factor of $p$. This is impossible though
             because the only primes in the prime factorization of $a^2$ are those that are
             in the prime factorization of $a$. Thus $a^2$ is not divisible by $n$. This is
-            of course a contradiction. \QED
+            of course a contradiction.~\QED
         \end{proof}
         \begin{theorem}
             $``$Let $n$ be an integer greater than 1. If $n$ is square-free, then $\sqrt{n} \not\in \set{Q}$.''
@@ -1706,7 +1706,7 @@
             is divisible by $n$. In particular we can see that $\gcd{a}{b} \ge n > 1$.
             This is of course contradicts
             \equationRef{Square-root irrational proof eq 2}.
-            Thus $\sqrt{n}$ is not rational. \QED
+            Thus $\sqrt{n}$ is not rational.~\QED
         \end{proof}
         \begin{corollary}
             $``$Let $n$ be a positive integer. If $n$ is not a perfect square, then
@@ -1730,7 +1730,7 @@
             Since $f$ was chosen to be square-free, $\sqrt{f}$ is not rational by
             \TheoremRef{Square Root of Square Free Irrational}. Since the irrational real numbers
             are closed under multiplication by a rational we can conclude that $n = s \sqrt{f}$
-            is not rational. \QED
+            is not rational.~\QED
         \end{proof}
     \section{$e$ is Irrational}
         \begin{definition}
@@ -1794,7 +1794,7 @@
             \begin{equation}
                 0 < n! (e - S_n) < \frac{1}{n}
             \end{equation}
-            as required. \QED
+            as required.~\QED
         \end{proof}
         \begin{theorem}
             $``e \not\in \set{Q}$.''
@@ -1833,7 +1833,7 @@
             integer, i.e. $S_n n!$ must be an integer. Now since the integers are closed under
             subtraction we can conclude that $a\left(\frac{n!}{b}\right) - S_n n!$ must be an
             integer; which is of course a contradiction. Thus we can conclude that $e \not\in \set{Q}$
-            as required. \QED
+            as required.~\QED
         \end{proof}
     \section{$\pi$ is Irrational}
         \begin{definition}
@@ -1886,7 +1886,7 @@
                     \end{derivation}
                     Thus $H_{2^{k + 1}} > k + 1$ as required.
             \end{itemize}
-            Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \set{N}$. \QED
+            Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \set{N}$.~\QED
         \end{proof}
         \begin{corollary}
             $``H_{\infty} = \dlim_{n \rightarrow \infty} H_n$ diverges.''

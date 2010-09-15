@@ -63,7 +63,7 @@
             \end{equation}
             We can now multiply both sides of \equationRef{Conditional Probability Lemma equation 1}
             by $\pr{E}$ to conclude that $\pr{\intersect{A}{E}} = \condpr{A}{E} \pr{E}$ as
-            required. \QED
+            required.~\QED
         \end{proof}
         \begin{lemma}[Rule of Complement]
             $``\forall \subs{E}{\Omega} \ \pr{E} = 1 - \pr{\setsub{\Omega}{E}}.$''
@@ -88,13 +88,13 @@
             \[
                 \pr{E} = 1 - \pr{\setsub{\Omega}{E}}
             \]
-            as required. \QED
+            as required.~\QED
         \end{proof}
         \begin{corollary}
             $``\pr{\Set{}} = 0$.''
         \end{corollary}
         \begin{proof}
-            $\pr{\Set{}} = \pr{\C{\Omega}} = 1 - \pr{\Omega} = 1 - 1 = 0$ as required. \QED
+            $\pr{\Set{}} = \pr{\C{\Omega}} = 1 - \pr{\Omega} = 1 - 1 = 0$ as required.~\QED
         \end{proof}
     \section{The Union Bound}
         \begin{theorem}
@@ -127,7 +127,7 @@
             \[
                 \pr{\union{A}{B}} = \pr{A} + \pr{B} - \pr{\intersect{A}{B}}
             \]
-            as required. \QED
+            as required.~\QED
         \end{proof}
         \begin{corollary}
             $``\forall \subs{A, B}{\Omega} \ \pr{\union{A}{B}} \le \pr{A} + \pr{B}$.''
@@ -148,7 +148,7 @@
             \[
                 \pr{\union{A}{B}} = \pr{A} + \pr{B} - \pr{\intersect{A}{B}} \le \pr{A} + \pr{B} - 0
             \]
-            Thus we can conclude that $\pr{\union{A}{B}} \le \pr{A} + \pr{B}$ as required. \QED
+            Thus we can conclude that $\pr{\union{A}{B}} \le \pr{A} + \pr{B}$ as required.~\QED
         \end{proof}
         \begin{theorem}[Union Bound]
             \label{Union Bound}
@@ -197,7 +197,7 @@
                     In either case we have show that $\inductive{P}{k + 1}$ is true.
             \end{itemize}
             Thus we can conclude that $\inductive{P}{n}$ is true for all $n \in \set{N}$
-            as required. \QED
+            as required.~\QED
         \end{proof}
     \section{The Law of Total Probability}
         \begin{definition}
@@ -257,7 +257,7 @@
                     \end{itemize}
                     Thus we can conclude that $Q$ collectively exhausts $A$ as required.
             \end{itemize}
-            Thus we can conclude that $Q$ partitions $A$ as required. \QED
+            Thus we can conclude that $Q$ partitions $A$ as required.~\QED
         \end{proof}
         \begin{theorem}[The Law of Total Probability]
             $``\forall \subs{P}{\power{\Omega}} \forall \subs{A}{\Omega}$
@@ -305,7 +305,7 @@
             \[
                 \pr{A} = \sum_{E \in P} \condpr{A}{E} \pr{E}
             \]
-            as required. \QED
+            as required.~\QED
         \end{proof}
     \section{Bayes' Rule}
         \begin{theorem}
@@ -343,7 +343,7 @@
             \[
                 \condpr{E}{A} = \frac{\condpr{A}{E} \pr{E}}{\dsum_{F \in P} \condpr{A}{F} \pr{F}}
             \]
-            as required. \QED
+            as required.~\QED
         \end{proof}
     \section{The Birthday Paradox}
     \section{Linearity of Expectation}
@@ -375,7 +375,7 @@
                            & \just{By linearity of summation over addition.}
                            & \ex{X} + \ex{Y} & \just{By definition of expected value.}
             \end{derivation}
-            Thus we can conclude that $\ex{X + Y} = \ex{X} + \ex{Y}$ as required. \QED
+            Thus we can conclude that $\ex{X + Y} = \ex{X} + \ex{Y}$ as required.~\QED
         \end{proof}
         \begin{corollary}
             $``\forall X: \Omega \rightarrow \set{R} \ \forall c \in \set{R}$ \ $\ex{cX} = c \ex{X}$.''
@@ -393,7 +393,7 @@
                        & c \dsum_{l \in \Omega} X(l) \pr{l} \\
                        & c \ex{X} & \just{By definition of expected value.}
             \end{derivation}
-            We now note that, $Y = cX$. Thus $\ex{cX} = c \ex{X}$ as required. \QED
+            We now note that, $Y = cX$. Thus $\ex{cX} = c \ex{X}$ as required.~\QED
         \end{proof}
         \begin{definition}
             Let $X, Y : \Omega \rightarrow \set{R}$ be random variables. We say $X$ and $Y$
@@ -417,7 +417,7 @@
                         & \ex{X} \dsum_{j \in \image{Y}} j \ \pr{Y = j}  \\
                         & \ex{X} \ex{Y} & \just{By definition of $\ex{Y}$.}
             \end{derivation}
-            Thus we can conclude that $\ex{XY} = \ex{X}\ex{Y}$ as desired. \QED
+            Thus we can conclude that $\ex{XY} = \ex{X}\ex{Y}$ as desired.~\QED
         \end{proof}
     \section{Linearity of Variance}
         \begin{definition}
@@ -441,7 +441,7 @@
                         & \ex{X^2} - 2\ex{X}\ex{X} + \ex{X}^2 & \just{By linearity of expectation.}
                         & \ex{X^2} - \ex{X}^2
             \end{derivation}
-            Thus we have shown that $\var{X} = \ex{X^2} - \ex{X}^2$ as desired. \QED
+            Thus we have shown that $\var{X} = \ex{X^2} - \ex{X}^2$ as desired.~\QED
         \end{proof}
         \begin{theorem}
             $``\forall X, Y : \Omega \rightarrow \set{R}$ if $\ind{X}{Y}$ then 
@@ -479,7 +479,7 @@
                             & \left(\ex{X^2} - \ex{X}^2\right) + \left(\ex{Y^2} - \ex{Y}^2\right) \\
                             & \var{X} + \var{Y}
             \end{derivation}
-            Thus we can conclude that $\var{X + Y} = \var{X} + \var{Y}$ as desired. \QED
+            Thus we can conclude that $\var{X + Y} = \var{X} + \var{Y}$ as desired.~\QED
         \end{proof}
         \begin{theorem}
             $``\forall X: \Omega \rightarrow \set{R} \ \forall n \in \set{N} \ \var{nX} = n^2 \var{X}$.''
@@ -493,7 +493,7 @@
                          & n^2(\ex{X^2} - \ex{X}^2)  \\
                          & n^2 \var{X} & \just{By \TheoremRef{varformula}}
             \end{derivation}
-            Thus we can conclude that $\var{nX} = n^2\var{X}$ as required. \QED
+            Thus we can conclude that $\var{nX} = n^2\var{X}$ as required.~\QED
         \end{proof}
     \section{The Bernoulli Distribution}
         \begin{definition}
@@ -520,7 +520,7 @@
                         \var{X} = \ex{X^2} - \ex{X}^2 = p - p^2 = p(1 - p)
                     \]
             \end{itemize}
-            Thus we have shown that $\ex{X} = p$ and $\var{X} = p(1 - p)$ as required. \QED
+            Thus we have shown that $\ex{X} = p$ and $\var{X} = p(1 - p)$ as required.~\QED
         \end{proof}
     \section{The Binomial Distribution}
         \begin{definition}
@@ -548,7 +548,7 @@
             the probability that they all came up 1 is $p^{i}$.
             The probability that the remaining $n - i$ random variables came up 0 is $(1 - p)^{n - i}$
             by the same logic. Thus we can conclude that $\pr{X = i} = \binom{n}{i}p^i(1 - p)^{n - i}$
-            as required. \QED
+            as required.~\QED
         \end{proof}
         \begin{theorem}
             $``\forall n \in \set{N} \ \forall p \in [0, 1]$ if $\dist{X}{\bin{n}{p}}$ then
@@ -574,7 +574,7 @@
                         & \sum_{i = 1}^n p(1 - p) & \just{By $\var{X_i} = p(1 - p)$ as shown in \TheoremRef{bern}.}
                         & np(1 - p)
             \end{derivation}
-            Thus can see that $\ex{X} = np$ and $\var{X} = np(1 - p)$ as required. \QED
+            Thus can see that $\ex{X} = np$ and $\var{X} = np(1 - p)$ as required.~\QED
         \end{proof}
         \begin{theorem}[Binomial Chernoff Bound]
             $``\forall n \in \set{N} \ \forall t \in [0, \sqrt{n}]$ if $\dist{X}{\bin{n}{\frac{1}{2}}}$ then
@@ -621,7 +621,7 @@
             the probability of getting tails $n - 1$ times is $(1 - p)^{n - 1}$ since
             the flips are independent; similarly the probability that we get heads on
             the $n^{th}$ iteration is $p$. Thus we can conclude that $\pr{X = n} = (1 - p)^{n - 1}p$
-            as desired. \QED
+            as desired.~\QED
         \end{proof}
         \begin{theorem}
             $``\forall p \in (0, 1]$ if $\dist{X}{\geo{p}}$ then $\ex{X} = \dfrac{1}{p}$.''
@@ -655,7 +655,7 @@
             \[
                 p \ex{X} = p \left(\frac{1}{p}\right) = 1 \iff \ex{X} = \frac{1}{p}
             \] 
-            Thus we can conclude that $\ex{X} = \frac{1}{p}$ as required. \QED
+            Thus we can conclude that $\ex{X} = \frac{1}{p}$ as required.~\QED
         \end{proof}
         \begin{theorem}
             $``\forall p \in (0, 1]$ if $\dist{X}{\geo{p}}$ then $\var{X} = \dfrac{1 - p}{p^2}$.''
@@ -716,7 +716,7 @@
                         & \just{By $\ex{X} = \frac{1}{p}$ and \equationRef{geoxsquared}.}
                         & \dfrac{1 - p}{p^2}
             \end{derivation}
-            Thus we can conclude that $\var{X} = \frac{1 - p}{p^2}$ as required. \QED
+            Thus we can conclude that $\var{X} = \frac{1 - p}{p^2}$ as required.~\QED
         \end{proof}
         \begin{lemma}
             $``\forall p \in (0, 1]$ if $\dist{X}{\geo{p}}$ then $\forall t \in \set{N} \ \ 
@@ -740,7 +740,7 @@
                            & 1 - \left(1 - (1 - p)^t\right) \\
                            & (1 - p)^t
             \end{derivation}
-            Thus we have shown that $\pr{X > t} = (1 - p)^t$ as required. \QED
+            Thus we have shown that $\pr{X > t} = (1 - p)^t$ as required.~\QED
         \end{proof}
         \begin{theorem}[Memorylessness]
             $``\forall p \in (0, 1]$ if $\dist{X}{\geo{p}}$ then $\forall s, t \in \set{N} \ \
@@ -764,7 +764,7 @@
                                           & (1 - p)^{t - 1}p \\
                                           & \pr{X = t} & \just{By \TheoremRef{geopmf}.}
             \end{derivation}
-            Thus $\condpr{X = s + t}{X > s} = \pr{X = t}$ as required. \QED
+            Thus $\condpr{X = s + t}{X > s} = \pr{X = t}$ as required.~\QED
         \end{proof}
         \begin{corollary}
             $``\forall p \in (0, 1]$ if $\dist{X}{\geo{p}}$ then $\forall s \in \set{N} \ \ 
@@ -785,7 +785,7 @@
                                   & \just{By definition of expected value.}
                                   & s + \ex{X}
             \end{derivation}
-            Thus we can conclude that $\condex{X}{X > s} = s + \ex{X}$ as required. \QED
+            Thus we can conclude that $\condex{X}{X > s} = s + \ex{X}$ as required.~\QED
         \end{proof}
     \section{The Poisson Distribution}
         \begin{definition}
@@ -824,7 +824,7 @@
             \[
                 \ex{X} = \l e^{-\l} \sum_{i = 0}^{\infty} \frac{\l^i}{i!} = \l e^{-\l} e^{\l} = \l
             \]
-            Thus we have show that $\ex{X} = \l$ as required. \QED
+            Thus we have show that $\ex{X} = \l$ as required.~\QED
         \end{proof}
         \begin{theorem}
             $``\forall \l \in \unionzero{\set{R}^{+}}$ 
@@ -866,7 +866,7 @@
             \[
                 \var{X} = \ex{X^2} - \ex{X}^2 = \l^2 + \l - \l^2 = \l
             \]
-            Thus $\var{X} = \l$ as required. \QED
+            Thus $\var{X} = \l$ as required.~\QED
         \end{proof}
         \begin{theorem}[Additive Closure]
             $``\forall \l_1, \l_2 \in \unionzero{\set{R}}$ if $\dist{X}{\poisson{\l_1}}$,
@@ -909,7 +909,7 @@
             \end{derivation}
             Thus we can conclude that $\pr{X + Y = n} = \dfrac{e^{-(\l_1 + \l_2)} (\l_1 + \l_2)^n}{n!}$.
             This of course implies that $\dist{X + Y}{\poisson{\l_1 + \l_2}}$ by definition
-            of the Poisson random variable. \QED
+            of the Poisson random variable.~\QED
         \end{proof}
     \section{Balls and Bins}
     \section{Markov's Inequality}
@@ -930,7 +930,7 @@
                 \multicolumn{1}{r@{\ \le \ }}{} & \dsum_{l \in \Omega} Y(l) \ \pr{l} & \just{Since $X \le Y$.}
                        & \ex{Y} & \just{by definition of $\ex{Y}$.}
             \end{derivation}
-            Thus we can conclude that $\ex{X} \le \ex{Y}$ as required. \QED
+            Thus we can conclude that $\ex{X} \le \ex{Y}$ as required.~\QED
         \end{proof}
         \begin{theorem}[Markov's Inequality]
             $``\forall X : \Omega \rightarrow \unionzero{\set{R}^{+}} \ \forall t \in \set{R}^{+} \\
@@ -966,7 +966,7 @@
             \[
                \pr{X \ge t} \le \frac{\ex{X}}{t}
             \]
-            as required. \QED
+            as required.~\QED
         \end{proof}
         \begin{corollary}
             $``\forall X : \Omega \rightarrow \set{R}$ if
@@ -1008,7 +1008,7 @@
             \[
                 \pr{X \le t} \le \frac{u - \ex{X}}{ u - t}
             \]
-            as required. \QED
+            as required.~\QED
         \end{proof}
     \section{Chebyshev's Inequality}
         \begin{theorem}[Chebyshev's Inequality]
@@ -1038,7 +1038,7 @@
                 Y \ge t^2 \iff (X - \ex{X})^2 \ge t^2 \iff |X - \ex{X}| \ge t
             \]
             Thus we can conclude that $\pr{|X - \ex{X}| \ge t} \le \dfrac{\var{X}}{t^2}$
-            as required. \QED
+            as required.~\QED
         \end{proof}
         \begin{corollary}[Alternate Form of Chebyshev's Inequality] \ \\
             $``\forall X : \Omega \rightarrow \set{R} \ \forall t \in \set{R}^{+} \ 
@@ -1052,7 +1052,7 @@
                 \pr{|X - \ex{X}| \ge t \sqrt{\var{X}}} \le \frac{\var{X}}{(t \sqrt{\var{X}})^2} 
                                                        = \frac{\var{X}}{t^2\var{X}} = \frac{1}{t^2}
             \]
-            Thus we can conclude that $\pr{|X - \ex{X}| \ge t \sqrt{\var{X}}} \le \frac{1}{t^2}$. \QED
+            Thus we can conclude that $\pr{|X - \ex{X}| \ge t \sqrt{\var{X}}} \le \frac{1}{t^2}$.~\QED
         \end{proof}
     \section{Chernoff Bounds}
         \begin{theorem}

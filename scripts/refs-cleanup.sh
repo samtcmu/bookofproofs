@@ -35,7 +35,5 @@ for file in `ls ${CHAPTERS_DIR}`; do
     mv ${TEMP} ${CHAPTER}
     cat ${CHAPTER} | sed -E 's/[Aa]xioms? \(?\$?\\ref{([^}]*)}\$?\)?/\\AxiomRef{\1}/g' > ${TEMP}
     mv ${TEMP} ${CHAPTER}
-
-    # Apply the sed regex'es defined above one at a time.
 done
 
