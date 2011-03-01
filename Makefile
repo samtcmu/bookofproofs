@@ -23,7 +23,7 @@ CHAPTERS = chapters/number-theory.tex chapters/probability-discrete.tex \
            chapters/probability-continuous.tex chapters/appendix-notation.tex \
            chapters/combinatorics.tex chapters/group-theory.tex \
            chapters/analysis.tex chapters/preliminaries.tex \
-           chapters/references.tex
+           chapters/references.tex chapters/graph-theory.tex
 REFERENCES = refs/algebra.bib refs/analysis.bib refs/number-theory.bib \
              refs/preliminaries.bib refs/probability.bib
 

@@ -1,9 +1,39 @@
 % name: Sam Tetruashvili
-% title: graph-theorey.tex
+% title: graph-theory.tex
 % date created: Sat Jan 17 10:31:40 EST 2009
 % description: The Graph Theory chapter of The Book of Proofs.
 
 % last modified: Sat Jan 17 10:33:12 EST 2009
 
 \chapter{Graph Theory}
+    \section{Minimum Strongly Connected Sub-Graph}
+        \begin{problem}
+            Given a weighted directed graph, $G = (V, E)$ and $\omega:E \rightarrow \set{N}$,
+            where $V$ is a set of nodes, $\subs{E}{V^2}$ find a subgraph $G' = (V', E')$, and
+            $\omega$ is a function that give a non-negative integral weight to each edge such
+            that the following hold:
+            \begin{itemize}
+                \item
+                    $V' = V$.
+                \item
+                    For pair of nodes $(u, v)$ there is a sequences of edges in $E'$ that can
+                    get you from $u$ to $v$.
+                \item
+                    The following sum is minimized:
+                    \[
+                        \sum_{e \in E'} \omega(e)
+                    \]
+            \end{itemize}
+        \end{problem}
+        \begin{note}
+            This problem can be used to solve the facebull puzzle.
+        \end{note}
+        \begin{note}
+            I might have a reduction from the Travelling Salesman Problem to the problem
+            above; therefore, this problem is NP-Hard. We might want to looking for heuristic
+            algorithms or approximation algorithms for this problem.
+        \end{note}
+        \begin{algorithm}
+
+        \end{algorithm}
 
